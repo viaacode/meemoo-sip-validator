@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "meemoo-sip-validator"
 version = "0.1.0"
@@ -6,8 +10,17 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "py-commons-ip>=0.0.1,<1"
-
 ]
 classifiers = [
   "Programming Language :: Python :: 3.12",
 ]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "build",
+    "twine",
+]
+
+[tool.setuptools.package-data]
+"meemoo_sip_validator" = ["*"]
