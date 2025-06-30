@@ -43,6 +43,11 @@ class MeemooSIPConstraintXMLNodeType(StrEnum):
     UNSPECIFIED = auto()
 
 
+class MeemooSIPConstraintEvaluationStatus(StrEnum):
+    SUCCESS = auto()
+    FAIL = auto()
+
+
 class MeemooSIPConstraint:
     """Class describing a meemoo SIP constraint.
 
@@ -129,5 +134,50 @@ class MeemooSIPConstraint:
                 and self.xml_node_type == other.xml_node_type
                 and self.filename == other.filename
                 and self.xpath == other.xpath
+            )
+        return False
+
+
+class MeemooSIPConstraintEvaluation:
+    """Class describing the evaluation of a meemoo SIP constraint.
+
+    Attributes:
+        _constraint: The meemoo SIP constraint.
+        _status: The status of the evaluation.
+        _message: Additional message about the evaluation, if applicable.
+    """
+
+    def __init__(
+        self,
+        constraint: MeemooSIPConstraint,
+        status: MeemooSIPConstraintEvaluationStatus,
+        message: str | None = None,
+    ):
+        self._constraint = constraint
+        self._status = status
+        self._message = message
+
+    @property
+    def constraint(self) -> MeemooSIPConstraint:
+        return self._constraint
+
+    @property
+    def status(self) -> MeemooSIPConstraintEvaluationStatus:
+        return self._status
+
+    @property
+    def message(self) -> str | None:
+        return self._message
+
+    def is_valid(self) -> bool:
+        return self.status == MeemooSIPConstraintEvaluationStatus.SUCCESS
+
+    @override
+    def __eq__(self, other):
+        if isinstance(other, MeemooSIPConstraintEvaluation):
+            return (
+                self.constraint == other.constraint
+                and self.status == other.status
+                and self.message == other.message
             )
         return False
