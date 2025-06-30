@@ -17,9 +17,9 @@ classifiers = [
 
 [project.optional-dependencies]
 dev = [
-    "ruff",
-    "build",
-    "twine",
+    "ruff>=0.12.0,<0.13",
+    "build>=1.2.2,<2.0.0",
+    "twine>=6.1.0,<7.0.0",
 ]
 
 [tool.setuptools.package-data]
