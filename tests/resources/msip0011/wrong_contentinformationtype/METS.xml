@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mets xmlns="http://www.loc.gov/METS/" xmlns:csip="https://DILCIS.eu/XML/METS/CSIPExtensionMETS"
+    xmlns:sip="https://DILCIS.eu/XML/METS/SIPExtensionMETS"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink"
+    OBJID="uuid-2746e598-75cd-47b5-9a3e-8df18e98bb95"
+    PROFILE="https://earksip.dilcis.eu/profile/E-ARK-SIP-v2-2-0.xml"
+    csip:CONTENTINFORMATIONTYPE="SIARD1"
+    TYPE="Video – File-based and Physical Media"
+>
+
+    <!-- Other information removed because not needed for test -->
+</mets>

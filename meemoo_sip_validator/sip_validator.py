@@ -1,10 +1,19 @@
 from pathlib import Path
 
+from lxml import etree
+from lxml.etree import _ElementTree
 from py_commons_ip.sip_validator import EARKSIPValidator
 
 from .constraints import (
     MeemooSIPConstraintEvaluation,
+    MeemooSIPConstraintEvaluationStatus,
+    msip0011,
 )
+
+NAMESPACES = {
+    "mets": "http://www.loc.gov/METS/",
+    "csip": "https://DILCIS.eu/XML/METS/CSIPExtensionMETS",
+}
 
 
 class EARKValidation:
@@ -112,10 +121,58 @@ class MeemooSIPValidator:
         self.eark_validation_report.is_valid = eark_status
         self.eark_validation_report.report = eark_report
 
-        return eark_status
+        if not eark_status:
+            return False
+
+        try:
+            root = etree.parse(Path(self.unzipped_path, "METS.xml"))
+        except (etree.ParseError, OSError) as e:
+            # Should not happen because we already validated E-ARK validity
+            raise ValueError(f"METS could not be parsed: {e}.")
+
+        # Meemoo SIP validation
+
+        # Neccesary constraint msip0011 to determine profile
+        msip0011_validation = self._validate_msip0011(root)
+        self.validation_report.add_constraint_evaluation(msip0011_validation)
+        if not msip0011_validation.is_valid():
+            # We can stop
+            return False
 
     def _validate_eark(self) -> tuple[bool, str]:
         eark_validator = EARKSIPValidator()
         success, eark_report = eark_validator.validate(self.unzipped_path)
 
         return success, eark_report
+
+    def _validate_msip0011(self, root: _ElementTree) -> MeemooSIPConstraintEvaluation:
+        """Validate the msip0011 constraint.
+
+        Checks if the SIP is valid against the msip0011 constraint.
+
+        Returns:
+            MeemooSIPConstraintEvaluation: Containing the evaluation of constraint msip0011.
+        """
+        try:
+            content_information_type = root.xpath(
+                "/mets:mets/@csip:CONTENTINFORMATIONTYPE",
+                namespaces=NAMESPACES,
+            )[0]
+        except IndexError:
+            return MeemooSIPConstraintEvaluation(
+                msip0011,
+                MeemooSIPConstraintEvaluationStatus.FAIL,
+                "The package METS does not contain a CONTENTINFORMATIONTYPE attribute. See: `mets/@csip:CONTENTINFORMATIONTYPE`",
+            )
+
+        if content_information_type != "OTHER":
+            return MeemooSIPConstraintEvaluation(
+                msip0011,
+                MeemooSIPConstraintEvaluationStatus.FAIL,
+                'The value of the CONTENTINFORMATIONTYPE attribute MUST be "OTHER". See: `mets/@csip:CONTENTINFORMATIONTYPE`',
+            )
+
+        return MeemooSIPConstraintEvaluation(
+            msip0011,
+            MeemooSIPConstraintEvaluationStatus.SUCCESS,
+        )

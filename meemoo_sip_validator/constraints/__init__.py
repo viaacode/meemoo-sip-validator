@@ -181,3 +181,16 @@ class MeemooSIPConstraintEvaluation:
                 and self.message == other.message
             )
         return False
+
+
+msip0011 = MeemooSIPConstraint(
+    "MSIP0011",
+    'This attribute must have the value "OTHER". The value of the `mets/@csip:OTHERCONTENTINFORMATIONTYPE` attribute describes the value of the profile of the meemoo SIP.',
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.PACKAGE,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/@csip:CONTENTINFORMATIONTYPE",
+)
