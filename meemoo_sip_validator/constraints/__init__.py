@@ -194,3 +194,15 @@ msip0011 = MeemooSIPConstraint(
     "/METS.xml",
     "mets/@csip:CONTENTINFORMATIONTYPE",
 )
+
+msip0012 = MeemooSIPConstraint(
+    "MSIP0012",
+    "This attribute is used to declare the Content Information Type Specification used when creating the SIP.<br>Meemoo uses this attribute to indicate which of meemoo's content profiles a SIP uses. Its value MUST be a valid URI which can be found on the different content profile pages, e.g. the URI `https://data.hetarchief.be/id/sip/2.1/basic` for the basic content profile which can be found on [its content profile page]({{ site.baseurl }}{% link docs/diginstroom/sip/2.1/profiles/basic.md %}).<br>ote that the sample above has the value of the basic profile as an example.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.PACKAGE,
+    MeemooSIPConstraintDatatype.URI,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    'mets[@csip:CONTENTINFORMATIONTYPE="OTHER"]/@csip:OTHERCONTENTINFORMATIONTYPE',
+)

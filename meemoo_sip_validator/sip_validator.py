@@ -8,6 +8,7 @@ from .constraints import (
     MeemooSIPConstraintEvaluation,
     MeemooSIPConstraintEvaluationStatus,
     msip0011,
+    msip0012,
 )
 
 NAMESPACES = {
@@ -110,13 +111,16 @@ class MeemooSIPValidator:
         return self._validation_report
 
     def validate(self) -> bool:
-        """Validate an unzipped SIP making use of the commons-IP validator.
+        """Validate an unzipped SIP.
 
         Returns:
             bool - If the validation was successful.
         """
 
         # E-ARK validation
+        # TODO: The SIP profile actually states which E-ARK SIP version it is based on.
+        #       It should parse the SIP profile first and then run the appropriate E-ARK
+        #       validation.
         eark_status, eark_report = self._validate_eark()
         self.eark_validation_report.is_valid = eark_status
         self.eark_validation_report.report = eark_report
@@ -132,10 +136,16 @@ class MeemooSIPValidator:
 
         # Meemoo SIP validation
 
-        # Neccesary constraint msip0011 to determine profile
+        # Neccesary constraints msip0011 and msip0012 to determine profile
         msip0011_validation = self._validate_msip0011(root)
         self.validation_report.add_constraint_evaluation(msip0011_validation)
         if not msip0011_validation.is_valid():
+            # We can stop
+            return False
+
+        msip0012_validation = self._validate_msip0012(root)
+        self.validation_report.add_constraint_evaluation(msip0012_validation)
+        if not msip0012_validation.is_valid():
             # We can stop
             return False
 
@@ -176,3 +186,57 @@ class MeemooSIPValidator:
             msip0011,
             MeemooSIPConstraintEvaluationStatus.SUCCESS,
         )
+
+    def _validate_msip0012(self, root: _ElementTree) -> MeemooSIPConstraintEvaluation:
+        """Validate the msip0012 constraint.
+
+        Checks if the SIP is valid against the msip0012 constraint.
+
+        Returns:
+            MeemooSIPConstraintEvaluation: Containing the evaluation of constraint msip0012.
+        """
+        try:
+            profile_type = root.xpath(
+                "/mets:mets/@csip:OTHERCONTENTINFORMATIONTYPE",
+                namespaces=NAMESPACES,
+            )[0]
+        except IndexError:
+            return MeemooSIPConstraintEvaluation(
+                msip0012,
+                MeemooSIPConstraintEvaluationStatus.FAIL,
+                "METS does not contain a OTHERCONTENTINFORMATIONTYPE attribute. See: `mets/@csip:OTHERCONTENTINFORMATIONTYPE`",
+            )
+
+        if profile_type == "https://data.hetarchief.be/id/sip/2.1/basic":
+            return MeemooSIPConstraintEvaluation(
+                msip0012,
+                MeemooSIPConstraintEvaluationStatus.SUCCESS,
+                "https://data.hetarchief.be/id/sip/2.1/basic",
+            )
+
+        elif profile_type == "https://data.hetarchief.be/id/sip/2.1/bibliographic":
+            return MeemooSIPConstraintEvaluation(
+                msip0012,
+                MeemooSIPConstraintEvaluationStatus.SUCCESS,
+                "https://data.hetarchief.be/id/sip/2.1/bibliographic",
+            )
+
+        elif profile_type == "https://data.hetarchief.be/id/sip/2.1/material-artwork":
+            return MeemooSIPConstraintEvaluation(
+                msip0012,
+                MeemooSIPConstraintEvaluationStatus.SUCCESS,
+                "https://data.hetarchief.be/id/sip/2.1/material-artwork",
+            )
+
+        elif profile_type == "https://data.hetarchief.be/id/sip/2.1/film":
+            return MeemooSIPConstraintEvaluation(
+                msip0012,
+                MeemooSIPConstraintEvaluationStatus.SUCCESS,
+                "https://data.hetarchief.be/id/sip/2.1/film",
+            )
+        else:
+            return MeemooSIPConstraintEvaluation(
+                msip0012,
+                MeemooSIPConstraintEvaluationStatus.FAIL,
+                "The value of the OTHERCONTENTINFORMATIONTYPE attribute does not contain a valid value. See: `mets/@csip:OTHERCONTENTINFORMATIONTYPE`",
+            )
