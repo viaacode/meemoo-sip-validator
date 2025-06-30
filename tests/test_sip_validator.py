@@ -3,6 +3,7 @@ from pathlib import Path
 from meemoo_sip_validator.sip_validator import (
     MeemooSIPValidator,
     EARKValidation,
+    ValidationReport,
 )
 
 
@@ -14,3 +15,5 @@ class TestMeemooSipValidator:
         assert validator.unzipped_path == path
         assert isinstance(validator.eark_validation_report, EARKValidation)
         assert validator.eark_validation_report.is_valid is None
+        assert isinstance(validator.validation_report, ValidationReport)
+        assert validator.validation_report.is_valid()

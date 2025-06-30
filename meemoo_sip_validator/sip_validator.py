@@ -2,6 +2,10 @@ from pathlib import Path
 
 from py_commons_ip.sip_validator import EARKSIPValidator
 
+from .constraints import (
+    MeemooSIPConstraintEvaluation,
+)
+
 
 class EARKValidation:
     """A sort of wrapper around the E-ARK validation.
@@ -32,13 +36,46 @@ class EARKValidation:
         self._is_valid = value
 
 
+class ValidationReport:
+    """Class representing the validation report.
+
+    Attributes:
+        - _constraint_evaluations: A list of evaluations of constraints.
+    """
+
+    def __init__(
+        self,
+    ):
+        self._constraint_evaluations = []
+
+    @property
+    def constraint_evaluations(self) -> list[MeemooSIPConstraintEvaluation]:
+        return self._constraint_evaluations
+
+    def add_constraint_evaluation(
+        self, constraint_evaluation: MeemooSIPConstraintEvaluation
+    ):
+        self.constraint_evaluations.append(constraint_evaluation)
+
+    def add_constraint_evaluations(
+        self, constraint_evaluations: list[MeemooSIPConstraintEvaluation]
+    ):
+        self.constraint_evaluations.extend(constraint_evaluations)
+
+    def is_valid(self) -> bool:
+        for constraint_eval in self.constraint_evaluations:
+            if not constraint_eval.is_valid():
+                return False
+        return True
+
+
 class MeemooSIPValidator:
     """Class validating a meemoo SIP.
 
     Attributes:
         _unzipped_path: The path to the unzipped SIP.
         _eark_validation_report: Sort of wrapper around the E-ARK validation report.
-
+        _validation_report: The validation report containing all the validations.
     """
 
     def __init__(self, unzipped_path: Path):
@@ -49,6 +86,7 @@ class MeemooSIPValidator:
         """
         self._unzipped_path = unzipped_path
         self._eark_validation_report = EARKValidation()
+        self._validation_report = ValidationReport()
 
     @property
     def unzipped_path(self) -> Path:
@@ -57,6 +95,10 @@ class MeemooSIPValidator:
     @property
     def eark_validation_report(self) -> EARKValidation:
         return self._eark_validation_report
+
+    @property
+    def validation_report(self) -> ValidationReport:
+        return self._validation_report
 
     def validate(self) -> bool:
         """Validate an unzipped SIP making use of the commons-IP validator.
