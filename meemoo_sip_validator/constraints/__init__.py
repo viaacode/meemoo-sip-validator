@@ -6,6 +6,7 @@ class MeemooSIPConstraintObligation(StrEnum):
     MAY = auto()
     SHOULD = auto()
     MUST = auto()
+    MUST_NOT = auto()
     UNSPECIFIED = auto()
 
 
