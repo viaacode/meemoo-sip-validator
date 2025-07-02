@@ -34,6 +34,9 @@ class MeemooSIPConstraintDatatype(StrEnum):
     URI = auto()
     XSD_DURATION = auto()
     XSD_DATETIME = auto()
+    URL = auto()
+    OR_ID = auto()
+    MIMETYPE = auto()
     UNSPECIFIED = auto()
 
 
