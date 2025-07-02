@@ -34,7 +34,7 @@ class TestMeemooSIPConstraintEvaluation:
         identification = "id01"
         description = "description"
         constraint = MeemooSIPConstraint(identification, description)
-        evaluation_status = MeemooSIPConstraintEvaluationStatus.SUCCESS
+        evaluation_status = MeemooSIPConstraintEvaluationStatus.PASS
         evaluation = MeemooSIPConstraintEvaluation(constraint, evaluation_status)
 
         assert evaluation.constraint == constraint

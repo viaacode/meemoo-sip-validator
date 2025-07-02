@@ -184,7 +184,7 @@ class MeemooSIPValidator:
 
         return MeemooSIPConstraintEvaluation(
             msip0011,
-            MeemooSIPConstraintEvaluationStatus.SUCCESS,
+            MeemooSIPConstraintEvaluationStatus.PASS,
         )
 
     def _validate_msip0012(self, root: _ElementTree) -> MeemooSIPConstraintEvaluation:
@@ -210,28 +210,28 @@ class MeemooSIPValidator:
         if profile_type == "https://data.hetarchief.be/id/sip/2.1/basic":
             return MeemooSIPConstraintEvaluation(
                 msip0012,
-                MeemooSIPConstraintEvaluationStatus.SUCCESS,
+                MeemooSIPConstraintEvaluationStatus.PASS,
                 "https://data.hetarchief.be/id/sip/2.1/basic",
             )
 
         elif profile_type == "https://data.hetarchief.be/id/sip/2.1/bibliographic":
             return MeemooSIPConstraintEvaluation(
                 msip0012,
-                MeemooSIPConstraintEvaluationStatus.SUCCESS,
+                MeemooSIPConstraintEvaluationStatus.PASS,
                 "https://data.hetarchief.be/id/sip/2.1/bibliographic",
             )
 
         elif profile_type == "https://data.hetarchief.be/id/sip/2.1/material-artwork":
             return MeemooSIPConstraintEvaluation(
                 msip0012,
-                MeemooSIPConstraintEvaluationStatus.SUCCESS,
+                MeemooSIPConstraintEvaluationStatus.PASS,
                 "https://data.hetarchief.be/id/sip/2.1/material-artwork",
             )
 
         elif profile_type == "https://data.hetarchief.be/id/sip/2.1/film":
             return MeemooSIPConstraintEvaluation(
                 msip0012,
-                MeemooSIPConstraintEvaluationStatus.SUCCESS,
+                MeemooSIPConstraintEvaluationStatus.PASS,
                 "https://data.hetarchief.be/id/sip/2.1/film",
             )
         else:

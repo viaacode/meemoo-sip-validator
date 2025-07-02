@@ -43,7 +43,7 @@ class TestMeemooSipValidator:
             root
         ) == MeemooSIPConstraintEvaluation(
             msip0011,
-            MeemooSIPConstraintEvaluationStatus.SUCCESS,
+            MeemooSIPConstraintEvaluationStatus.PASS,
         )
 
     def test_validate_msip0011_missing(self, meemoo_sip_validator):
@@ -106,7 +106,7 @@ class TestMeemooSipValidator:
             root
         ) == MeemooSIPConstraintEvaluation(
             msip0012,
-            MeemooSIPConstraintEvaluationStatus.SUCCESS,
+            MeemooSIPConstraintEvaluationStatus.PASS,
             f"https://data.hetarchief.be/id/sip/{profile_type}",
         )
 

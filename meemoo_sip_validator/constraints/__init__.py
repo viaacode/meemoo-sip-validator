@@ -48,8 +48,11 @@ class MeemooSIPConstraintXMLNodeType(StrEnum):
 
 
 class MeemooSIPConstraintEvaluationStatus(StrEnum):
-    SUCCESS = auto()
-    FAIL = auto()
+    PASS = auto()  # Fully valid
+    FAIL = auto()  # Invalid, MUST violated
+    WARNING = auto()  # SHOULD violated
+    INFO = auto()  # MAY violated
+    UNSPECIFIED = auto()
 
 
 @dataclass
@@ -100,7 +103,7 @@ class MeemooSIPConstraintEvaluation:
     message: str | None = None
 
     def is_valid(self) -> bool:
-        return self.status == MeemooSIPConstraintEvaluationStatus.SUCCESS
+        return self.status != MeemooSIPConstraintEvaluationStatus.FAIL
 
 
 msip0011 = MeemooSIPConstraint(
