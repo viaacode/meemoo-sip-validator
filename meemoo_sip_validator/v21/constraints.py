@@ -1,6 +1,5 @@
 # Generated via script.
-
-from .. import (
+from . import (
     MeemooSIPConstraint,
     MeemooSIPConstraintCardinality,
     MeemooSIPConstraintObligation,
@@ -84,7 +83,7 @@ msip0007 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets",
+    "/mets:mets",
 )
 msip0008 = MeemooSIPConstraint(
     "MSIP0008",
@@ -95,7 +94,7 @@ msip0008 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/@OBJID",
+    "/mets:mets/@OBJID",
 )
 msip0009 = MeemooSIPConstraint(
     "MSIP0009",
@@ -106,7 +105,7 @@ msip0009 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/@TYPE",
+    "/mets:mets/@TYPE",
 )
 msip0010 = MeemooSIPConstraint(
     "MSIP0010",
@@ -117,7 +116,7 @@ msip0010 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    'mets[@TYPE="OTHER"]/@csip:OTHERTYPE',
+    '/mets:mets[@TYPE="OTHER"]/@csip:OTHERTYPE',
 )
 msip0011 = MeemooSIPConstraint(
     "MSIP0011",
@@ -128,7 +127,7 @@ msip0011 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/@csip:CONTENTINFORMATIONTYPE",
+    "/mets:mets/@csip:CONTENTINFORMATIONTYPE",
 )
 msip0012 = MeemooSIPConstraint(
     "MSIP0012",
@@ -139,7 +138,7 @@ msip0012 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URI,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    'mets[@csip:CONTENTINFORMATIONTYPE="OTHER"]/@csip:OTHERCONTENTINFORMATIONTYPE',
+    '/mets:mets[@csip:CONTENTINFORMATIONTYPE="OTHER"]/@csip:OTHERCONTENTINFORMATIONTYPE',
 )
 msip0013 = MeemooSIPConstraint(
     "MSIP0013",
@@ -150,7 +149,7 @@ msip0013 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URL,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/@PROFILE",
+    "/mets:mets/@PROFILE",
 )
 msip0014 = MeemooSIPConstraint(
     "MSIP0014",
@@ -161,7 +160,7 @@ msip0014 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/@LABEL",
+    "/mets:mets/@LABEL",
 )
 msip0015 = MeemooSIPConstraint(
     "MSIP0015",
@@ -172,7 +171,7 @@ msip0015 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr",
+    "/mets:mets/mets:metsHdr",
 )
 msip0016 = MeemooSIPConstraint(
     "MSIP0016",
@@ -183,7 +182,7 @@ msip0016 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.XSD_DATETIME,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/@CREATEDATE",
+    "/mets:mets/mets:metsHdr/@CREATEDATE",
 )
 msip0017 = MeemooSIPConstraint(
     "MSIP0017",
@@ -194,7 +193,7 @@ msip0017 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.XSD_DATETIME,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/@LASTMODDATE",
+    "/mets:mets/mets:metsHdr/@LASTMODDATE",
 )
 msip0018 = MeemooSIPConstraint(
     "MSIP0018",
@@ -205,7 +204,7 @@ msip0018 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/@RECORDSTATUS",
+    "/mets:mets/mets:metsHdr/@RECORDSTATUS",
 )
 msip0019 = MeemooSIPConstraint(
     "MSIP0019",
@@ -216,7 +215,7 @@ msip0019 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/@csip:OAISPACKAGETYPE",
+    "/mets:mets/mets:metsHdr/@csip:OAISPACKAGETYPE",
 )
 msip0020 = MeemooSIPConstraint(
     "MSIP0020",
@@ -238,7 +237,7 @@ msip0021 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/@ROLE",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/@ROLE",
 )
 msip0022 = MeemooSIPConstraint(
     "MSIP0022",
@@ -249,7 +248,7 @@ msip0022 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/@TYPE",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/@TYPE",
 )
 msip0023 = MeemooSIPConstraint(
     "MSIP0023",
@@ -260,7 +259,7 @@ msip0023 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/@OTHERTYPE",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/@OTHERTYPE",
 )
 msip0024 = MeemooSIPConstraint(
     "MSIP0024",
@@ -271,7 +270,7 @@ msip0024 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/name",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/name",
 )
 msip0025 = MeemooSIPConstraint(
     "MSIP0025",
@@ -282,7 +281,7 @@ msip0025 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/note",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/note",
 )
 msip0026 = MeemooSIPConstraint(
     "MSIP0026",
@@ -293,7 +292,7 @@ msip0026 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/note[@csip:NOTETYPE='SOFTWARE VERSION']",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/note[@csip:NOTETYPE='SOFTWARE VERSION']",
 )
 msip0027 = MeemooSIPConstraint(
     "MSIP0027",
@@ -304,7 +303,7 @@ msip0027 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='ARCHIVIST']",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='ARCHIVIST']",
 )
 msip0028 = MeemooSIPConstraint(
     "MSIP0028",
@@ -315,7 +314,7 @@ msip0028 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='ARCHIVIST']/@ROLE",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='ARCHIVIST']/@ROLE",
 )
 msip0029 = MeemooSIPConstraint(
     "MSIP0029",
@@ -326,7 +325,7 @@ msip0029 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='ARCHIVIST']/@TYPE",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='ARCHIVIST']/@TYPE",
 )
 msip0030 = MeemooSIPConstraint(
     "MSIP0030",
@@ -337,7 +336,7 @@ msip0030 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='ARCHIVIST']/name",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='ARCHIVIST']/name",
 )
 msip0031 = MeemooSIPConstraint(
     "MSIP0031",
@@ -348,7 +347,7 @@ msip0031 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.OR_ID,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='ARCHIVIST']/note",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='ARCHIVIST']/note",
 )
 msip0032 = MeemooSIPConstraint(
     "MSIP0032",
@@ -359,7 +358,7 @@ msip0032 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='ARCHIVIST']/note/@csip:NOTETYPE",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='ARCHIVIST']/note/@csip:NOTETYPE",
 )
 msip0033 = MeemooSIPConstraint(
     "MSIP0033",
@@ -370,7 +369,7 @@ msip0033 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']",
 )
 msip0034 = MeemooSIPConstraint(
     "MSIP0034",
@@ -381,7 +380,7 @@ msip0034 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/@ROLE",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/@ROLE",
 )
 msip0035 = MeemooSIPConstraint(
     "MSIP0035",
@@ -392,7 +391,7 @@ msip0035 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/@TYPE",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/@TYPE",
 )
 msip0036 = MeemooSIPConstraint(
     "MSIP0036",
@@ -403,7 +402,7 @@ msip0036 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/name",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/name",
 )
 msip0037 = MeemooSIPConstraint(
     "MSIP0037",
@@ -414,7 +413,7 @@ msip0037 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.OR_ID,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/note",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/note",
 )
 msip0038 = MeemooSIPConstraint(
     "MSIP0038",
@@ -425,7 +424,7 @@ msip0038 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/note/@csip:NOTETYPE",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/note/@csip:NOTETYPE",
 )
 msip0039 = MeemooSIPConstraint(
     "MSIP0039",
@@ -436,7 +435,7 @@ msip0039 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']",
 )
 msip0040 = MeemooSIPConstraint(
     "MSIP0040",
@@ -447,7 +446,7 @@ msip0040 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/@ROLE",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/@ROLE",
 )
 msip0041 = MeemooSIPConstraint(
     "MSIP0041",
@@ -458,7 +457,7 @@ msip0041 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/@TYPE",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/@TYPE",
 )
 msip0042 = MeemooSIPConstraint(
     "MSIP0042",
@@ -469,7 +468,7 @@ msip0042 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/name",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/name",
 )
 msip0043 = MeemooSIPConstraint(
     "MSIP0043",
@@ -480,7 +479,7 @@ msip0043 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/note",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/note",
 )
 msip0044 = MeemooSIPConstraint(
     "MSIP0044",
@@ -491,7 +490,7 @@ msip0044 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='PRESERVATION']",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='PRESERVATION']",
 )
 msip0045 = MeemooSIPConstraint(
     "MSIP0045",
@@ -502,7 +501,7 @@ msip0045 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='PRESERVATION']/@ROLE",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='PRESERVATION']/@ROLE",
 )
 msip0046 = MeemooSIPConstraint(
     "MSIP0046",
@@ -513,7 +512,7 @@ msip0046 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='PRESERVATION']/@TYPE",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='PRESERVATION']/@TYPE",
 )
 msip0047 = MeemooSIPConstraint(
     "MSIP0047",
@@ -524,7 +523,7 @@ msip0047 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='PRESERVATION']/name",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='PRESERVATION']/name",
 )
 msip0048 = MeemooSIPConstraint(
     "MSIP0048",
@@ -535,7 +534,7 @@ msip0048 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/agent[@ROLE='PRESERVATION']/note",
+    "/mets:mets/mets:metsHdr/mets:agent[@ROLE='PRESERVATION']/note",
 )
 msip0049 = MeemooSIPConstraint(
     "MSIP0049",
@@ -546,7 +545,7 @@ msip0049 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/metsHdr/agent/note[@ROLE='PRESERVATION']/@csip:NOTETYPE",
+    "/mets:mets/mets:metsHdr/mets:agent/note[@ROLE='PRESERVATION']/@csip:NOTETYPE",
 )
 msip0050 = MeemooSIPConstraint(
     "MSIP0050",
@@ -557,7 +556,7 @@ msip0050 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URL,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/altRecordID[@TYPE='SUBMISSIONAGREEMENT']",
+    "/mets:mets/mets:metsHdr/mets:altRecordID[@TYPE='SUBMISSIONAGREEMENT']",
 )
 msip0051 = MeemooSIPConstraint(
     "MSIP0051",
@@ -568,7 +567,7 @@ msip0051 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URL,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/altRecordID[@TYPE='PREVIOUSSUBMISSIONAGREEMENT']",
+    "/mets:mets/mets:metsHdr/mets:altRecordID[@TYPE='PREVIOUSSUBMISSIONAGREEMENT']",
 )
 msip0052 = MeemooSIPConstraint(
     "MSIP0052",
@@ -579,7 +578,7 @@ msip0052 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URL,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/altRecordID[@TYPE='REFERENCECODE']",
+    "/mets:mets/mets:metsHdr/mets:altRecordID[@TYPE='REFERENCECODE']",
 )
 msip0053 = MeemooSIPConstraint(
     "MSIP0053",
@@ -590,7 +589,7 @@ msip0053 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URL,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/metsHdr/altRecordID[@TYPE='PREVIOUSREFERENCECODE']",
+    "/mets:mets/mets:metsHdr/mets:altRecordID[@TYPE='PREVIOUSREFERENCECODE']",
 )
 msip0054 = MeemooSIPConstraint(
     "MSIP0054",
@@ -601,7 +600,7 @@ msip0054 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/dmdSec",
+    "/mets:mets/mets:dmdSec",
 )
 msip0055 = MeemooSIPConstraint(
     "MSIP0055",
@@ -612,7 +611,7 @@ msip0055 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/dmdSec/@ID",
+    "/mets:mets/mets:dmdSec/@ID",
 )
 msip0056 = MeemooSIPConstraint(
     "MSIP0056",
@@ -623,7 +622,7 @@ msip0056 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.XSD_DATETIME,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/dmdSec/@CREATED",
+    "/mets:mets/mets:dmdSec/@CREATED",
 )
 msip0057 = MeemooSIPConstraint(
     "MSIP0057",
@@ -634,7 +633,7 @@ msip0057 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/dmdSec/@STATUS",
+    "/mets:mets/mets:dmdSec/@STATUS",
 )
 msip0058 = MeemooSIPConstraint(
     "MSIP0058",
@@ -645,7 +644,7 @@ msip0058 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/dmdSec/mdRef",
+    "/mets:mets/mets:dmdSec/mdRef",
 )
 msip0059 = MeemooSIPConstraint(
     "MSIP0059",
@@ -656,7 +655,7 @@ msip0059 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/dmdSec/mdRef[@LOCTYPE='URL']",
+    "/mets:mets/mets:dmdSec/mets:mdRef[@LOCTYPE='URL']",
 )
 msip0060 = MeemooSIPConstraint(
     "MSIP0060",
@@ -667,7 +666,7 @@ msip0060 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/dmdSec/mdRef[@xlink:type='simple']",
+    "/mets:mets/mets:dmdSec/mets:mdRef[@xlink:type='simple']",
 )
 msip0061 = MeemooSIPConstraint(
     "MSIP0061",
@@ -678,7 +677,7 @@ msip0061 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URL,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/dmdSec/mdRef/@xlink:href",
+    "/mets:mets/mets:dmdSec/mets:mdRef/@xlink:href",
 )
 msip0062 = MeemooSIPConstraint(
     "MSIP0062",
@@ -689,7 +688,7 @@ msip0062 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/dmdSec/mdRef/@MDTYPE",
+    "/mets:mets/mets:dmdSec/mets:mdRef/@MDTYPE",
 )
 msip0063 = MeemooSIPConstraint(
     "MSIP0063",
@@ -700,7 +699,7 @@ msip0063 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.MIMETYPE,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/dmdSec/mdRef/@MIMETYPE",
+    "/mets:mets/mets:dmdSec/mets:mdRef/@MIMETYPE",
 )
 msip0064 = MeemooSIPConstraint(
     "MSIP0064",
@@ -711,7 +710,7 @@ msip0064 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.INTEGER,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/dmdSec/mdRef/@SIZE",
+    "/mets:mets/mets:dmdSec/mets:mdRef/@SIZE",
 )
 msip0065 = MeemooSIPConstraint(
     "MSIP0065",
@@ -722,7 +721,7 @@ msip0065 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.XSD_DATETIME,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/dmdSec/mdRef/@CREATED",
+    "/mets:mets/mets:dmdSec/mets:mdRef/@CREATED",
 )
 msip0066 = MeemooSIPConstraint(
     "MSIP0066",
@@ -733,7 +732,7 @@ msip0066 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/dmdSec/mdRef/@CHECKSUM",
+    "/mets:mets/mets:dmdSec/mets:mdRef/@CHECKSUM",
 )
 msip0067 = MeemooSIPConstraint(
     "MSIP0067",
@@ -744,7 +743,7 @@ msip0067 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/dmdSec/mdRef/@CHECKSUMTYPE",
+    "/mets:mets/mets:dmdSec/mets:mdRef/@CHECKSUMTYPE",
 )
 msip0068 = MeemooSIPConstraint(
     "MSIP0068",
@@ -755,7 +754,7 @@ msip0068 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/amdSec",
+    "/mets:mets/mets:amdSec",
 )
 msip0069 = MeemooSIPConstraint(
     "MSIP0069",
@@ -766,7 +765,7 @@ msip0069 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/amdSec/digiprovMD",
+    "/mets:mets/mets:amdSec/digiprovMD",
 )
 msip0070 = MeemooSIPConstraint(
     "MSIP0070",
@@ -777,7 +776,7 @@ msip0070 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/digiprovMD/@ID",
+    "/mets:mets/mets:amdSec/digiprovMD/@ID",
 )
 msip0071 = MeemooSIPConstraint(
     "MSIP0071",
@@ -788,7 +787,7 @@ msip0071 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/digiprovMD/@STATUS",
+    "/mets:mets/mets:amdSec/digiprovMD/@STATUS",
 )
 msip0072 = MeemooSIPConstraint(
     "MSIP0072",
@@ -799,7 +798,7 @@ msip0072 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/amdSec/digiprovMD/mdRef",
+    "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef",
 )
 msip0073 = MeemooSIPConstraint(
     "MSIP0073",
@@ -810,7 +809,7 @@ msip0073 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/digiprovMD/mdRef[@LOCTYPE='URL']",
+    "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef[@LOCTYPE='URL']",
 )
 msip0074 = MeemooSIPConstraint(
     "MSIP0074",
@@ -821,7 +820,7 @@ msip0074 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/digiprovMD/mdRef[@xlink:type='simple']",
+    "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef[@xlink:type='simple']",
 )
 msip0075 = MeemooSIPConstraint(
     "MSIP0075",
@@ -832,7 +831,7 @@ msip0075 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URL,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/digiprovMD/mdRef/@xlink:href",
+    "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef/@xlink:href",
 )
 msip0076 = MeemooSIPConstraint(
     "MSIP0076",
@@ -843,7 +842,7 @@ msip0076 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/digiprovMD/mdRef/@MDTYPE",
+    "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef/@MDTYPE",
 )
 msip0077 = MeemooSIPConstraint(
     "MSIP0077",
@@ -854,7 +853,7 @@ msip0077 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.MIMETYPE,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/digiprovMD/mdRef/@MIMETYPE",
+    "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef/@MIMETYPE",
 )
 msip0078 = MeemooSIPConstraint(
     "MSIP0078",
@@ -865,7 +864,7 @@ msip0078 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.INTEGER,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/digiprovMD/mdRef/@SIZE",
+    "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef/@SIZE",
 )
 msip0079 = MeemooSIPConstraint(
     "MSIP0079",
@@ -876,7 +875,7 @@ msip0079 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.XSD_DATETIME,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/digiprovMD/mdRef/@CREATED",
+    "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef/@CREATED",
 )
 msip0080 = MeemooSIPConstraint(
     "MSIP0080",
@@ -887,7 +886,7 @@ msip0080 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/digiprovMD/mdRef/@CHECKSUM",
+    "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef/@CHECKSUM",
 )
 msip0081 = MeemooSIPConstraint(
     "MSIP0081",
@@ -898,7 +897,7 @@ msip0081 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/digiprovMD/mdRef/@CHECKSUMTYPE",
+    "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef/@CHECKSUMTYPE",
 )
 msip0082 = MeemooSIPConstraint(
     "MSIP0082",
@@ -909,7 +908,7 @@ msip0082 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/amdSec/rightsMD",
+    "/mets:mets/mets:amdSec/mets:rightsMD",
 )
 msip0083 = MeemooSIPConstraint(
     "MSIP0083",
@@ -920,7 +919,7 @@ msip0083 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/rightsMD/@ID",
+    "/mets:mets/mets:amdSec/mets:rightsMD/@ID",
 )
 msip0084 = MeemooSIPConstraint(
     "MSIP0084",
@@ -931,7 +930,7 @@ msip0084 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/rightsMD/@STATUS",
+    "/mets:mets/mets:amdSec/mets:rightsMD/@STATUS",
 )
 msip0085 = MeemooSIPConstraint(
     "MSIP0085",
@@ -942,7 +941,7 @@ msip0085 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/amdSec/rightsMD/mdRef",
+    "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef",
 )
 msip0086 = MeemooSIPConstraint(
     "MSIP0086",
@@ -953,7 +952,7 @@ msip0086 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/rightsMD/mdRef[@LOCTYPE='URL']",
+    "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef[@LOCTYPE='URL']",
 )
 msip0087 = MeemooSIPConstraint(
     "MSIP0087",
@@ -964,7 +963,7 @@ msip0087 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/rightsMD/mdRef[@xlink:type='simple']",
+    "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef[@xlink:type='simple']",
 )
 msip0088 = MeemooSIPConstraint(
     "MSIP0088",
@@ -975,7 +974,7 @@ msip0088 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URL,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/rightsMD/mdRef/@xlink:href",
+    "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef/@xlink:href",
 )
 msip0089 = MeemooSIPConstraint(
     "MSIP0089",
@@ -986,7 +985,7 @@ msip0089 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/rightsMD/mdRef/@MDTYPE",
+    "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef/@MDTYPE",
 )
 msip0090 = MeemooSIPConstraint(
     "MSIP0090",
@@ -997,7 +996,7 @@ msip0090 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.MIMETYPE,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/rightsMD/mdRef/@MIMETYPE",
+    "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef/@MIMETYPE",
 )
 msip0091 = MeemooSIPConstraint(
     "MSIP0091",
@@ -1008,7 +1007,7 @@ msip0091 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.INTEGER,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/rightsMD/mdRef/@SIZE",
+    "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef/@SIZE",
 )
 msip0092 = MeemooSIPConstraint(
     "MSIP0092",
@@ -1019,7 +1018,7 @@ msip0092 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.XSD_DATETIME,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/rightsMD/mdRef/@CREATED",
+    "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef/@CREATED",
 )
 msip0093 = MeemooSIPConstraint(
     "MSIP0093",
@@ -1030,7 +1029,7 @@ msip0093 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/rightsMD/mdRef/@CHECKSUM",
+    "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef/@CHECKSUM",
 )
 msip0094 = MeemooSIPConstraint(
     "MSIP0094",
@@ -1041,7 +1040,7 @@ msip0094 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/amdSec/rightsMD/mdRef/@CHECKSUMTYPE",
+    "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef/@CHECKSUMTYPE",
 )
 msip0095 = MeemooSIPConstraint(
     "MSIP0095",
@@ -1096,18 +1095,18 @@ msip0099 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/@ID",
+    "/mets:mets/mets:fileSec/@ID",
 )
 msip0100 = MeemooSIPConstraint(
     "MSIP0100",
-    "All documentation pertaining to the transferred content is placed in one or more file group elements with `mets/fileSec/fileGrp/@USE` attribute value “Documentation”.",
+    "All documentation pertaining to the transferred content is placed in one or more file group elements with `mets/fileSec/mets:fileGrp/@USE` attribute value “Documentation”.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
     MeemooSIPConstraintSIPLevel.PACKAGE,
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp[@USE='Documentation']",
+    "/mets:mets/mets:fileSec/fileGrp[@USE='Documentation']",
 )
 msip0101 = MeemooSIPConstraint(
     "MSIP0101",
@@ -1118,7 +1117,7 @@ msip0101 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp[@USE='Schemas']",
+    "/mets:mets/mets:fileSec/mets:fileGrp[@USE='Schemas']",
 )
 msip0102 = MeemooSIPConstraint(
     "MSIP0102",
@@ -1129,7 +1128,7 @@ msip0102 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp[@USE=[starts-with('Representations')]]",
+    "/mets:mets/mets:fileSec/mets:fileGrp[@USE=[starts-with('Representations')]]",
 )
 msip0103 = MeemooSIPConstraint(
     "MSIP0103",
@@ -1140,7 +1139,7 @@ msip0103 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp/@ADMID",
+    "/mets:mets/mets:fileSec/mets:fileGrp/@ADMID",
 )
 msip0104 = MeemooSIPConstraint(
     "MSIP0104",
@@ -1151,7 +1150,7 @@ msip0104 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp[@csip:CONTENTINFORMATIONTYPE='OTHER']/@csip:OTHERCONTENTINFORMATIONTYPE",
+    "/mets:mets/mets:fileSec/mets:fileGrp[@csip:CONTENTINFORMATIONTYPE='OTHER']/@csip:OTHERCONTENTINFORMATIONTYPE",
 )
 msip0105 = MeemooSIPConstraint(
     "MSIP0105",
@@ -1162,7 +1161,7 @@ msip0105 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URL,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp/@USE",
+    "/mets:mets/mets:fileSec/mets:fileGrp/@USE",
 )
 msip0106 = MeemooSIPConstraint(
     "MSIP0106",
@@ -1173,7 +1172,7 @@ msip0106 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp/@ID",
+    "/mets:mets/mets:fileSec/mets:fileGrp/@ID",
 )
 msip0107 = MeemooSIPConstraint(
     "MSIP0107",
@@ -1184,7 +1183,7 @@ msip0107 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/fileSec/fileGrp/file",
+    "/mets:mets/mets:fileSec/mets:fileGrp/file",
 )
 msip0108 = MeemooSIPConstraint(
     "MSIP0108",
@@ -1195,7 +1194,7 @@ msip0108 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp/file/@ID",
+    "/mets:mets/mets:fileSec/mets:fileGrp/file/@ID",
 )
 msip0109 = MeemooSIPConstraint(
     "MSIP0109",
@@ -1206,7 +1205,7 @@ msip0109 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.MIMETYPE,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp/file/@MIMETYPE",
+    "/mets:mets/mets:fileSec/mets:fileGrp/file/@MIMETYPE",
 )
 msip0110 = MeemooSIPConstraint(
     "MSIP0110",
@@ -1217,7 +1216,7 @@ msip0110 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.INTEGER,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp/file/@SIZE",
+    "/mets:mets/mets:fileSec/mets:fileGrp/file/@SIZE",
 )
 msip0111 = MeemooSIPConstraint(
     "MSIP0111",
@@ -1228,7 +1227,7 @@ msip0111 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.XSD_DATETIME,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp/file/@CREATED",
+    "/mets:mets/mets:fileSec/mets:fileGrp/file/@CREATED",
 )
 msip0112 = MeemooSIPConstraint(
     "MSIP0112",
@@ -1239,7 +1238,7 @@ msip0112 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp/file/@CHECKSUM",
+    "/mets:mets/mets:fileSec/mets:fileGrp/file/@CHECKSUM",
 )
 msip0113 = MeemooSIPConstraint(
     "MSIP0113",
@@ -1250,7 +1249,7 @@ msip0113 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp/file/@CHECKSUMTYPE",
+    "/mets:mets/mets:fileSec/mets:fileGrp/file/@CHECKSUMTYPE",
 )
 msip0114 = MeemooSIPConstraint(
     "MSIP0114",
@@ -1261,7 +1260,7 @@ msip0114 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp/file/@OWNERID",
+    "/mets:mets/mets:fileSec/mets:fileGrp/file/@OWNERID",
 )
 msip0115 = MeemooSIPConstraint(
     "MSIP0115",
@@ -1272,7 +1271,7 @@ msip0115 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp/file/@ADMID",
+    "/mets:mets/mets:fileSec/mets:fileGrp/file/@ADMID",
 )
 msip0116 = MeemooSIPConstraint(
     "MSIP0116",
@@ -1283,7 +1282,7 @@ msip0116 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp/file/@DMDID",
+    "/mets:mets/mets:fileSec/mets:fileGrp/file/@DMDID",
 )
 msip0117 = MeemooSIPConstraint(
     "MSIP0117",
@@ -1294,7 +1293,7 @@ msip0117 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/fileSec/fileGrp/file/FLocat",
+    "/mets:mets/mets:fileSec/mets:fileGrp/file/FLocat",
 )
 msip0118 = MeemooSIPConstraint(
     "MSIP0118",
@@ -1305,7 +1304,7 @@ msip0118 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp/file/FLocat[@LOCTYPE='URL']",
+    "/mets:mets/mets:fileSec/mets:fileGrp/file/FLocat[@LOCTYPE='URL']",
 )
 msip0119 = MeemooSIPConstraint(
     "MSIP0119",
@@ -1316,7 +1315,7 @@ msip0119 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp/file/FLocat[@xlink:type='simple']",
+    "/mets:mets/mets:fileSec/mets:fileGrp/file/FLocat[@xlink:type='simple']",
 )
 msip0120 = MeemooSIPConstraint(
     "MSIP0120",
@@ -1327,7 +1326,7 @@ msip0120 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URL,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/fileSec/fileGrp/file/FLocat/@xlink:href",
+    "/mets:mets/mets:fileSec/mets:fileGrp/file/FLocat/@xlink:href",
 )
 msip0121 = MeemooSIPConstraint(
     "MSIP0121",
@@ -1338,7 +1337,7 @@ msip0121 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/structMap",
+    "mets:mets/mets:structMap",
 )
 msip0122 = MeemooSIPConstraint(
     "MSIP0122",
@@ -1349,7 +1348,7 @@ msip0122 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@TYPE='PHYSICAL']",
+    "/mets:mets/mets:structMap[@TYPE='PHYSICAL']",
 )
 msip0123 = MeemooSIPConstraint(
     "MSIP0123",
@@ -1360,7 +1359,7 @@ msip0123 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']",
 )
 msip0124 = MeemooSIPConstraint(
     "MSIP0124",
@@ -1371,7 +1370,7 @@ msip0124 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/@ID",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/@ID",
 )
 msip0125 = MeemooSIPConstraint(
     "MSIP0125",
@@ -1382,7 +1381,7 @@ msip0125 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/div",
 )
 msip0126 = MeemooSIPConstraint(
     "MSIP0126",
@@ -1393,7 +1392,7 @@ msip0126 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/@ID",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/@ID",
 )
 msip0127 = MeemooSIPConstraint(
     "MSIP0127",
@@ -1404,7 +1403,7 @@ msip0127 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Metadata']",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Metadata']",
 )
 msip0128 = MeemooSIPConstraint(
     "MSIP0128",
@@ -1415,7 +1414,7 @@ msip0128 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Metadata']/@ID",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Metadata']/@ID",
 )
 msip0129 = MeemooSIPConstraint(
     "MSIP0129",
@@ -1426,7 +1425,7 @@ msip0129 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Metadata']",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Metadata']",
 )
 msip0130 = MeemooSIPConstraint(
     "MSIP0130",
@@ -1437,7 +1436,7 @@ msip0130 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Metadata']/@ADMID",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Metadata']/@ADMID",
 )
 msip0131 = MeemooSIPConstraint(
     "MSIP0131",
@@ -1448,7 +1447,7 @@ msip0131 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Metadata']/@DMDID",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Metadata']/@DMDID",
 )
 msip0132 = MeemooSIPConstraint(
     "MSIP0132",
@@ -1459,7 +1458,7 @@ msip0132 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Documentation']",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Documentation']",
 )
 msip0133 = MeemooSIPConstraint(
     "MSIP0133",
@@ -1470,7 +1469,7 @@ msip0133 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Documentation']/@ID",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Documentation']/@ID",
 )
 msip0134 = MeemooSIPConstraint(
     "MSIP0134",
@@ -1481,7 +1480,7 @@ msip0134 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Documentation']/@LABEL",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Documentation']/@LABEL",
 )
 msip0135 = MeemooSIPConstraint(
     "MSIP0135",
@@ -1492,7 +1491,7 @@ msip0135 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Documentation']/fptr",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Documentation']/mets:fptr",
 )
 msip0136 = MeemooSIPConstraint(
     "MSIP0136",
@@ -1503,18 +1502,18 @@ msip0136 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Documentation']/fptr/@FILEID",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Documentation']/mets:fptr/@FILEID",
 )
 msip0137 = MeemooSIPConstraint(
     "MSIP0137",
-    "The schemas referenced in the file section file groups are described in the structural map within a single sub-division.",
+    "The schemas referenced in the file section file groups are described in the structural map within a single sub-mets:division.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.SHOULD,
     MeemooSIPConstraintSIPLevel.PACKAGE,
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Schemas']",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Schemas']",
 )
 msip0138 = MeemooSIPConstraint(
     "MSIP0138",
@@ -1525,7 +1524,7 @@ msip0138 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Schemas']/@ID",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Schemas']/@ID",
 )
 msip0139 = MeemooSIPConstraint(
     "MSIP0139",
@@ -1536,7 +1535,7 @@ msip0139 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Schemas']/@LABEL",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Schemas']/@LABEL",
 )
 msip0140 = MeemooSIPConstraint(
     "MSIP0140",
@@ -1547,7 +1546,7 @@ msip0140 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Schemas']/fptr",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Schemas']/mets:fptr",
 )
 msip0141 = MeemooSIPConstraint(
     "MSIP0141",
@@ -1558,7 +1557,7 @@ msip0141 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Schemas']/fptr/@FILEID",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Schemas']/mets:fptr/@FILEID",
 )
 msip0142 = MeemooSIPConstraint(
     "MSIP0142",
@@ -1569,7 +1568,7 @@ msip0142 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Representations/representation_*']",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']",
 )
 msip0143 = MeemooSIPConstraint(
     "MSIP0143",
@@ -1580,7 +1579,7 @@ msip0143 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Representations/representation_*']/@ID",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']/@ID",
 )
 msip0144 = MeemooSIPConstraint(
     "MSIP0144",
@@ -1591,7 +1590,7 @@ msip0144 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Representations/representation_*']/@LABEL",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']/@LABEL",
 )
 msip0145 = MeemooSIPConstraint(
     "MSIP0145",
@@ -1602,7 +1601,7 @@ msip0145 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Representations/representation_*']/mptr",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']/mets:mptr",
 )
 msip0146 = MeemooSIPConstraint(
     "MSIP0146",
@@ -1613,7 +1612,7 @@ msip0146 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.ID,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Representations/representation_*']/mptr/@xlink:title",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']/mets:mptr/@xlink:title",
 )
 msip0147 = MeemooSIPConstraint(
     "MSIP0147",
@@ -1624,7 +1623,7 @@ msip0147 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URL,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Representations/representation_*']/mptr/@xlink:href",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']/mets:mptr/@xlink:href",
 )
 msip0148 = MeemooSIPConstraint(
     "MSIP0148",
@@ -1635,7 +1634,7 @@ msip0148 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Representations/representation_*']/mptr[@xlink:type='simple']",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']/mets:mptr[@xlink:type='simple']",
 )
 msip0149 = MeemooSIPConstraint(
     "MSIP0149",
@@ -1646,7 +1645,7 @@ msip0149 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/METS.xml",
-    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='Representations/representation_*']/mptr[@LOCTYPE='URL']",
+    "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']/mets:mptr[@LOCTYPE='URL']",
 )
 msip0150 = MeemooSIPConstraint(
     "MSIP0150",
@@ -1657,7 +1656,7 @@ msip0150 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis",
+    "/premis:premis",
 )
 msip0151 = MeemooSIPConstraint(
     "MSIP0151",
@@ -1668,7 +1667,7 @@ msip0151 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
-    "premis:premis/@version",
+    "/premis:premis/@version",
 )
 msip0152 = MeemooSIPConstraint(
     "MSIP0152",
@@ -1701,7 +1700,7 @@ msip0154 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
-    "premis:premis/@xsi:schemaLocation",
+    "/premis:premis/@xsi:schemaLocation",
 )
 msip0155 = MeemooSIPConstraint(
     "MSIP0155",
@@ -1712,7 +1711,7 @@ msip0155 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object",
+    "/premis:premis/premis:object",
 )
 msip0156 = MeemooSIPConstraint(
     "MSIP0156",
@@ -1723,7 +1722,7 @@ msip0156 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/@xsi:type",
+    "/premis:premis/premis:object/@xsi:type",
 )
 msip0157 = MeemooSIPConstraint(
     "MSIP0157",
@@ -1734,7 +1733,7 @@ msip0157 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/premis:objectIdentifier",
+    "/premis:premis/premis:object/premis:objectIdentifier",
 )
 msip0158 = MeemooSIPConstraint(
     "MSIP0158",
@@ -1745,7 +1744,7 @@ msip0158 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/premis:objectIdentifier/premis:objectIdentifierType",
+    "/premis:premis/premis:object/premis:objectIdentifier/premis:objectIdentifierType",
 )
 msip0159 = MeemooSIPConstraint(
     "MSIP0159",
@@ -1756,7 +1755,7 @@ msip0159 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/premis:objectIdentifier/premis:objectIdentifierValue",
+    "/premis:premis/premis:object/premis:objectIdentifier/premis:objectIdentifierValue",
 )
 msip0160 = MeemooSIPConstraint(
     "MSIP0160",
@@ -1767,7 +1766,7 @@ msip0160 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/premis:relationship",
+    "/premis:premis/premis:object/premis:relationship",
 )
 msip0161 = MeemooSIPConstraint(
     "MSIP0161",
@@ -1778,7 +1777,7 @@ msip0161 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/premis:relationship/premis:relationshipType",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipType",
 )
 msip0162 = MeemooSIPConstraint(
     "MSIP0162",
@@ -1789,7 +1788,7 @@ msip0162 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/premis:relationship/premis:relationshipType/@authority",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipType/@authority",
 )
 msip0163 = MeemooSIPConstraint(
     "MSIP0163",
@@ -1800,7 +1799,7 @@ msip0163 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URI,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/premis:relationship/premis:relationshipType/@authorityURI",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipType/@authorityURI",
 )
 msip0164 = MeemooSIPConstraint(
     "MSIP0164",
@@ -1811,7 +1810,7 @@ msip0164 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URI,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/premis:relationship/premis:relationshipType/@valueURI",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipType/@valueURI",
 )
 msip0165 = MeemooSIPConstraint(
     "MSIP0165",
@@ -1822,7 +1821,7 @@ msip0165 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/premis:relationship/premis:relationshipSubType",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipSubType",
 )
 msip0166 = MeemooSIPConstraint(
     "MSIP0166",
@@ -1833,7 +1832,7 @@ msip0166 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/premis:relationship/premis:relationshipSubType/@authority",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipSubType/@authority",
 )
 msip0167 = MeemooSIPConstraint(
     "MSIP0167",
@@ -1844,7 +1843,7 @@ msip0167 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URI,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/premis:relationship/premis:relationshipSubType/@authorityURI",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipSubType/@authorityURI",
 )
 msip0168 = MeemooSIPConstraint(
     "MSIP0168",
@@ -1855,7 +1854,7 @@ msip0168 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URI,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/premis:relationship/premis:relationshipSubType/@valueURI",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipSubType/@valueURI",
 )
 msip0169 = MeemooSIPConstraint(
     "MSIP0169",
@@ -1866,7 +1865,7 @@ msip0169 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/premis:relationship/premis:relatedObjectIdentifier",
+    "/premis:premis/premis:object/premis:relationship/premis:relatedObjectIdentifier",
 )
 msip0170 = MeemooSIPConstraint(
     "MSIP0170",
@@ -1877,7 +1876,7 @@ msip0170 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/premis:relationship/premis:relatedObjectIdentifier/premis:relatedObjectIdentifierType",
+    "/premis:premis/premis:object/premis:relationship/premis:relatedObjectIdentifier/premis:relatedObjectIdentifierType",
 )
 msip0171 = MeemooSIPConstraint(
     "MSIP0171",
@@ -1888,7 +1887,7 @@ msip0171 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:object/premis:relationship/premis:relatedObjectIdentifier/premis:relatedObjectIdentifierValue",
+    "/premis:premis/premis:object/premis:relationship/premis:relatedObjectIdentifier/premis:relatedObjectIdentifierValue",
 )
 msip0172 = MeemooSIPConstraint(
     "MSIP0172",
@@ -1899,7 +1898,7 @@ msip0172 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event",
+    "/premis:premis/premis:event",
 )
 msip0173 = MeemooSIPConstraint(
     "MSIP0173",
@@ -1910,7 +1909,7 @@ msip0173 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:eventIdentifier",
+    "/premis:premis/premis:event/premis:eventIdentifier",
 )
 msip0174 = MeemooSIPConstraint(
     "MSIP0174",
@@ -1921,7 +1920,7 @@ msip0174 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:eventIdentifier/premis:eventIdentifierType",
+    "/premis:premis/premis:event/premis:eventIdentifier/premis:eventIdentifierType",
 )
 msip0175 = MeemooSIPConstraint(
     "MSIP0175",
@@ -1932,7 +1931,7 @@ msip0175 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:eventIdentifier/premis:eventIdentifierValue",
+    "/premis:premis/premis:event/premis:eventIdentifier/premis:eventIdentifierValue",
 )
 msip0176 = MeemooSIPConstraint(
     "MSIP0176",
@@ -1943,7 +1942,7 @@ msip0176 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:eventType",
+    "/premis:premis/premis:event/premis:eventType",
 )
 msip0177 = MeemooSIPConstraint(
     "MSIP0177",
@@ -1954,7 +1953,7 @@ msip0177 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.XSD_DATETIME,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:eventDateTime",
+    "/premis:premis/premis:event/premis:eventDateTime",
 )
 msip0178 = MeemooSIPConstraint(
     "MSIP0178",
@@ -1965,7 +1964,7 @@ msip0178 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:eventDetailInformation",
+    "/premis:premis/premis:event/premis:eventDetailInformation",
 )
 msip0179 = MeemooSIPConstraint(
     "MSIP0179",
@@ -1976,7 +1975,7 @@ msip0179 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:eventDetailInformation/premis:eventDetail",
+    "/premis:premis/premis:event/premis:eventDetailInformation/premis:eventDetail",
 )
 msip0180 = MeemooSIPConstraint(
     "MSIP0180",
@@ -1987,7 +1986,7 @@ msip0180 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:eventOutcomeInformation",
+    "/premis:premis/premis:event/premis:eventOutcomeInformation",
 )
 msip0181 = MeemooSIPConstraint(
     "MSIP0181",
@@ -1998,7 +1997,7 @@ msip0181 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:eventOutcomeInformation/premis:eventOutcome",
+    "/premis:premis/premis:event/premis:eventOutcomeInformation/premis:eventOutcome",
 )
 msip0182 = MeemooSIPConstraint(
     "MSIP0182",
@@ -2009,7 +2008,7 @@ msip0182 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URI,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:eventOutcomeInformation/premis:eventOutcome/@valueURI",
+    "/premis:premis/premis:event/premis:eventOutcomeInformation/premis:eventOutcome/@valueURI",
 )
 msip0183 = MeemooSIPConstraint(
     "MSIP0183",
@@ -2020,7 +2019,7 @@ msip0183 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:linkingAgentIdentifier",
+    "/premis:premis/premis:event/premis:linkingAgentIdentifier",
 )
 msip0184 = MeemooSIPConstraint(
     "MSIP0184",
@@ -2031,7 +2030,7 @@ msip0184 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:linkingAgentIdentifier/premis:linkingAgentIdentifierType",
+    "/premis:premis/premis:event/premis:linkingAgentIdentifier/premis:linkingAgentIdentifierType",
 )
 msip0185 = MeemooSIPConstraint(
     "MSIP0185",
@@ -2042,7 +2041,7 @@ msip0185 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:linkingAgentIdentifier/premis:linkingAgentIdentifierValue",
+    "/premis:premis/premis:event/premis:linkingAgentIdentifier/premis:linkingAgentIdentifierValue",
 )
 msip0186 = MeemooSIPConstraint(
     "MSIP0186",
@@ -2053,7 +2052,7 @@ msip0186 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:linkingAgentIdentifier/premis:linkingAgentRole",
+    "/premis:premis/premis:event/premis:linkingAgentIdentifier/premis:linkingAgentRole",
 )
 msip0187 = MeemooSIPConstraint(
     "MSIP0187",
@@ -2064,7 +2063,7 @@ msip0187 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URI,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:linkingAgentIdentifier/premis:linkingAgentRole/@valueURI",
+    "/premis:premis/premis:event/premis:linkingAgentIdentifier/premis:linkingAgentRole/@valueURI",
 )
 msip0188 = MeemooSIPConstraint(
     "MSIP0188",
@@ -2075,7 +2074,7 @@ msip0188 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:linkingObjectIdentifier",
+    "/premis:premis/premis:event/premis:linkingObjectIdentifier",
 )
 msip0189 = MeemooSIPConstraint(
     "MSIP0189",
@@ -2086,7 +2085,7 @@ msip0189 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:linkingObjectIdentifier/premis:linkingObjectIdentifierType",
+    "/premis:premis/premis:event/premis:linkingObjectIdentifier/premis:linkingObjectIdentifierType",
 )
 msip0190 = MeemooSIPConstraint(
     "MSIP0190",
@@ -2097,7 +2096,7 @@ msip0190 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:linkingObjectIdentifier/premis:linkingObjectIdentifierValue",
+    "/premis:premis/premis:event/premis:linkingObjectIdentifier/premis:linkingObjectIdentifierValue",
 )
 msip0191 = MeemooSIPConstraint(
     "MSIP0191",
@@ -2108,7 +2107,7 @@ msip0191 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:linkingObjectIdentifier/premis:linkingObjectRole",
+    "/premis:premis/premis:event/premis:linkingObjectIdentifier/premis:linkingObjectRole",
 )
 msip0192 = MeemooSIPConstraint(
     "MSIP0192",
@@ -2119,7 +2118,7 @@ msip0192 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.URI,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:event/premis:linkingAgentIdentifier/premis:linkingObjectRole/@valueURI",
+    "/premis:premis/premis:event/premis:linkingAgentIdentifier/premis:linkingObjectRole/@valueURI",
 )
 msip0193 = MeemooSIPConstraint(
     "MSIP0193",
@@ -2130,7 +2129,7 @@ msip0193 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:agent",
+    "/premis:premis/premis:agent",
 )
 msip0194 = MeemooSIPConstraint(
     "MSIP0194",
@@ -2141,7 +2140,7 @@ msip0194 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:agent/premis:agentIdentifier",
+    "/premis:premis/premis:agent/premis:agentIdentifier",
 )
 msip0195 = MeemooSIPConstraint(
     "MSIP0195",
@@ -2152,7 +2151,7 @@ msip0195 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:agent/premis:agentIdentifier/premis:agentIdentifierType",
+    "/premis:premis/premis:agent/premis:agentIdentifier/premis:agentIdentifierType",
 )
 msip0196 = MeemooSIPConstraint(
     "MSIP0196",
@@ -2163,7 +2162,7 @@ msip0196 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:agent/premis:agentIdentifier/premis:agentIdentifierValue",
+    "/premis:premis/premis:agent/premis:agentIdentifier/premis:agentIdentifierValue",
 )
 msip0197 = MeemooSIPConstraint(
     "MSIP0197",
@@ -2174,7 +2173,7 @@ msip0197 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:agent/premis:agentName",
+    "/premis:premis/premis:agent/premis:agentName",
 )
 msip0198 = MeemooSIPConstraint(
     "MSIP0198",
@@ -2185,7 +2184,7 @@ msip0198 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:agent/premis:agentType",
+    "/premis:premis/premis:agent/premis:agentType",
 )
 msip0199 = MeemooSIPConstraint(
     "MSIP0199",
@@ -2196,7 +2195,7 @@ msip0199 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
-    "premis:premis/premis:agent/premis:agentExtension",
+    "/premis:premis/premis:agent/premis:agentExtension",
 )
 msip0200 = MeemooSIPConstraint(
     "MSIP0200",
@@ -2220,6 +2219,7 @@ msip0201 = MeemooSIPConstraint(
     "/representations",
     "",
 )
+
 constraint_map = {
     "CSIPSTR4": [msip0001],
     "CSIPSTR2": [msip0002],
