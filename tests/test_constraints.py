@@ -1,3 +1,7 @@
+from pathlib import Path
+
+from lxml import etree
+
 from meemoo_sip_validator.constraints import (
     MeemooSIPConstraint,
     MeemooSIPConstraintCardinality,
@@ -7,6 +11,12 @@ from meemoo_sip_validator.constraints import (
     MeemooSIPConstraintObligation,
     MeemooSIPConstraintSIPLevel,
     MeemooSIPConstraintXMLNodeType,
+)
+from meemoo_sip_validator.v21.constraints import (
+    msip0007,
+)
+from meemoo_sip_validator.v21.validations import (
+    validate_msip0007,
 )
 
 
@@ -40,3 +50,35 @@ class TestMeemooSIPConstraintEvaluation:
         assert evaluation.constraint == constraint
         assert evaluation.severity == evaluation_status
         assert evaluation.message is None
+
+
+def test_validate_msip0007_correct():
+    path = Path(
+        "tests",
+        "resources",
+        "msip0007",
+        "correct_mets",
+        "METS.xml",
+    )
+    root = etree.parse(path)
+
+    assert validate_msip0007(root) == MeemooSIPConstraintEvaluation(
+        msip0007, MeemooSIPConstraintEvaluationStatus.PASS
+    )
+
+
+def test_validate_msip0007_missing():
+    path = Path(
+        "tests",
+        "resources",
+        "msip0007",
+        "missing_mets",
+        "METS.xml",
+    )
+    root = etree.parse(path)
+
+    assert validate_msip0007(root) == MeemooSIPConstraintEvaluation(
+        msip0007,
+        MeemooSIPConstraintEvaluationStatus.FAIL,
+        f"The element '{msip0007.xpath}' is not present",
+    )
