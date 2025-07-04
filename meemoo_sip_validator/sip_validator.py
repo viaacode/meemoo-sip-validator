@@ -56,7 +56,7 @@ class ValidationReport:
     def __init__(
         self,
     ):
-        self._constraint_evaluations = []
+        self._constraint_evaluations: list[MeemooSIPConstraintEvaluation] = []
 
     @property
     def constraint_evaluations(self) -> list[MeemooSIPConstraintEvaluation]:
