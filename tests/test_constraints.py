@@ -14,9 +14,11 @@ from meemoo_sip_validator.constraints import (
 )
 from meemoo_sip_validator.v21.constraints import (
     msip0007,
+    msip0150,
 )
 from meemoo_sip_validator.v21.validations import (
     validate_msip0007,
+    validate_msip0150,
 )
 
 
@@ -81,4 +83,37 @@ def test_validate_msip0007_missing():
         msip0007,
         MeemooSIPConstraintEvaluationStatus.FAIL,
         f"The element '{msip0007.xpath}' is not present",
+    )
+
+
+def test_validate_msip0150_correct():
+    path = Path(
+        "tests",
+        "resources",
+        "msip0150",
+        "correct_premis",
+        "premis.xml",
+    )
+    root = etree.parse(path)
+
+    assert validate_msip0150(root) == MeemooSIPConstraintEvaluation(
+        msip0150,
+        MeemooSIPConstraintEvaluationStatus.PASS,
+    )
+
+
+def test_validate_msip0150_missing():
+    path = Path(
+        "tests",
+        "resources",
+        "msip0150",
+        "missing_premis",
+        "premis.xml",
+    )
+    root = etree.parse(path)
+
+    assert validate_msip0150(root) == MeemooSIPConstraintEvaluation(
+        msip0150,
+        MeemooSIPConstraintEvaluationStatus.FAIL,
+        f"The element '{msip0150.xpath}' is not present",
     )
