@@ -1,4 +1,6 @@
+from dataclasses import asdict
 from pathlib import Path
+import json
 
 from lxml import etree
 from lxml.etree import _ElementTree
@@ -10,6 +12,8 @@ from .constraints import (
     msip0011,
     msip0012,
 )
+
+from .v21.constraints import get_meemoo_constraints
 
 NAMESPACES = {
     "mets": "http://www.loc.gov/METS/",
@@ -45,6 +49,9 @@ class EARKValidation:
     def is_valid(self, value: bool):
         self._is_valid = value
 
+    def to_dict(self) -> dict:
+        return json.loads(self.report)
+
 
 class ValidationReport:
     """Class representing the validation report.
@@ -71,6 +78,10 @@ class ValidationReport:
         self, constraint_evaluations: list[MeemooSIPConstraintEvaluation]
     ):
         self.constraint_evaluations.extend(constraint_evaluations)
+
+    def to_dict(self) -> dict:
+        evals = [asdict(e) for e in self.constraint_evaluations]
+        return {"constraint_evaluations": evals, "is_valid": self.is_valid()}
 
     def is_valid(self) -> bool:
         for constraint_eval in self.constraint_evaluations:
@@ -149,11 +160,38 @@ class MeemooSIPValidator:
             # We can stop
             return False
 
+        self._map_eark_contraints()
+
+        return self.validation_report.is_valid()
+
     def _validate_eark(self) -> tuple[bool, str]:
         eark_validator = EARKSIPValidator()
         success, eark_report = eark_validator.validate(self.unzipped_path)
 
         return success, eark_report
+
+    def _map_eark_contraints(self):
+        """Map E-ARK constraints to the respective meemoo constraints.
+
+        The mapped meemoo constraints are added to the list of constraints.
+        """
+        report = self.eark_validation_report.to_dict()
+        for validation in report["validation"]:
+            constraints = get_meemoo_constraints(validation["id"])
+            for constraint in constraints:
+                status = MeemooSIPConstraintEvaluationStatus.PASS
+                if validation["testing"]["outcome"] == "FAILED":
+                    level = validation["level"]
+                    if level == "MAY":
+                        status = MeemooSIPConstraintEvaluationStatus.WARNING
+                    elif level == "SHOULD":
+                        status = MeemooSIPConstraintEvaluationStatus.INFO
+                    elif level == "MUST":
+                        status = MeemooSIPConstraintEvaluationStatus.ERROR
+
+                self.validation_report.add_constraint_evaluation(
+                    MeemooSIPConstraintEvaluation(constraint, status)
+                )
 
     def _validate_msip0011(self, root: _ElementTree) -> MeemooSIPConstraintEvaluation:
         """Validate the msip0011 constraint.
