@@ -38,5 +38,5 @@ class TestMeemooSIPConstraintEvaluation:
         evaluation = MeemooSIPConstraintEvaluation(constraint, evaluation_status)
 
         assert evaluation.constraint == constraint
-        assert evaluation.status == evaluation_status
+        assert evaluation.severity == evaluation_status
         assert evaluation.message is None

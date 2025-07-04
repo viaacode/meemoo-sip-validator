@@ -74,7 +74,7 @@ class ValidationReport:
 
     def is_valid(self) -> bool:
         for constraint_eval in self.constraint_evaluations:
-            if not constraint_eval.is_valid():
+            if not constraint_eval.is_valid:
                 return False
         return True
 
@@ -136,16 +136,16 @@ class MeemooSIPValidator:
 
         # Meemoo SIP validation
 
-        # Neccesary constraints msip0011 and msip0012 to determine profile
+        # Necessary constraints msip0011 and msip0012 to determine profile
         msip0011_validation = self._validate_msip0011(root)
         self.validation_report.add_constraint_evaluation(msip0011_validation)
-        if not msip0011_validation.is_valid():
+        if not msip0011_validation.is_valid:
             # We can stop
             return False
 
         msip0012_validation = self._validate_msip0012(root)
         self.validation_report.add_constraint_evaluation(msip0012_validation)
-        if not msip0012_validation.is_valid():
+        if not msip0012_validation.is_valid:
             # We can stop
             return False
 

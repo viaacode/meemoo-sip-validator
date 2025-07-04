@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import auto, StrEnum
 
 
@@ -94,16 +94,21 @@ class MeemooSIPConstraintEvaluation:
 
     Attributes:
         constraint: The meemoo SIP constraint.
-        status: The status of the evaluation.
+        severity: The status of the evaluation.
         message: Additional message about the evaluation, if applicable.
+        is_valid: Is the evaluation of the constraint valid or not.
     """
 
     constraint: MeemooSIPConstraint
-    status: MeemooSIPConstraintEvaluationStatus
+    severity: MeemooSIPConstraintEvaluationStatus
     message: str | None = None
+    is_valid: bool = field(init=False)
 
-    def is_valid(self) -> bool:
-        return self.status != MeemooSIPConstraintEvaluationStatus.FAIL
+    def __post_init__(self):
+        self.is_valid = self._is_valid()
+
+    def _is_valid(self) -> bool:
+        return self.severity != MeemooSIPConstraintEvaluationStatus.FAIL
 
 
 msip0011 = MeemooSIPConstraint(
