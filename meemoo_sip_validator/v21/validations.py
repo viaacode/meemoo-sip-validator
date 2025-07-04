@@ -1,7 +1,7 @@
 from lxml.etree import _ElementTree
 
 from . import MeemooSIPConstraintEvaluation, MeemooSIPConstraintEvaluationStatus
-from .constraints import msip0007, msip0150
+from .constraints import msip0007, msip0150, msip0151
 
 
 METS_NAMESPACES = {"mets": "http://www.loc.gov/METS/"}
@@ -38,4 +38,26 @@ def validate_msip0150(root: _ElementTree) -> MeemooSIPConstraintEvaluation:
         )
     return MeemooSIPConstraintEvaluation(
         msip0150, MeemooSIPConstraintEvaluationStatus.PASS
+    )
+
+
+def validate_msip0151(root) -> MeemooSIPConstraintEvaluation:
+    premis_version = root.xpath(
+        msip0151.xpath,
+        namespaces=PREMIS_NAMESPACES,
+    )
+    if len(premis_version) == 0:
+        return MeemooSIPConstraintEvaluation(
+            msip0151,
+            MeemooSIPConstraintEvaluationStatus.FAIL,
+            f"The attribute '{msip0151.xpath}' is not present",
+        )
+    if (premis_version)[0] != "3.0":
+        return MeemooSIPConstraintEvaluation(
+            msip0151,
+            MeemooSIPConstraintEvaluationStatus.FAIL,
+            f"The value of '{msip0151.xpath}' is different than '3.0'",
+        )
+    return MeemooSIPConstraintEvaluation(
+        msip0151, MeemooSIPConstraintEvaluationStatus.PASS
     )
