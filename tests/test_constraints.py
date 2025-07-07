@@ -12,11 +12,12 @@ from meemoo_sip_validator.constraints import (
     MeemooSIPConstraintSIPLevel,
     MeemooSIPConstraintXMLNodeType,
 )
-from meemoo_sip_validator.v21.constraints import msip0007, msip0150, msip0151
+from meemoo_sip_validator.v21.constraints import msip0007, msip0150, msip0151, msip0153
 from meemoo_sip_validator.v21.validations import (
     validate_msip0007,
     validate_msip0150,
     validate_msip0151,
+    validate_msip0153,
 )
 
 
@@ -35,7 +36,7 @@ class TestMeemooSIPConstraint:
         assert constraint.sip_level == MeemooSIPConstraintSIPLevel.UNSPECIFIED
         assert constraint.datatype == MeemooSIPConstraintDatatype.UNSPECIFIED
         assert constraint.xml_node_type == MeemooSIPConstraintXMLNodeType.UNSPECIFIED
-        assert constraint.filename is None
+        assert constraint.path is None
         assert constraint.xpath is None
 
 
@@ -164,4 +165,33 @@ def test_validate_msip0151_wrong():
         msip0151,
         MeemooSIPConstraintEvaluationStatus.FAIL,
         f"The value of '{msip0151.xpath}' is different than '3.0'",
+    )
+
+
+def test_validate_msip0153_correct():
+    path = Path(
+        "tests",
+        "resources",
+        "msip0153",
+        "correct_premis",
+    )
+
+    assert validate_msip0153(path) == MeemooSIPConstraintEvaluation(
+        msip0153,
+        MeemooSIPConstraintEvaluationStatus.PASS,
+    )
+
+
+def test_validate_msip0153_missing():
+    path = Path(
+        "tests",
+        "resources",
+        "msip0153",
+        "missing_premis",
+    )
+
+    assert validate_msip0153(path) == MeemooSIPConstraintEvaluation(
+        msip0153,
+        MeemooSIPConstraintEvaluationStatus.FAIL,
+        f"The file {path.joinpath('metadata', 'preservation', 'premis.xml')} is not found",
     )

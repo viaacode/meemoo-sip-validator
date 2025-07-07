@@ -1,7 +1,9 @@
+from pathlib import Path
+
 from lxml.etree import _ElementTree
 
 from . import MeemooSIPConstraintEvaluation, MeemooSIPConstraintEvaluationStatus
-from .constraints import msip0007, msip0150, msip0151
+from .constraints import msip0007, msip0150, msip0151, msip0153
 
 
 METS_NAMESPACES = {"mets": "http://www.loc.gov/METS/"}
@@ -41,7 +43,7 @@ def validate_msip0150(root: _ElementTree) -> MeemooSIPConstraintEvaluation:
     )
 
 
-def validate_msip0151(root) -> MeemooSIPConstraintEvaluation:
+def validate_msip0151(root: _ElementTree) -> MeemooSIPConstraintEvaluation:
     premis_version = root.xpath(
         msip0151.xpath,
         namespaces=PREMIS_NAMESPACES,
@@ -60,4 +62,19 @@ def validate_msip0151(root) -> MeemooSIPConstraintEvaluation:
         )
     return MeemooSIPConstraintEvaluation(
         msip0151, MeemooSIPConstraintEvaluationStatus.PASS
+    )
+
+
+def validate_msip0153(unzipped_folder: Path) -> MeemooSIPConstraintEvaluation:
+    premis_path = unzipped_folder.joinpath(
+        msip0153.get_relative_path().joinpath("premis.xml")
+    )
+    if not premis_path.exists():
+        return MeemooSIPConstraintEvaluation(
+            msip0153,
+            MeemooSIPConstraintEvaluationStatus.FAIL,
+            f"The file {premis_path} is not found",
+        )
+    return MeemooSIPConstraintEvaluation(
+        msip0153, MeemooSIPConstraintEvaluationStatus.PASS
     )

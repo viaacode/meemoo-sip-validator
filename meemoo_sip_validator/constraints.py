@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from enum import auto, StrEnum
+from pathlib import Path
 
 
 class MeemooSIPConstraintObligation(StrEnum):
@@ -84,8 +85,11 @@ class MeemooSIPConstraint:
     xml_node_type: MeemooSIPConstraintXMLNodeType = (
         MeemooSIPConstraintXMLNodeType.UNSPECIFIED
     )
-    filename: str | None = None
+    path: str | None = None
     xpath: str | None = None
+
+    def get_relative_path(self) -> Path:
+        return Path(self.path).relative_to("/")
 
 
 @dataclass
