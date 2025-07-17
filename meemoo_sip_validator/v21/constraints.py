@@ -1,4 +1,5 @@
 # Generated via script.
+
 from . import (
     MeemooSIPConstraint,
     MeemooSIPConstraintCardinality,
@@ -8,8 +9,8 @@ from . import (
     MeemooSIPConstraintXMLNodeType,
 )
 
-msip0001 = MeemooSIPConstraint(
-    "MSIP0001",
+msip1 = MeemooSIPConstraint(
+    "MSIP1",
     "The root directory MUST contain exactly one `METS.xml` file. The word `METS` in the filename MUST be written in all caps as displayed here.",
     MeemooSIPConstraintCardinality.UNSPECIFIED,
     MeemooSIPConstraintObligation.MUST,
@@ -19,8 +20,8 @@ msip0001 = MeemooSIPConstraint(
     "/",
     "",
 )
-msip0002 = MeemooSIPConstraint(
-    "MSIP0002",
+msip2 = MeemooSIPConstraint(
+    "MSIP2",
     "The root directory MUST have the value of the `OBJID` attribute in the `METS.xml` header as its directory name. In the example tree structure above, that means that the `OBJID` attribute MUST be `uuid-e4eb34c0-4fc6-4395-b61c-0671f8e0b04c` since that is the name of the root directory. See [`mets/@OBJID`](#OBJID) for more details.",
     MeemooSIPConstraintCardinality.UNSPECIFIED,
     MeemooSIPConstraintObligation.MUST,
@@ -30,8 +31,8 @@ msip0002 = MeemooSIPConstraint(
     "/",
     "",
 )
-msip0003 = MeemooSIPConstraint(
-    "MSIP0003",
+msip3 = MeemooSIPConstraint(
+    "MSIP3",
     "The root directory MUST contain exactly one `/metadata` directory.",
     MeemooSIPConstraintCardinality.UNSPECIFIED,
     MeemooSIPConstraintObligation.MUST,
@@ -41,8 +42,8 @@ msip0003 = MeemooSIPConstraint(
     "/",
     "",
 )
-msip0004 = MeemooSIPConstraint(
-    "MSIP0004",
+msip4 = MeemooSIPConstraint(
+    "MSIP4",
     "The root directory MUST contain exactly one `/representations` directory.",
     MeemooSIPConstraintCardinality.UNSPECIFIED,
     MeemooSIPConstraintObligation.MUST,
@@ -52,8 +53,8 @@ msip0004 = MeemooSIPConstraint(
     "/",
     "",
 )
-msip0005 = MeemooSIPConstraint(
-    "MSIP0005",
+msip5 = MeemooSIPConstraint(
+    "MSIP5",
     "The root directory MAY contain exactly one `/documentation` directory.",
     MeemooSIPConstraintCardinality.UNSPECIFIED,
     MeemooSIPConstraintObligation.MAY,
@@ -63,8 +64,8 @@ msip0005 = MeemooSIPConstraint(
     "/",
     "",
 )
-msip0006 = MeemooSIPConstraint(
-    "MSIP0006",
+msip6 = MeemooSIPConstraint(
+    "MSIP6",
     "The root directory MAY contain exactly one `/schemas` directory.",
     MeemooSIPConstraintCardinality.UNSPECIFIED,
     MeemooSIPConstraintObligation.MAY,
@@ -74,8 +75,8 @@ msip0006 = MeemooSIPConstraint(
     "/",
     "",
 )
-msip0007 = MeemooSIPConstraint(
-    "MSIP0007",
+msip7 = MeemooSIPConstraint(
+    "MSIP7",
     "This is the root element of the package METS.<br>It MUST contain the following XML schema namespaces:<br>[`mets: http://www.loc.gov/METS/`](http://www.loc.gov/METS/)<br>[`csip: https://DILCIS.eu/XML/METS/CSIPExtensionMETS`](https://DILCIS.eu/XML/METS/CSIPExtensionMETS)<br>[`xsi: http://www.w3.org/2001/XMLSchema-instance`](http://www.w3.org/2001/XMLSchema-instance)<br>[`xlink: http://www.w3.org/1999/xlink`](http://www.w3.org/1999/xlink)",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -85,8 +86,8 @@ msip0007 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets",
 )
-msip0008 = MeemooSIPConstraint(
-    "MSIP0008",
+msip8 = MeemooSIPConstraint(
+    "MSIP8",
     "This is the identifier for the METS document. Its value MUST be the same as the name used for the entire package folder.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -96,8 +97,8 @@ msip0008 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/@OBJID",
 )
-msip0009 = MeemooSIPConstraint(
-    "MSIP0009",
+msip9 = MeemooSIPConstraint(
+    "MSIP9",
     "This attribute MUST be set to declare the category of the content held in the SIP.<br>Be aware of the difference between the required en dash character used below (`–`) vs. the regularly used hypen character (`-`) that is shorter.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -107,8 +108,8 @@ msip0009 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/@TYPE",
 )
-msip0010 = MeemooSIPConstraint(
-    "MSIP0010",
+msip10 = MeemooSIPConstraint(
+    "MSIP10",
     'When the `mets/@TYPE` attribute is set to "OTHER", the `mets/@csip:OTHERTYPE` attribute SHOULD be used to declare the content category of the package representation not contained in the fixed vocabulary of the `@TYPE` attribute.',
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.SHOULD,
@@ -118,8 +119,8 @@ msip0010 = MeemooSIPConstraint(
     "/METS.xml",
     '/mets:mets[@TYPE="OTHER"]/@csip:OTHERTYPE',
 )
-msip0011 = MeemooSIPConstraint(
-    "MSIP0011",
+msip11 = MeemooSIPConstraint(
+    "MSIP11",
     'This attribute must have the value "OTHER". The value of the `mets/@csip:OTHERCONTENTINFORMATIONTYPE` attribute describes the value of the profile of the meemoo SIP.',
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -129,8 +130,8 @@ msip0011 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/@csip:CONTENTINFORMATIONTYPE",
 )
-msip0012 = MeemooSIPConstraint(
-    "MSIP0012",
+msip12 = MeemooSIPConstraint(
+    "MSIP12",
     "This attribute is used to declare the Content Information Type Specification used when creating the SIP.<br>Meemoo uses this attribute to indicate which of meemoo's content profiles a SIP uses. Its value MUST be a valid URI which can be found on the different content profile pages, e.g. the URI `https://data.hetarchief.be/id/sip/2.1/basic` for the basic content profile which can be found on [its content profile page]({{ site.baseurl }}{% link docs/diginstroom/sip/2.1/profiles/basic.md %}).<br>ote that the sample above has the value of the basic profile as an example.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -140,8 +141,8 @@ msip0012 = MeemooSIPConstraint(
     "/METS.xml",
     '/mets:mets[@csip:CONTENTINFORMATIONTYPE="OTHER"]/@csip:OTHERCONTENTINFORMATIONTYPE',
 )
-msip0013 = MeemooSIPConstraint(
-    "MSIP0013",
+msip13 = MeemooSIPConstraint(
+    "MSIP13",
     "The URL of the E-ARK METS profile that the SIP conforms with.<br>This URL MUST be set to [`https://earksip.dilcis.eu/profile/E-ARK-SIP.xml`](https://earksip.dilcis.eu/profile/E-ARK-SIP.xml) to indicate conformance with the E-ARK specification.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -151,8 +152,8 @@ msip0013 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/@PROFILE",
 )
-msip0014 = MeemooSIPConstraint(
-    "MSIP0014",
+msip14 = MeemooSIPConstraint(
+    "MSIP14",
     "An optional short text describing the contents of the package.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -162,8 +163,8 @@ msip0014 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/@LABEL",
 )
-msip0015 = MeemooSIPConstraint(
-    "MSIP0015",
+msip15 = MeemooSIPConstraint(
+    "MSIP15",
     "General element that contains descriptive information about the SIP.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -173,8 +174,8 @@ msip0015 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr",
 )
-msip0016 = MeemooSIPConstraint(
-    "MSIP0016",
+msip16 = MeemooSIPConstraint(
+    "MSIP16",
     "This attribute records the date and time the SIP was created.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -184,8 +185,8 @@ msip0016 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/@CREATEDATE",
 )
-msip0017 = MeemooSIPConstraint(
-    "MSIP0017",
+msip17 = MeemooSIPConstraint(
+    "MSIP17",
     "In case the SIP was modified since its creation, this attribute records the date and time of that modification.<br>This attribute MUST be present and filled in when the SIP has been modified since its creation datetime.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.SHOULD,
@@ -195,8 +196,8 @@ msip0017 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/@LASTMODDATE",
 )
-msip0018 = MeemooSIPConstraint(
-    "MSIP0018",
+msip18 = MeemooSIPConstraint(
+    "MSIP18",
     "A way of indicating the status of the SIP and to instruct meemoo on how to properly handle it.<br>If not set, the expected value is `NEW`.<br>Meemoo investigates the use of the `@RECORDSTATUS` attribute for future use cases such as e.g. a metadata update (i.e. ingest of metadata only with the goal of updating, adding or deleting existing metadata in meemoo's archive system).",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -206,8 +207,8 @@ msip0018 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/@RECORDSTATUS",
 )
-msip0019 = MeemooSIPConstraint(
-    "MSIP0019",
+msip19 = MeemooSIPConstraint(
+    "MSIP19",
     "The value of `@csip:OAISPACKAGETYPE` MUST be set to `SIP` to indicate to meemoo that the delivered content is a SIP meant for ingest.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -217,8 +218,8 @@ msip0019 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/@csip:OAISPACKAGETYPE",
 )
-msip0020 = MeemooSIPConstraint(
-    "MSIP0020",
+msip20 = MeemooSIPConstraint(
+    "MSIP20",
     "A mandatory agent element records the software used to create the package.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -228,8 +229,8 @@ msip0020 = MeemooSIPConstraint(
     "/METS.xml",
     "mets/metsHdr/agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']",
 )
-msip0021 = MeemooSIPConstraint(
-    "MSIP0021",
+msip21 = MeemooSIPConstraint(
+    "MSIP21",
     "The role of the SIP creator software agent.<br>This value MUST be set to `CREATOR`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -239,8 +240,8 @@ msip0021 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/@ROLE",
 )
-msip0022 = MeemooSIPConstraint(
-    "MSIP0022",
+msip22 = MeemooSIPConstraint(
+    "MSIP22",
     "The type of the SIP creator software agent.<br>This value MUST be set to `OTHER`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -250,8 +251,8 @@ msip0022 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/@TYPE",
 )
-msip0023 = MeemooSIPConstraint(
-    "MSIP0023",
+msip23 = MeemooSIPConstraint(
+    "MSIP23",
     "A specification of the type of the SIP creator software agent, indicating it being software.<br>This value MUST be set to `SOFTWARE`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -261,8 +262,8 @@ msip0023 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/@OTHERTYPE",
 )
-msip0024 = MeemooSIPConstraint(
-    "MSIP0024",
+msip24 = MeemooSIPConstraint(
+    "MSIP24",
     "This element records the name of the software tool used to create the SIP.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -272,8 +273,8 @@ msip0024 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/name",
 )
-msip0025 = MeemooSIPConstraint(
-    "MSIP0025",
+msip25 = MeemooSIPConstraint(
+    "MSIP25",
     "The mandatory note element records the version of the software tool used to create the IP.<br>It MUST have a `@csip:NOTETYPE` attribute with the value `SOFTWARE VERSION`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -283,8 +284,8 @@ msip0025 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/note",
 )
-msip0026 = MeemooSIPConstraint(
-    "MSIP0026",
+msip26 = MeemooSIPConstraint(
+    "MSIP26",
     "The value of this attribute MUST be set to `SOFTWARE VERSION` to denote the software version of the software being used.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -294,8 +295,8 @@ msip0026 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @OTHERTYPE='SOFTWARE']/note[@csip:NOTETYPE='SOFTWARE VERSION']",
 )
-msip0027 = MeemooSIPConstraint(
-    "MSIP0027",
+msip27 = MeemooSIPConstraint(
+    "MSIP27",
     "A wrapper element that enables to encode the name of the person/people or CP that originally created the content being transferred. This can be different from the SP tasked with preparing and sending the SIP to meemoo (cf. 'submitting agent' below).",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -305,8 +306,8 @@ msip0027 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='ARCHIVIST']",
 )
-msip0028 = MeemooSIPConstraint(
-    "MSIP0028",
+msip28 = MeemooSIPConstraint(
+    "MSIP28",
     "The role of the person/people or CP responsible for the digital content.<br>This value MUST be set to `ARCHIVIST`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -316,8 +317,8 @@ msip0028 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='ARCHIVIST']/@ROLE",
 )
-msip0029 = MeemooSIPConstraint(
-    "MSIP0029",
+msip29 = MeemooSIPConstraint(
+    "MSIP29",
     "The type of the archival creator agent. When the agent is a CP, this value MUST be set to `ORGANIZATION`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -327,8 +328,8 @@ msip0029 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='ARCHIVIST']/@TYPE",
 )
-msip0030 = MeemooSIPConstraint(
-    "MSIP0030",
+msip30 = MeemooSIPConstraint(
+    "MSIP30",
     "The name of the CP that originally created the digital content being transferred.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -338,8 +339,8 @@ msip0030 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='ARCHIVIST']/name",
 )
-msip0031 = MeemooSIPConstraint(
-    "MSIP0031",
+msip31 = MeemooSIPConstraint(
+    "MSIP31",
     "The archival creator agent MAY have a note providing a unique identification code for the archival creator.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -349,8 +350,8 @@ msip0031 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='ARCHIVIST']/note",
 )
-msip0032 = MeemooSIPConstraint(
-    "MSIP0032",
+msip32 = MeemooSIPConstraint(
+    "MSIP32",
     "The archival creator agent note attribute value MUST be set to `IDENTIFICATIONCODE`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -360,8 +361,8 @@ msip0032 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='ARCHIVIST']/note/@csip:NOTETYPE",
 )
-msip0033 = MeemooSIPConstraint(
-    "MSIP0033",
+msip33 = MeemooSIPConstraint(
+    "MSIP33",
     "The name of the CP submitting the package to meemoo.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -371,8 +372,8 @@ msip0033 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']",
 )
-msip0034 = MeemooSIPConstraint(
-    "MSIP0034",
+msip34 = MeemooSIPConstraint(
+    "MSIP34",
     "The role of the CP responsible for creating and/or submitting the SIP. This value MUST be set to `CREATOR`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -382,8 +383,8 @@ msip0034 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/@ROLE",
 )
-msip0035 = MeemooSIPConstraint(
-    "MSIP0035",
+msip35 = MeemooSIPConstraint(
+    "MSIP35",
     "The type of the submitting agent. When the agent is a CP, this value MUST be set to `ORGANIZATION`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -393,8 +394,8 @@ msip0035 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/@TYPE",
 )
-msip0036 = MeemooSIPConstraint(
-    "MSIP0036",
+msip36 = MeemooSIPConstraint(
+    "MSIP36",
     "Name of the CP or individual submitting the SIP to meemoo.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -404,8 +405,8 @@ msip0036 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/name",
 )
-msip0037 = MeemooSIPConstraint(
-    "MSIP0037",
+msip37 = MeemooSIPConstraint(
+    "MSIP37",
     "The submitting agent MUST have a note providing a unique identification code.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -415,8 +416,8 @@ msip0037 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/note",
 )
-msip0038 = MeemooSIPConstraint(
-    "MSIP0038",
+msip38 = MeemooSIPConstraint(
+    "MSIP38",
     "This submitting agent note attribute value MUST be set to `IDENTIFICATIONCODE`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -426,8 +427,8 @@ msip0038 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='ORGANIZATION']/note/@csip:NOTETYPE",
 )
-msip0039 = MeemooSIPConstraint(
-    "MSIP0039",
+msip39 = MeemooSIPConstraint(
+    "MSIP39",
     "Optional contact person for meemoo for the submission of the SIP.",
     MeemooSIPConstraintCardinality.ZERO_OR_MORE,
     MeemooSIPConstraintObligation.MAY,
@@ -437,8 +438,8 @@ msip0039 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']",
 )
-msip0040 = MeemooSIPConstraint(
-    "MSIP0040",
+msip40 = MeemooSIPConstraint(
+    "MSIP40",
     "The role of the contact person agent MUST be set to `CREATOR`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -448,8 +449,8 @@ msip0040 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/@ROLE",
 )
-msip0041 = MeemooSIPConstraint(
-    "MSIP0041",
+msip41 = MeemooSIPConstraint(
+    "MSIP41",
     "The type of the contact person agent MUST be set to `INDIVIDUAL`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -459,8 +460,8 @@ msip0041 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/@TYPE",
 )
-msip0042 = MeemooSIPConstraint(
-    "MSIP0042",
+msip42 = MeemooSIPConstraint(
+    "MSIP42",
     "Name of the contact person.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -470,8 +471,8 @@ msip0042 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/name",
 )
-msip0043 = MeemooSIPConstraint(
-    "MSIP0043",
+msip43 = MeemooSIPConstraint(
+    "MSIP43",
     "The contact person agent MAY have one or more notes providing the actual contact information, such as an address, e-mail, telephone number...",
     MeemooSIPConstraintCardinality.ZERO_OR_MORE,
     MeemooSIPConstraintObligation.MAY,
@@ -481,8 +482,8 @@ msip0043 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='CREATOR' and @TYPE='INDIVIDUAL']/note",
 )
-msip0044 = MeemooSIPConstraint(
-    "MSIP0044",
+msip44 = MeemooSIPConstraint(
+    "MSIP44",
     "The CP, organization or person/people that preserve the package.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -492,8 +493,8 @@ msip0044 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='PRESERVATION']",
 )
-msip0045 = MeemooSIPConstraint(
-    "MSIP0045",
+msip45 = MeemooSIPConstraint(
+    "MSIP45",
     "The role of the preservation agent MUST be set to `PRESERVATION`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -503,8 +504,8 @@ msip0045 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='PRESERVATION']/@ROLE",
 )
-msip0046 = MeemooSIPConstraint(
-    "MSIP0046",
+msip46 = MeemooSIPConstraint(
+    "MSIP46",
     "The type of the preservation agent.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -514,8 +515,8 @@ msip0046 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='PRESERVATION']/@TYPE",
 )
-msip0047 = MeemooSIPConstraint(
-    "MSIP0047",
+msip47 = MeemooSIPConstraint(
+    "MSIP47",
     "Name of the preservation agent.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -525,8 +526,8 @@ msip0047 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='PRESERVATION']/name",
 )
-msip0048 = MeemooSIPConstraint(
-    "MSIP0048",
+msip48 = MeemooSIPConstraint(
+    "MSIP48",
     "The preservation agent MAY have a note providing a unique identification code.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -536,8 +537,8 @@ msip0048 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent[@ROLE='PRESERVATION']/note",
 )
-msip0049 = MeemooSIPConstraint(
-    "MSIP0049",
+msip49 = MeemooSIPConstraint(
+    "MSIP49",
     "This preservation agent note attribute value MUST be set to `IDENTIFICATIONCODE`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -547,8 +548,8 @@ msip0049 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:agent/note[@ROLE='PRESERVATION']/@csip:NOTETYPE",
 )
-msip0050 = MeemooSIPConstraint(
-    "MSIP0050",
+msip50 = MeemooSIPConstraint(
+    "MSIP50",
     "An optional reference to the submission agreement associated with the SIP.<br>When used, the `@TYPE` attribute MUST be set to `SUBMISSIONAGREEMENT`.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -558,8 +559,8 @@ msip0050 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:altRecordID[@TYPE='SUBMISSIONAGREEMENT']",
 )
-msip0051 = MeemooSIPConstraint(
-    "MSIP0051",
+msip51 = MeemooSIPConstraint(
+    "MSIP51",
     "An optional reference to a previous submission agreement associated with the SIP.<br>When used, the `@TYPE` attribute MUST be set to `PREVIOUSSUBMISSIONAGREEMENT`.",
     MeemooSIPConstraintCardinality.ZERO_OR_MORE,
     MeemooSIPConstraintObligation.MAY,
@@ -569,8 +570,8 @@ msip0051 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:altRecordID[@TYPE='PREVIOUSSUBMISSIONAGREEMENT']",
 )
-msip0052 = MeemooSIPConstraint(
-    "MSIP0052",
+msip52 = MeemooSIPConstraint(
+    "MSIP52",
     "An optional reference to indicate where in the archival hierarchy the package shall be placed in meemoo's archive.<br>When used, the `@TYPE` attribute MUST be set to `REFERENCECODE`.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -580,8 +581,8 @@ msip0052 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:altRecordID[@TYPE='REFERENCECODE']",
 )
-msip0053 = MeemooSIPConstraint(
-    "MSIP0053",
+msip53 = MeemooSIPConstraint(
+    "MSIP53",
     "In cases where the SIP originates from other institutions maintaining a reference code structure, this element can be used to record these reference codes and therefore support the provenance of the package when a whole archival description is not submitted with the submission.<br>When used, the `@TYPE` attribute MUST be set to `PREVIOUSREFERENCECODE`.",
     MeemooSIPConstraintCardinality.ZERO_OR_MORE,
     MeemooSIPConstraintObligation.MAY,
@@ -591,8 +592,8 @@ msip0053 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:metsHdr/mets:altRecordID[@TYPE='PREVIOUSREFERENCECODE']",
 )
-msip0054 = MeemooSIPConstraint(
-    "MSIP0054",
+msip54 = MeemooSIPConstraint(
+    "MSIP54",
     "Wrapper element that contains a reference to a separate descriptive metadata file in the directory `/metadata/descriptive`.<br>It MUST be used if descriptive metadata for the package content is available. <br>Each `dmdsec` contains a single reference to a descriptive metadata file and MUST be repeated for multiple metadata files, when available.",
     MeemooSIPConstraintCardinality.ZERO_OR_MORE,
     MeemooSIPConstraintObligation.SHOULD,
@@ -602,8 +603,8 @@ msip0054 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:dmdSec",
 )
-msip0055 = MeemooSIPConstraint(
-    "MSIP0055",
+msip55 = MeemooSIPConstraint(
+    "MSIP55",
     "A unique identifier for the `dmdSec` used for internal package references.<br>It MUST be unique within the SIP.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -613,8 +614,8 @@ msip0055 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:dmdSec/@ID",
 )
-msip0056 = MeemooSIPConstraint(
-    "MSIP0056",
+msip56 = MeemooSIPConstraint(
+    "MSIP56",
     "Creation date and time of the descriptive metadata referenced in this section.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -624,8 +625,8 @@ msip0056 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:dmdSec/@CREATED",
 )
-msip0057 = MeemooSIPConstraint(
-    "MSIP0057",
+msip57 = MeemooSIPConstraint(
+    "MSIP57",
     "Describes the status of the `dmdSec` which is supported by the profile.<br>Meemoo investigates the use of the `@STATUS` attribute for future use cases such as e.g. a descriptive metadata update (i.e. ingest of metadata only with the goal of updating, adding or deleting existing metadata in meemoo's archive system).",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.SHOULD,
@@ -635,8 +636,8 @@ msip0057 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:dmdSec/@STATUS",
 )
-msip0058 = MeemooSIPConstraint(
-    "MSIP0058",
+msip58 = MeemooSIPConstraint(
+    "MSIP58",
     "Reference to the descriptive metadata file(s) located in the `/metadata/descriptive directory`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -646,8 +647,8 @@ msip0058 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:dmdSec/mdRef",
 )
-msip0059 = MeemooSIPConstraint(
-    "MSIP0059",
+msip59 = MeemooSIPConstraint(
+    "MSIP59",
     "Indication of the locator type used to refer to the descriptive metadata file in the /metadata/descriptive directory.<br>It MUST always be used with the value `URL`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -657,8 +658,8 @@ msip0059 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:dmdSec/mets:mdRef[@LOCTYPE='URL']",
 )
-msip0060 = MeemooSIPConstraint(
-    "MSIP0060",
+msip60 = MeemooSIPConstraint(
+    "MSIP60",
     "This attribute's value MUST be set to `simple`, in order to indicate a simple 'HTML-like' link.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -668,8 +669,8 @@ msip0060 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:dmdSec/mets:mdRef[@xlink:type='simple']",
 )
-msip0061 = MeemooSIPConstraint(
-    "MSIP0061",
+msip61 = MeemooSIPConstraint(
+    "MSIP61",
     "Indication of the actual location of the descriptive metadata file.<br>As indicated by the `@LOCTYPE` attribute, this filepath MUST be a URL type filepath.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -679,8 +680,8 @@ msip0061 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:dmdSec/mets:mdRef/@xlink:href",
 )
-msip0062 = MeemooSIPConstraint(
-    "MSIP0062",
+msip62 = MeemooSIPConstraint(
+    "MSIP62",
     "Specification of the type of metadata that is used in the externally located descriptive metadata file(s) in the `/metadata/descriptive` directory.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -690,8 +691,8 @@ msip0062 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:dmdSec/mets:mdRef/@MDTYPE",
 )
-msip0063 = MeemooSIPConstraint(
-    "MSIP0063",
+msip63 = MeemooSIPConstraint(
+    "MSIP63",
     "The media/mime type of the referenced file.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -701,8 +702,8 @@ msip0063 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:dmdSec/mets:mdRef/@MIMETYPE",
 )
-msip0064 = MeemooSIPConstraint(
-    "MSIP0064",
+msip64 = MeemooSIPConstraint(
+    "MSIP64",
     "Size of the referenced file; this MUST be in bytes.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -712,8 +713,8 @@ msip0064 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:dmdSec/mets:mdRef/@SIZE",
 )
-msip0065 = MeemooSIPConstraint(
-    "MSIP0065",
+msip65 = MeemooSIPConstraint(
+    "MSIP65",
     "The creation date and time of the referenced file.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -723,8 +724,8 @@ msip0065 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:dmdSec/mets:mdRef/@CREATED",
 )
-msip0066 = MeemooSIPConstraint(
-    "MSIP0066",
+msip66 = MeemooSIPConstraint(
+    "MSIP66",
     "The checksum of the referenced file.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -734,8 +735,8 @@ msip0066 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:dmdSec/mets:mdRef/@CHECKSUM",
 )
-msip0067 = MeemooSIPConstraint(
-    "MSIP0067",
+msip67 = MeemooSIPConstraint(
+    "MSIP67",
     "A value from the METS-standard which identifies the algorithm used to calculate the checksum for the referenced file. This MUST be set to `MD5`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -745,8 +746,8 @@ msip0067 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:dmdSec/mets:mdRef/@CHECKSUMTYPE",
 )
-msip0068 = MeemooSIPConstraint(
-    "MSIP0068",
+msip68 = MeemooSIPConstraint(
+    "MSIP68",
     "Wrapper element that contains a reference to a separate preservation metadata file in the directory `/metadata/preservation`.<br>It MUST be used if preservation metadata for the package content is available.<br>All preservation metadata MUST be present in a single metadata file, resulting in a single `amdSec` element.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.SHOULD,
@@ -756,8 +757,8 @@ msip0068 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec",
 )
-msip0069 = MeemooSIPConstraint(
-    "MSIP0069",
+msip69 = MeemooSIPConstraint(
+    "MSIP69",
     "Wrapper element for including preservation information using the PREMIS standard.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -767,8 +768,8 @@ msip0069 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/digiprovMD",
 )
-msip0070 = MeemooSIPConstraint(
-    "MSIP0070",
+msip70 = MeemooSIPConstraint(
+    "MSIP70",
     "A unique identifier used for internal package references.<br>It MUST be unique within the SIP.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -778,8 +779,8 @@ msip0070 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/digiprovMD/@ID",
 )
-msip0071 = MeemooSIPConstraint(
-    "MSIP0071",
+msip71 = MeemooSIPConstraint(
+    "MSIP71",
     "Describes the status of the `digiprovMD` which is supported by the profile.<br>Meemoo investigates the use of the `@STATUS` attribute for future use cases such as e.g. a preservation metadata update (i.e. ingest of metadata only with the goal of updating, adding or deleting existing metadata in meemoo's archive system).",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.SHOULD,
@@ -789,8 +790,8 @@ msip0071 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/digiprovMD/@STATUS",
 )
-msip0072 = MeemooSIPConstraint(
-    "MSIP0072",
+msip72 = MeemooSIPConstraint(
+    "MSIP72",
     "Reference to the preservation metadata file located in the `/metadata/preservation` directory.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -800,8 +801,8 @@ msip0072 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef",
 )
-msip0073 = MeemooSIPConstraint(
-    "MSIP0073",
+msip73 = MeemooSIPConstraint(
+    "MSIP73",
     "Indication of the locator type used to refer to the preservation metadata file in the `/metadata/preservation` directory.<br>It MUST always be used with the value `URL`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -811,8 +812,8 @@ msip0073 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef[@LOCTYPE='URL']",
 )
-msip0074 = MeemooSIPConstraint(
-    "MSIP0074",
+msip74 = MeemooSIPConstraint(
+    "MSIP74",
     "This attribute's value MUST be set to `simple`, in order to indicate a simple 'HTML-like' link.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -822,8 +823,8 @@ msip0074 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef[@xlink:type='simple']",
 )
-msip0075 = MeemooSIPConstraint(
-    "MSIP0075",
+msip75 = MeemooSIPConstraint(
+    "MSIP75",
     "Indication of the actual location of the preservation metadata file.<br>As indicated by the `@LOCTYPE` attribute, this filepath MUST be a URL type filepath.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -833,8 +834,8 @@ msip0075 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef/@xlink:href",
 )
-msip0076 = MeemooSIPConstraint(
-    "MSIP0076",
+msip76 = MeemooSIPConstraint(
+    "MSIP76",
     "Specification of the type of metadata that is used in the externally located preservation metadata file in the `/metadata/preservation directory`. The value MUST be set to `PREMIS`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -844,8 +845,8 @@ msip0076 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef/@MDTYPE",
 )
-msip0077 = MeemooSIPConstraint(
-    "MSIP0077",
+msip77 = MeemooSIPConstraint(
+    "MSIP77",
     "The media/mime type of the referenced file.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -855,8 +856,8 @@ msip0077 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef/@MIMETYPE",
 )
-msip0078 = MeemooSIPConstraint(
-    "MSIP0078",
+msip78 = MeemooSIPConstraint(
+    "MSIP78",
     "Size of the referenced file; this MUST be in bytes.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -866,8 +867,8 @@ msip0078 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef/@SIZE",
 )
-msip0079 = MeemooSIPConstraint(
-    "MSIP0079",
+msip79 = MeemooSIPConstraint(
+    "MSIP79",
     "The creation date and time of the referenced file.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -877,8 +878,8 @@ msip0079 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef/@CREATED",
 )
-msip0080 = MeemooSIPConstraint(
-    "MSIP0080",
+msip80 = MeemooSIPConstraint(
+    "MSIP80",
     "The checksum of the referenced file.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -888,8 +889,8 @@ msip0080 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef/@CHECKSUM",
 )
-msip0081 = MeemooSIPConstraint(
-    "MSIP0081",
+msip81 = MeemooSIPConstraint(
+    "MSIP81",
     "A value from the METS-standard which identifies the algorithm used to calculate the checksum for the referenced file. This MUST be set to `MD5`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -899,8 +900,8 @@ msip0081 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/digiprovMD/mets:mdRef/@CHECKSUMTYPE",
 )
-msip0082 = MeemooSIPConstraint(
-    "MSIP0082",
+msip82 = MeemooSIPConstraint(
+    "MSIP82",
     "A simple rights statement may be used to describe general permissions for the package. Individual representations should state their specific rights in their representation METS file. Available standards include RightsStatements.org , Europeana rights statements info , METS Rights Schema created and maintained by the METS Board, the rights part of PREMIS as well as own local rights statements in use.",
     MeemooSIPConstraintCardinality.UNSPECIFIED,
     MeemooSIPConstraintObligation.UNSPECIFIED,
@@ -910,8 +911,8 @@ msip0082 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/mets:rightsMD",
 )
-msip0083 = MeemooSIPConstraint(
-    "MSIP0083",
+msip83 = MeemooSIPConstraint(
+    "MSIP83",
     "A unique identifier used for internal package references.<br>It MUST be unique within the SIP.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -921,8 +922,8 @@ msip0083 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/mets:rightsMD/@ID",
 )
-msip0084 = MeemooSIPConstraint(
-    "MSIP0084",
+msip84 = MeemooSIPConstraint(
+    "MSIP84",
     "Describes the status of the `rightsMD` which is supported by the profile.<br>Meemoo investigates the use of the `@STATUS` attribute for future use cases such as e.g. a rights metadata update (i.e. ingest of metadata only with the goal of updating, adding or deleting existing metadata in meemoo's archive system).",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.SHOULD,
@@ -932,8 +933,8 @@ msip0084 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/mets:rightsMD/@STATUS",
 )
-msip0085 = MeemooSIPConstraint(
-    "MSIP0085",
+msip85 = MeemooSIPConstraint(
+    "MSIP85",
     "Reference to the rights metadata file(s) when located in the `/metadata/preservation` directory.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -943,8 +944,8 @@ msip0085 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef",
 )
-msip0086 = MeemooSIPConstraint(
-    "MSIP0086",
+msip86 = MeemooSIPConstraint(
+    "MSIP86",
     "Indication of the locator type used to refer to the rights metadata file in the `/metadata/preservation` directory.<br>It MUST always be used with the value `URL`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -954,8 +955,8 @@ msip0086 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef[@LOCTYPE='URL']",
 )
-msip0087 = MeemooSIPConstraint(
-    "MSIP0087",
+msip87 = MeemooSIPConstraint(
+    "MSIP87",
     "This attribute's value MUST be set to `simple`, in order to indicate a simple 'HTML-like' link.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -965,8 +966,8 @@ msip0087 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef[@xlink:type='simple']",
 )
-msip0088 = MeemooSIPConstraint(
-    "MSIP0088",
+msip88 = MeemooSIPConstraint(
+    "MSIP88",
     "Indication of the actual location of the rights metadata file.<br>As indicated by the `@LOCTYPE` attribute, this filepath MUST be a URL type filepath.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -976,8 +977,8 @@ msip0088 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef/@xlink:href",
 )
-msip0089 = MeemooSIPConstraint(
-    "MSIP0089",
+msip89 = MeemooSIPConstraint(
+    "MSIP89",
     "Specification of the type of metadata that is used in the externally located rights metadata file in the `/metadata/preservation` directory.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -987,8 +988,8 @@ msip0089 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef/@MDTYPE",
 )
-msip0090 = MeemooSIPConstraint(
-    "MSIP0090",
+msip90 = MeemooSIPConstraint(
+    "MSIP90",
     "The media/mime type of the referenced file.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -998,8 +999,8 @@ msip0090 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef/@MIMETYPE",
 )
-msip0091 = MeemooSIPConstraint(
-    "MSIP0091",
+msip91 = MeemooSIPConstraint(
+    "MSIP91",
     "Size of the referenced file; this MUST be in bytes.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1009,8 +1010,8 @@ msip0091 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef/@SIZE",
 )
-msip0092 = MeemooSIPConstraint(
-    "MSIP0092",
+msip92 = MeemooSIPConstraint(
+    "MSIP92",
     "The creation date and time of the referenced file.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1020,8 +1021,8 @@ msip0092 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef/@CREATED",
 )
-msip0093 = MeemooSIPConstraint(
-    "MSIP0093",
+msip93 = MeemooSIPConstraint(
+    "MSIP93",
     "The checksum of the referenced file.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1031,8 +1032,8 @@ msip0093 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef/@CHECKSUM",
 )
-msip0094 = MeemooSIPConstraint(
-    "MSIP0094",
+msip94 = MeemooSIPConstraint(
+    "MSIP94",
     "A value from the METS-standard which identifies the algorithm used to calculate the checksum for the referenced file. This MUST be set to `MD5`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.UNSPECIFIED,
@@ -1042,8 +1043,8 @@ msip0094 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:amdSec/mets:rightsMD/mets:mdRef/@CHECKSUMTYPE",
 )
-msip0095 = MeemooSIPConstraint(
-    "MSIP0095",
+msip95 = MeemooSIPConstraint(
+    "MSIP95",
     "Wrapper element for the file section of the METS which contains different `fileGrp` elements which acts as an inventory of the package level and its content.<br>Only a single `fileSec` element should be present.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.SHOULD,
@@ -1053,8 +1054,8 @@ msip0095 = MeemooSIPConstraint(
     "/METS.xml",
     "mets/fileSec",
 )
-msip0096 = MeemooSIPConstraint(
-    "MSIP0096",
+msip96 = MeemooSIPConstraint(
+    "MSIP96",
     "There MUST NOT be more than one `fileSec` element in the `METS.xml` file.",
     MeemooSIPConstraintCardinality.UNSPECIFIED,
     MeemooSIPConstraintObligation.MUST_NOT,
@@ -1064,8 +1065,8 @@ msip0096 = MeemooSIPConstraint(
     "/METS.xml",
     "",
 )
-msip0097 = MeemooSIPConstraint(
-    "MSIP0097",
+msip97 = MeemooSIPConstraint(
+    "MSIP97",
     "The `fileSec` element of the package `METS.xml` file MUST NOT reference anything from the different representation levels, EXCEPT the representation `METS.xml` files.",
     MeemooSIPConstraintCardinality.UNSPECIFIED,
     MeemooSIPConstraintObligation.MUST_NOT,
@@ -1075,8 +1076,8 @@ msip0097 = MeemooSIPConstraint(
     "/METS.xml",
     "",
 )
-msip0098 = MeemooSIPConstraint(
-    "MSIP0098",
+msip98 = MeemooSIPConstraint(
+    "MSIP98",
     "Each representation `METS.xml` MUST be referenced within its own `fileGrp` element within the `fileSec` element of the package `METS.xml`.",
     MeemooSIPConstraintCardinality.UNSPECIFIED,
     MeemooSIPConstraintObligation.MUST,
@@ -1086,8 +1087,8 @@ msip0098 = MeemooSIPConstraint(
     "/METS.xml",
     "",
 )
-msip0099 = MeemooSIPConstraint(
-    "MSIP0099",
+msip99 = MeemooSIPConstraint(
+    "MSIP99",
     "A unique identifier for the file section used for internal package references.<br>It MUST be unique within the SIP.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1097,8 +1098,8 @@ msip0099 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/@ID",
 )
-msip0100 = MeemooSIPConstraint(
-    "MSIP0100",
+msip100 = MeemooSIPConstraint(
+    "MSIP100",
     "All documentation pertaining to the transferred content is placed in one or more file group elements with `mets/fileSec/mets:fileGrp/@USE` attribute value “Documentation”.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -1108,8 +1109,8 @@ msip0100 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/fileGrp[@USE='Documentation']",
 )
-msip0101 = MeemooSIPConstraint(
-    "MSIP0101",
+msip101 = MeemooSIPConstraint(
+    "MSIP101",
     "XML schemas used in the information package can be included in one or more file groups with `mets/fileSec/fileGrp/@USE` attribute value “Schemas”.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -1119,8 +1120,8 @@ msip0101 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp[@USE='Schemas']",
 )
-msip0102 = MeemooSIPConstraint(
-    "MSIP0102",
+msip102 = MeemooSIPConstraint(
+    "MSIP102",
     "A pointer to the METS document describing the representation or pointers to the content being transferred must be present in one or more file groups with `mets/fileSec/fileGrp/@USE` attribute value starting with `Representations` followed by the path to the folder where the _representation level_ `METS.xml` file is placed.",
     MeemooSIPConstraintCardinality.AT_LEAST_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1130,8 +1131,8 @@ msip0102 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp[@USE=[starts-with('Representations')]]",
 )
-msip0103 = MeemooSIPConstraint(
-    "MSIP0103",
+msip103 = MeemooSIPConstraint(
+    "MSIP103",
     "Reference to the ID of the corresponding administrative metadata section, in case an `amdSec` was used.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -1141,8 +1142,19 @@ msip0103 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/@ADMID",
 )
-msip0104 = MeemooSIPConstraint(
-    "MSIP0104",
+msip104 = MeemooSIPConstraint(
+    "MSIP104",
+    "",
+    MeemooSIPConstraintCardinality.UNSPECIFIED,
+    MeemooSIPConstraintObligation.UNSPECIFIED,
+    MeemooSIPConstraintSIPLevel.UNSPECIFIED,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.UNSPECIFIED,
+    "",
+    "/mets:mets/@csip:CONTENTINFORMATIONTYPE=\"MIXED\"|mets:mets/fileSec/fileGrp[@USE=[starts-with('Representations')]]/@csip:CONTENTINFORMATIONTYPE",
+)
+msip105 = MeemooSIPConstraint(
+    "MSIP105",
     "When the `mets/fileSec/fileGrp/@csip:CONTENTINFORMATIONTYPE` attribute has the value `OTHER` the attribute `mets/fileSec/fileGrp/@csip:OTHERCONTENTINFORMATIONTYPE` must state a value for the Content Information Type Specification used.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -1152,8 +1164,8 @@ msip0104 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp[@csip:CONTENTINFORMATIONTYPE='OTHER']/@csip:OTHERCONTENTINFORMATIONTYPE",
 )
-msip0105 = MeemooSIPConstraint(
-    "MSIP0105",
+msip106 = MeemooSIPConstraint(
+    "MSIP106",
     "The value in the `mets/fileSec/fileGrp/@USE` attribute is the name of the whole folder structure to the data, e.g. `representations/representation_1` or `documentation`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1163,8 +1175,8 @@ msip0105 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/@USE",
 )
-msip0106 = MeemooSIPConstraint(
-    "MSIP0106",
+msip107 = MeemooSIPConstraint(
+    "MSIP107",
     "A unique identifier for the file group. This is used for internal package references.<br>It MUST be unique within the SIP.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1174,8 +1186,8 @@ msip0106 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/@ID",
 )
-msip0107 = MeemooSIPConstraint(
-    "MSIP0107",
+msip108 = MeemooSIPConstraint(
+    "MSIP108",
     "The `file` elements contain descriptions of the media files.",
     MeemooSIPConstraintCardinality.AT_LEAST_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1185,8 +1197,8 @@ msip0107 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/file",
 )
-msip0108 = MeemooSIPConstraint(
-    "MSIP0108",
+msip109 = MeemooSIPConstraint(
+    "MSIP109",
     "A unique identifier for the file. This is used for internal package references.<br>It MUST be unique within the SIP.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1196,8 +1208,8 @@ msip0108 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/file/@ID",
 )
-msip0109 = MeemooSIPConstraint(
-    "MSIP0109",
+msip110 = MeemooSIPConstraint(
+    "MSIP110",
     "The media/mime type of the referenced file.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1207,8 +1219,8 @@ msip0109 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/file/@MIMETYPE",
 )
-msip0110 = MeemooSIPConstraint(
-    "MSIP0110",
+msip111 = MeemooSIPConstraint(
+    "MSIP111",
     "Size of the referenced file; this MUST be in bytes.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1218,8 +1230,8 @@ msip0110 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/file/@SIZE",
 )
-msip0111 = MeemooSIPConstraint(
-    "MSIP0111",
+msip112 = MeemooSIPConstraint(
+    "MSIP112",
     "The creation date and time of the referenced file.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1229,8 +1241,8 @@ msip0111 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/file/@CREATED",
 )
-msip0112 = MeemooSIPConstraint(
-    "MSIP0112",
+msip113 = MeemooSIPConstraint(
+    "MSIP113",
     "The checksum of the referenced file.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1240,8 +1252,8 @@ msip0112 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/file/@CHECKSUM",
 )
-msip0113 = MeemooSIPConstraint(
-    "MSIP0113",
+msip114 = MeemooSIPConstraint(
+    "MSIP114",
     "A value from the METS-standard which identifies the algorithm used to calculate the checksum for the referenced file. This MUST be set to `MD5`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1251,8 +1263,8 @@ msip0113 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/file/@CHECKSUMTYPE",
 )
-msip0114 = MeemooSIPConstraint(
-    "MSIP0114",
+msip115 = MeemooSIPConstraint(
+    "MSIP115",
     "If an identifier for the file was supplied by the CP it can be recorded in this attribute.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -1262,8 +1274,8 @@ msip0114 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/file/@OWNERID",
 )
-msip0115 = MeemooSIPConstraint(
-    "MSIP0115",
+msip116 = MeemooSIPConstraint(
+    "MSIP116",
     "If an `amdSec` (with `@ID` attribute) was provided, this attribute allows to reference it.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -1273,8 +1285,8 @@ msip0115 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/file/@ADMID",
 )
-msip0116 = MeemooSIPConstraint(
-    "MSIP0116",
+msip117 = MeemooSIPConstraint(
+    "MSIP117",
     "If a `dmdSec` (with `@ID` attribute) was provided, this attribute allows to reference it.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -1284,8 +1296,8 @@ msip0116 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/file/@DMDID",
 )
-msip0117 = MeemooSIPConstraint(
-    "MSIP0117",
+msip118 = MeemooSIPConstraint(
+    "MSIP118",
     "Element that allows for referencing the location of each external file.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1295,8 +1307,8 @@ msip0117 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/file/FLocat",
 )
-msip0118 = MeemooSIPConstraint(
-    "MSIP0118",
+msip119 = MeemooSIPConstraint(
+    "MSIP119",
     "",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1306,8 +1318,8 @@ msip0118 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/file/FLocat[@LOCTYPE='URL']",
 )
-msip0119 = MeemooSIPConstraint(
-    "MSIP0119",
+msip120 = MeemooSIPConstraint(
+    "MSIP120",
     "",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1317,8 +1329,8 @@ msip0119 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/file/FLocat[@xlink:type='simple']",
 )
-msip0120 = MeemooSIPConstraint(
-    "MSIP0120",
+msip121 = MeemooSIPConstraint(
+    "MSIP121",
     "Indication of the actual location of the referenced file.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1328,8 +1340,8 @@ msip0120 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:fileSec/mets:fileGrp/file/FLocat/@xlink:href",
 )
-msip0121 = MeemooSIPConstraint(
-    "MSIP0121",
+msip122 = MeemooSIPConstraint(
+    "MSIP122",
     "The `structMap` describes the highest logical structure of the IP.",
     MeemooSIPConstraintCardinality.AT_LEAST_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1337,10 +1349,10 @@ msip0121 = MeemooSIPConstraint(
     MeemooSIPConstraintDatatype.UNSPECIFIED,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/METS.xml",
-    "mets:mets/mets:structMap",
+    "/mets:mets/mets:structMap",
 )
-msip0122 = MeemooSIPConstraint(
-    "MSIP0122",
+msip123 = MeemooSIPConstraint(
+    "MSIP123",
     "The `mets/structMap/@TYPE` attribute MUST take the value `PHYSICAL`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1350,8 +1362,8 @@ msip0122 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@TYPE='PHYSICAL']",
 )
-msip0123 = MeemooSIPConstraint(
-    "MSIP0123",
+msip124 = MeemooSIPConstraint(
+    "MSIP124",
     "This value MUST be set to `CSIP` in order to be compliant with the E-ARK Common Specification for Information Packages.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1361,8 +1373,8 @@ msip0123 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']",
 )
-msip0124 = MeemooSIPConstraint(
-    "MSIP0124",
+msip125 = MeemooSIPConstraint(
+    "MSIP125",
     "A unique identifier for the structural description. This can be used for internal package references.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1372,8 +1384,8 @@ msip0124 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/@ID",
 )
-msip0125 = MeemooSIPConstraint(
-    "MSIP0125",
+msip126 = MeemooSIPConstraint(
+    "MSIP126",
     "The division element. Each `structMap` element MUST contain one `div` element that contains possible further `div` elements of the `structMap` elements.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1383,8 +1395,8 @@ msip0125 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/div",
 )
-msip0126 = MeemooSIPConstraint(
-    "MSIP0126",
+msip127 = MeemooSIPConstraint(
+    "MSIP127",
     "A unique identifier for the main `div` element. This can be used for internal package references.<br>It MUST be unique within the SIP.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1394,8 +1406,8 @@ msip0126 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/@ID",
 )
-msip0127 = MeemooSIPConstraint(
-    "MSIP0127",
+msip128 = MeemooSIPConstraint(
+    "MSIP128",
     "The metadata referenced in the administrative and/or descriptive metadata section is described in the structural map with one sub division.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1405,8 +1417,8 @@ msip0127 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Metadata']",
 )
-msip0128 = MeemooSIPConstraint(
-    "MSIP0128",
+msip129 = MeemooSIPConstraint(
+    "MSIP129",
     "A unique identifier for the metadata `div` element. This can be used for internal package references.<br>It MUST be unique within the SIP.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1416,8 +1428,8 @@ msip0128 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Metadata']/@ID",
 )
-msip0129 = MeemooSIPConstraint(
-    "MSIP0129",
+msip130 = MeemooSIPConstraint(
+    "MSIP130",
     "The metadata `div` element’s `@LABEL` attribute value MUST be `Metadata`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1427,8 +1439,8 @@ msip0129 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Metadata']",
 )
-msip0130 = MeemooSIPConstraint(
-    "MSIP0130",
+msip131 = MeemooSIPConstraint(
+    "MSIP131",
     "The administrative metadata division should reference all current administrative metadata sections.<br>All `amdSec` elements with `@STATUS='CURRENT'` SHOULD be referenced by their identifier, `@ID`. <br> The current `amdSec` elements' `@ID`s are recorded in the `div[@LABEL='Metadata']/@ADMID` attribute in a space delimited list.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.SHOULD,
@@ -1438,8 +1450,8 @@ msip0130 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Metadata']/@ADMID",
 )
-msip0131 = MeemooSIPConstraint(
-    "MSIP0131",
+msip132 = MeemooSIPConstraint(
+    "MSIP132",
     "The descriptive metadata division should reference all current descriptive metadata sections.<br>All `dmdSec` elements with `@STATUS='CURRENT'` SHOULD be referenced by their identifier, `@ID`. <br> The current `dmdSec` elements' `@ID`s are recorded in the `div[@LABEL='Metadata']/@DMDID` attribute in a space delimited list.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.SHOULD,
@@ -1449,8 +1461,8 @@ msip0131 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Metadata']/@DMDID",
 )
-msip0132 = MeemooSIPConstraint(
-    "MSIP0132",
+msip133 = MeemooSIPConstraint(
+    "MSIP133",
     "The documentation referenced in the file section file groups is described in the structural map with one sub division.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.SHOULD,
@@ -1460,8 +1472,8 @@ msip0132 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Documentation']",
 )
-msip0133 = MeemooSIPConstraint(
-    "MSIP0133",
+msip134 = MeemooSIPConstraint(
+    "MSIP134",
     "A unique identifier for the documentation `div` element. This can be used for internal package references.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1471,8 +1483,8 @@ msip0133 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Documentation']/@ID",
 )
-msip0134 = MeemooSIPConstraint(
-    "MSIP0134",
+msip135 = MeemooSIPConstraint(
+    "MSIP135",
     "The documentation `div` element’s `@LABEL` attribute value MUST be `Documentation`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1482,8 +1494,8 @@ msip0134 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Documentation']/@LABEL",
 )
-msip0135 = MeemooSIPConstraint(
-    "MSIP0135",
+msip136 = MeemooSIPConstraint(
+    "MSIP136",
     "All file groups containing documentation described in the package are referenced via the relevant file group identifiers. <br>There MUST be one file group reference per `fptr` element.",
     MeemooSIPConstraintCardinality.AT_LEAST_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1493,8 +1505,8 @@ msip0135 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Documentation']/mets:fptr",
 )
-msip0136 = MeemooSIPConstraint(
-    "MSIP0136",
+msip137 = MeemooSIPConstraint(
+    "MSIP137",
     "A unique identifier to the `Documentation` file group. This can be used for internal package references.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1504,8 +1516,8 @@ msip0136 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Documentation']/mets:fptr/@FILEID",
 )
-msip0137 = MeemooSIPConstraint(
-    "MSIP0137",
+msip138 = MeemooSIPConstraint(
+    "MSIP138",
     "The schemas referenced in the file section file groups are described in the structural map within a single sub-mets:division.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.SHOULD,
@@ -1515,8 +1527,8 @@ msip0137 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Schemas']",
 )
-msip0138 = MeemooSIPConstraint(
-    "MSIP0138",
+msip139 = MeemooSIPConstraint(
+    "MSIP139",
     "A unique identifier to the `Schemas` file group. This can be used for internal package references.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1526,8 +1538,8 @@ msip0138 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Schemas']/@ID",
 )
-msip0139 = MeemooSIPConstraint(
-    "MSIP0139",
+msip140 = MeemooSIPConstraint(
+    "MSIP140",
     "The schemas `div` element’s `@LABEL` attribute value MUST be `Schemas`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1537,8 +1549,8 @@ msip0139 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Schemas']/@LABEL",
 )
-msip0140 = MeemooSIPConstraint(
-    "MSIP0140",
+msip141 = MeemooSIPConstraint(
+    "MSIP141",
     "All file groups containing schemas described in the package are referenced via the relevant file group identifiers. <br>There MUST be one file group reference per `fptr` element.",
     MeemooSIPConstraintCardinality.AT_LEAST_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1548,8 +1560,8 @@ msip0140 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Schemas']/mets:fptr",
 )
-msip0141 = MeemooSIPConstraint(
-    "MSIP0141",
+msip142 = MeemooSIPConstraint(
+    "MSIP142",
     "A unique identifier to the `Schemas` file group. This can be used for internal package references.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1559,8 +1571,8 @@ msip0141 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Schemas']/mets:fptr/@FILEID",
 )
-msip0142 = MeemooSIPConstraint(
-    "MSIP0142",
+msip143 = MeemooSIPConstraint(
+    "MSIP143",
     "A package consists of multiple representations, each described by a representation level `METS.xml` file, there should be a discrete representation `\div` element for each representation. <br> Each representation `div` references the representation level `METS.xml` file, documenting the structure of the representation and its content.",
     MeemooSIPConstraintCardinality.AT_LEAST_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1570,8 +1582,8 @@ msip0142 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']",
 )
-msip0143 = MeemooSIPConstraint(
-    "MSIP0143",
+msip144 = MeemooSIPConstraint(
+    "MSIP144",
     "A unique identifier that can be used for internal package references.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1581,8 +1593,8 @@ msip0143 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']/@ID",
 )
-msip0144 = MeemooSIPConstraint(
-    "MSIP0144",
+msip145 = MeemooSIPConstraint(
+    "MSIP145",
     "The package’s representation division `div` element `@LABEL` attribute value must be the path to the representation level `METS.xml` file starting with the value `Representations` followed by the main folder name, e.g. `Representations/representation_1`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1592,8 +1604,8 @@ msip0144 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']/@LABEL",
 )
-msip0145 = MeemooSIPConstraint(
-    "MSIP0145",
+msip146 = MeemooSIPConstraint(
+    "MSIP146",
     "The division `div` of the specific representation includes one occurrence of the METS pointer `mptr` element, pointing to the appropriate representation `METS.xml` file.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1603,8 +1615,8 @@ msip0145 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']/mets:mptr",
 )
-msip0146 = MeemooSIPConstraint(
-    "MSIP0146",
+msip147 = MeemooSIPConstraint(
+    "MSIP147",
     "The file group containing the files described in the package are referenced via the relevant file group identifier.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1614,8 +1626,8 @@ msip0146 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']/mets:mptr/@xlink:title",
 )
-msip0147 = MeemooSIPConstraint(
-    "MSIP0147",
+msip148 = MeemooSIPConstraint(
+    "MSIP148",
     "Indication of the actual location of the `METS.xml` file.<br>As indicated by the `@LOCTYPE` attribute, this filepath MUST be a URL type filepath.<br>One SHOULD use the relative location of the file in this URL.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1625,8 +1637,8 @@ msip0147 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']/mets:mptr/@xlink:href",
 )
-msip0148 = MeemooSIPConstraint(
-    "MSIP0148",
+msip149 = MeemooSIPConstraint(
+    "MSIP149",
     "This attribute's value MUST be set to `simple`, in order to indicate a simple 'HTML-like' link.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1636,8 +1648,8 @@ msip0148 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']/mets:mptr[@xlink:type='simple']",
 )
-msip0149 = MeemooSIPConstraint(
-    "MSIP0149",
+msip150 = MeemooSIPConstraint(
+    "MSIP150",
     "Indication of the locator type used to refer to the representation METS.xml files of the different representation levels.<br>It MUST always be used with the value `URL`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1647,8 +1659,8 @@ msip0149 = MeemooSIPConstraint(
     "/METS.xml",
     "/mets:mets/mets:structMap[@LABEL='CSIP']/mets:div/mets:div[@LABEL='Representations/representation_*']/mets:mptr[@LOCTYPE='URL']",
 )
-msip0150 = MeemooSIPConstraint(
-    "MSIP0150",
+msip151 = MeemooSIPConstraint(
+    "MSIP151",
     "This is the root element of the PREMIS file.<br><br>It MUST contain the following XML schema namespaces: <br>[`xsi: http://www.w3.org/2001/XMLSchema-instance`](http://www.w3.org/2001/XMLSchema-instance)<br>[`premis: http://www.loc.gov/premis/v3`](http://www.loc.gov/premis/v3).",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1658,8 +1670,8 @@ msip0150 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis",
 )
-msip0151 = MeemooSIPConstraint(
-    "MSIP0151",
+msip152 = MeemooSIPConstraint(
+    "MSIP152",
     "This attribute signals which PREMIS version is being used.<br>The attribute's value MUST be set to `3.0`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1669,8 +1681,8 @@ msip0151 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/@version",
 )
-msip0152 = MeemooSIPConstraint(
-    "MSIP0152",
+msip153 = MeemooSIPConstraint(
+    "MSIP153",
     "The `/metadata` directory MUST contain exactly two subdirectories: `/descriptive` and `/preservation`.",
     MeemooSIPConstraintCardinality.UNSPECIFIED,
     MeemooSIPConstraintObligation.UNSPECIFIED,
@@ -1680,8 +1692,8 @@ msip0152 = MeemooSIPConstraint(
     "/metadata",
     "",
 )
-msip0153 = MeemooSIPConstraint(
-    "MSIP0153",
+msip154 = MeemooSIPConstraint(
+    "MSIP154",
     "The `/preservation` directory MUST contain exactly one file: `premis.xml`.",
     MeemooSIPConstraintCardinality.UNSPECIFIED,
     MeemooSIPConstraintObligation.UNSPECIFIED,
@@ -1691,8 +1703,8 @@ msip0153 = MeemooSIPConstraint(
     "/metadata/preservation",
     "",
 )
-msip0154 = MeemooSIPConstraint(
-    "MSIP0154",
+msip155 = MeemooSIPConstraint(
+    "MSIP155",
     "This attribute signals where to find the relevant XSD schema in order to validate the PREMIS file.<br><br>When used, its value MUST be set to `http://www.loc.gov/premis/v3 https://www.loc.gov/standards/premis/premis.xsd` to signal conformance with PREMIS 3.0.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.SHOULD,
@@ -1702,8 +1714,8 @@ msip0154 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/@xsi:schemaLocation",
 )
-msip0155 = MeemooSIPConstraint(
-    "MSIP0155",
+msip156 = MeemooSIPConstraint(
+    "MSIP156",
     "A `premis:object` element MUST be defined for each IE in the SIP.",
     MeemooSIPConstraintCardinality.AT_LEAST_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1713,8 +1725,8 @@ msip0155 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object",
 )
-msip0156 = MeemooSIPConstraint(
-    "MSIP0156",
+msip157 = MeemooSIPConstraint(
+    "MSIP157",
     "This attribute signals whether a PREMIS object is of type intellectual entity, representation or file.<br><br>Since the package level can only contain IEs, this attribute's value MUST always be set to `premis:intellectualEntity`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1724,8 +1736,8 @@ msip0156 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/@xsi:type",
 )
-msip0157 = MeemooSIPConstraint(
-    "MSIP0157",
+msip158 = MeemooSIPConstraint(
+    "MSIP158",
     "This element contains object identifier information.<br><br>There MUST be exactly one object identifier present with `premis:objectIdentifierType` set to `UUID` (see below). This is the main identifier for the object, which uniquely identifies the concerned IE and establishes a link between the relevant preservation metadata in the `premis.xml` file and the descriptive metadata in the `dc+schema.xml` or `mods.xml` file, if any is present.<br><br>There MAY be zero or more additional object identifiers of a different type. It is RECOMMENDED to include an identifier with `premis:objectIdentifierType` set to `MEEMOO-LOCAL-ID` to pinpoint the main local identifier well known to the SIP submitter (e.g., the record identifier in the local collection registration system), which can be used to easily retrieve the intellectual entity from the meemoo archive.",
     MeemooSIPConstraintCardinality.AT_LEAST_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1735,8 +1747,8 @@ msip0157 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/premis:objectIdentifier",
 )
-msip0158 = MeemooSIPConstraint(
-    "MSIP0158",
+msip159 = MeemooSIPConstraint(
+    "MSIP159",
     "The type of the PREMIS object identifier being used.<br><br>At least one identifier of type `UUID` MUST be defined in order to provide a unique identifier for each PREMIS object.<br><br>This unique identifier is also used to link the concerned PREMIS object with the descriptive metadata in the `/metadata/descriptive/dc+schema.xml` or `/metadata/descriptive/mods.xml` file, if any is present.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1746,8 +1758,8 @@ msip0158 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/premis:objectIdentifier/premis:objectIdentifierType",
 )
-msip0159 = MeemooSIPConstraint(
-    "MSIP0159",
+msip160 = MeemooSIPConstraint(
+    "MSIP160",
     "The actual value that makes up the identifier of the PREMIS object.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1757,8 +1769,8 @@ msip0159 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/premis:objectIdentifier/premis:objectIdentifierValue",
 )
-msip0160 = MeemooSIPConstraint(
-    "MSIP0160",
+msip161 = MeemooSIPConstraint(
+    "MSIP161",
     "Information about a relationship between the current object and one or more other objects.<br><br>In the case of the `premis.xml` file of the package level, this element MUST detail the relationships between the IE defined at the package level and all of its representations defined in the various directories of the representation level.",
     MeemooSIPConstraintCardinality.AT_LEAST_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1768,8 +1780,8 @@ msip0160 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/premis:relationship",
 )
-msip0161 = MeemooSIPConstraint(
-    "MSIP0161",
+msip162 = MeemooSIPConstraint(
+    "MSIP162",
     "A high-level categorization of the nature of the relationship.<br><br>This element's value MUST be set to `structural` when expressing the relationship between one IE and another or between the IE object and one of its representations.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1779,41 +1791,41 @@ msip0161 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/premis:relationship/premis:relationshipType",
 )
-msip0162 = MeemooSIPConstraint(
-    "MSIP0162",
+msip163 = MeemooSIPConstraint(
+    "MSIP163",
     "This attribute indicates the name of the authority/controlled vocabulary that is being used for the different relationship types. Its value MUST be set to `relationshipType`.",
-    MeemooSIPConstraintCardinality.EXACTLY_ONE,
-    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
     MeemooSIPConstraintSIPLevel.PACKAGE,
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/premis:relationship/premis:relationshipType/@authority",
 )
-msip0163 = MeemooSIPConstraint(
-    "MSIP0163",
+msip164 = MeemooSIPConstraint(
+    "MSIP164",
     "This attribute references the URI that contains the authority/controlled vocabulary. Its value MUST be set to `http://id.loc.gov/vocabulary/preservation/relationshipType`.",
-    MeemooSIPConstraintCardinality.EXACTLY_ONE,
-    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
     MeemooSIPConstraintSIPLevel.PACKAGE,
     MeemooSIPConstraintDatatype.URI,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/premis:relationship/premis:relationshipType/@authorityURI",
 )
-msip0164 = MeemooSIPConstraint(
-    "MSIP0164",
+msip165 = MeemooSIPConstraint(
+    "MSIP165",
     "This attribute references the URI that contains the specific entry from the authority/controlled vocabulary.<br><br>If the `structural` relationship type is being used, this attribute's value MUST be set to `http://id.loc.gov/vocabulary/preservation/relationshipType/str`.",
-    MeemooSIPConstraintCardinality.EXACTLY_ONE,
-    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
     MeemooSIPConstraintSIPLevel.PACKAGE,
     MeemooSIPConstraintDatatype.URI,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/premis:relationship/premis:relationshipType/@valueURI",
 )
-msip0165 = MeemooSIPConstraint(
-    "MSIP0165",
+msip166 = MeemooSIPConstraint(
+    "MSIP166",
     "A detailed categorization of the nature of the relationship.<br><br>In the case of the `premis.xml` file of the package level, this element's value MUST be set to `is represented by` when expressing the relationship between the IE object and one of its representations.<br><br>When multiple IEs are used in the SIP, this element's value MUST be set to `generalizes` when the relationship is expressed from the side of the main IE (i.e. the main IE is the subject of the relationship); when the relationship is expressed from the side of one of the subIEs (i.e. one of the subIEs is the subject of the relationship), this element's value MUST be set to `specializes`.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1823,41 +1835,41 @@ msip0165 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/premis:relationship/premis:relationshipSubType",
 )
-msip0166 = MeemooSIPConstraint(
-    "MSIP0166",
+msip167 = MeemooSIPConstraint(
+    "MSIP167",
     "This attribute indicates the name of the authority/controlled vocabulary that is being used for the different relationship subtypes. Its value MUST be set to `relationshipSubType`.",
-    MeemooSIPConstraintCardinality.EXACTLY_ONE,
-    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
     MeemooSIPConstraintSIPLevel.PACKAGE,
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/premis:relationship/premis:relationshipSubType/@authority",
 )
-msip0167 = MeemooSIPConstraint(
-    "MSIP0167",
+msip168 = MeemooSIPConstraint(
+    "MSIP168",
     "This attribute references the URI that contains the authority/controlled vocabulary. Its value MUST be set to `http://id.loc.gov/vocabulary/preservation/relationshipSubType`.",
-    MeemooSIPConstraintCardinality.EXACTLY_ONE,
-    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
     MeemooSIPConstraintSIPLevel.PACKAGE,
     MeemooSIPConstraintDatatype.URI,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/premis:relationship/premis:relationshipSubType/@authorityURI",
 )
-msip0168 = MeemooSIPConstraint(
-    "MSIP0168",
+msip169 = MeemooSIPConstraint(
+    "MSIP169",
     "This attribute references the URI that contains the specific entry from the authority/controlled vocabulary.<br><br>If the `is represented by` relationship subtype is being used, this attribute's value MUST be set to `http://id.loc.gov/vocabulary/preservation/relationshipSubType/isr`.<br>If the `has part` relationship subtype is being used, this attribute's value MUST be set to `http://id.loc.gov/vocabulary/preservation/relationshipSubType/hsp`.<br>If the `is part of` relationship subtype is being used, this attribute's value MUST be set to `http://id.loc.gov/vocabulary/preservation/relationshipSubType/isp`",
-    MeemooSIPConstraintCardinality.EXACTLY_ONE,
-    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
     MeemooSIPConstraintSIPLevel.PACKAGE,
     MeemooSIPConstraintDatatype.URI,
     MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/premis:relationship/premis:relationshipSubType/@valueURI",
 )
-msip0169 = MeemooSIPConstraint(
-    "MSIP0169",
+msip170 = MeemooSIPConstraint(
+    "MSIP170",
     "This element references the object of the relationship that is expressed.",
     MeemooSIPConstraintCardinality.AT_LEAST_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1867,8 +1879,8 @@ msip0169 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/premis:relationship/premis:relatedObjectIdentifier",
 )
-msip0170 = MeemooSIPConstraint(
-    "MSIP0170",
+msip171 = MeemooSIPConstraint(
+    "MSIP171",
     "The type of the PREMIS related object identifier being used.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1878,8 +1890,8 @@ msip0170 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/premis:relationship/premis:relatedObjectIdentifier/premis:relatedObjectIdentifierType",
 )
-msip0171 = MeemooSIPConstraint(
-    "MSIP0171",
+msip172 = MeemooSIPConstraint(
+    "MSIP172",
     "The actual value that makes up the identifier of the PREMIS related object.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1889,8 +1901,8 @@ msip0171 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:object/premis:relationship/premis:relatedObjectIdentifier/premis:relatedObjectIdentifierValue",
 )
-msip0172 = MeemooSIPConstraint(
-    "MSIP0172",
+msip173 = MeemooSIPConstraint(
+    "MSIP173",
     "A `premis:event` element MAY be defined for one or more representations in the SIP.",
     MeemooSIPConstraintCardinality.ZERO_OR_MORE,
     MeemooSIPConstraintObligation.MAY,
@@ -1900,10 +1912,10 @@ msip0172 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event",
 )
-msip0173 = MeemooSIPConstraint(
-    "MSIP0173",
+msip174 = MeemooSIPConstraint(
+    "MSIP174",
     "This element contains event identifier information.<br><br>At least one event identifier MUST be present to uniquely identify the event.",
-    MeemooSIPConstraintCardinality.AT_LEAST_ONE,
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
     MeemooSIPConstraintSIPLevel.PACKAGE,
     MeemooSIPConstraintDatatype.UNSPECIFIED,
@@ -1911,8 +1923,8 @@ msip0173 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:eventIdentifier",
 )
-msip0174 = MeemooSIPConstraint(
-    "MSIP0174",
+msip175 = MeemooSIPConstraint(
+    "MSIP175",
     "The type of the PREMIS event identifier being used.<br><br>At least one identifier of type UUID MUST be defined in order to provide a unique identifier for each PREMIS event.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1922,8 +1934,8 @@ msip0174 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:eventIdentifier/premis:eventIdentifierType",
 )
-msip0175 = MeemooSIPConstraint(
-    "MSIP0175",
+msip176 = MeemooSIPConstraint(
+    "MSIP176",
     "The actual value that makes up the identifier of the PREMIS event.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1933,8 +1945,8 @@ msip0175 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:eventIdentifier/premis:eventIdentifierValue",
 )
-msip0176 = MeemooSIPConstraint(
-    "MSIP0176",
+msip177 = MeemooSIPConstraint(
+    "MSIP177",
     "The specific type of the event.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1944,8 +1956,8 @@ msip0176 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:eventType",
 )
-msip0177 = MeemooSIPConstraint(
-    "MSIP0177",
+msip178 = MeemooSIPConstraint(
+    "MSIP178",
     "The moment on which the event occurred.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1955,8 +1967,8 @@ msip0177 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:eventDateTime",
 )
-msip0178 = MeemooSIPConstraint(
-    "MSIP0178",
+msip179 = MeemooSIPConstraint(
+    "MSIP179",
     "Additional information about the Event.",
     MeemooSIPConstraintCardinality.ZERO_OR_MORE,
     MeemooSIPConstraintObligation.SHOULD,
@@ -1966,19 +1978,19 @@ msip0178 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:eventDetailInformation",
 )
-msip0179 = MeemooSIPConstraint(
-    "MSIP0179",
+msip180 = MeemooSIPConstraint(
+    "MSIP180",
     "Additional information as unstructured text. Multiple details should be recorded in independent `premis:eventDetailInformation` containers instead of repeating the `premis:eventDetail` element.",
-    MeemooSIPConstraintCardinality.EXACTLY_ONE,
-    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
     MeemooSIPConstraintSIPLevel.PACKAGE,
     MeemooSIPConstraintDatatype.STRING,
     MeemooSIPConstraintXMLNodeType.ELEMENT,
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:eventDetailInformation/premis:eventDetail",
 )
-msip0180 = MeemooSIPConstraint(
-    "MSIP0180",
+msip181 = MeemooSIPConstraint(
+    "MSIP181",
     "Information about the outcome of an event.",
     MeemooSIPConstraintCardinality.ZERO_OR_MORE,
     MeemooSIPConstraintObligation.MAY,
@@ -1988,8 +2000,8 @@ msip0180 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:eventOutcomeInformation",
 )
-msip0181 = MeemooSIPConstraint(
-    "MSIP0181",
+msip182 = MeemooSIPConstraint(
+    "MSIP182",
     "This element categorizes the outcome of the event in terms of success or failure.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -1999,8 +2011,8 @@ msip0181 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:eventOutcomeInformation/premis:eventOutcome",
 )
-msip0182 = MeemooSIPConstraint(
-    "MSIP0182",
+msip183 = MeemooSIPConstraint(
+    "MSIP183",
     "This attribute references the URI that contains the specific entry from the authority/controlled vocabulary.<br><br>If the event outcome is `fail`, this attribute's value MUST be set to `http://id.loc.gov/vocabulary/preservation/eventOutcome/fai`.<br>If the event outcome is `success`, this attribute's value MUST be set to `http://id.loc.gov/vocabulary/preservation/eventOutcome/suc`.<br> If the event outcome is `warning`, this attribut's value MUST be set to `http://id.loc.gov/vocabulary/preservation/eventOutcome/war`.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -2010,8 +2022,8 @@ msip0182 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:eventOutcomeInformation/premis:eventOutcome/@valueURI",
 )
-msip0183 = MeemooSIPConstraint(
-    "MSIP0183",
+msip184 = MeemooSIPConstraint(
+    "MSIP184",
     "This element contains identifier information on the agent that was linked to this event.<br><br>At least one linking agent identifier MUST be present.",
     MeemooSIPConstraintCardinality.AT_LEAST_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -2021,8 +2033,8 @@ msip0183 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:linkingAgentIdentifier",
 )
-msip0184 = MeemooSIPConstraint(
-    "MSIP0184",
+msip185 = MeemooSIPConstraint(
+    "MSIP185",
     "The type of the agent identifier being used.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -2032,8 +2044,8 @@ msip0184 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:linkingAgentIdentifier/premis:linkingAgentIdentifierType",
 )
-msip0185 = MeemooSIPConstraint(
-    "MSIP0185",
+msip186 = MeemooSIPConstraint(
+    "MSIP186",
     "The actual value that makes up the identifier of the agent.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -2043,8 +2055,8 @@ msip0185 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:linkingAgentIdentifier/premis:linkingAgentIdentifierValue",
 )
-msip0186 = MeemooSIPConstraint(
-    "MSIP0186",
+msip187 = MeemooSIPConstraint(
+    "MSIP187",
     "The role that the agent played in relation to the event. <br><br> Exactly one linking agent identifier must have the the implementer role.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -2054,8 +2066,8 @@ msip0186 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:linkingAgentIdentifier/premis:linkingAgentRole",
 )
-msip0187 = MeemooSIPConstraint(
-    "MSIP0187",
+msip188 = MeemooSIPConstraint(
+    "MSIP188",
     "This attribute references the URI that contains the specific entry from the authority/controlled vocabulary.<br><br>If the `authorizer` role is being used, this attribute's value MUST be set to `http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole/aut`.<br>If the `executing program` role is being used, this attribute's value MUST be set to `http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole/exe`.<br>If the `implementer` role is being used, this attribute's value MUST be set to `http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole/imp`.<br>If the `validator` role is being used, this attribute's value MUST be set to `http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole/val`",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -2065,8 +2077,8 @@ msip0187 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:linkingAgentIdentifier/premis:linkingAgentRole/@valueURI",
 )
-msip0188 = MeemooSIPConstraint(
-    "MSIP0188",
+msip189 = MeemooSIPConstraint(
+    "MSIP189",
     "This element contains identifier information on a representation that was linked to this event.<br><br>At least one linking object identifier MUST be present.",
     MeemooSIPConstraintCardinality.AT_LEAST_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -2076,8 +2088,8 @@ msip0188 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:linkingObjectIdentifier",
 )
-msip0189 = MeemooSIPConstraint(
-    "MSIP0189",
+msip190 = MeemooSIPConstraint(
+    "MSIP190",
     "The type of the object identifier that the event is being linked to.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -2087,8 +2099,8 @@ msip0189 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:linkingObjectIdentifier/premis:linkingObjectIdentifierType",
 )
-msip0190 = MeemooSIPConstraint(
-    "MSIP0190",
+msip191 = MeemooSIPConstraint(
+    "MSIP191",
     "The actual value that makes up the identifier of the linked representation.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -2098,8 +2110,8 @@ msip0190 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:linkingObjectIdentifier/premis:linkingObjectIdentifierValue",
 )
-msip0191 = MeemooSIPConstraint(
-    "MSIP0191",
+msip192 = MeemooSIPConstraint(
+    "MSIP192",
     "The role that the object played in relation to the event.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -2109,8 +2121,8 @@ msip0191 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:linkingObjectIdentifier/premis:linkingObjectRole",
 )
-msip0192 = MeemooSIPConstraint(
-    "MSIP0192",
+msip193 = MeemooSIPConstraint(
+    "MSIP193",
     "This attribute references the URI that contains the specific entry from the authority/controlled vocabulary.<br><br>If the `outcome` role is being used, this attribute's value MUST be set to `http://id.loc.gov/vocabulary/preservation/eventRelatedObjectRole/out`.<br>If the `source` role is being used, this attribute's value MUST be set to `http://id.loc.gov/vocabulary/preservation/eventRelatedObjectRole/sou`.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -2120,8 +2132,8 @@ msip0192 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:event/premis:linkingAgentIdentifier/premis:linkingObjectRole/@valueURI",
 )
-msip0193 = MeemooSIPConstraint(
-    "MSIP0193",
+msip194 = MeemooSIPConstraint(
+    "MSIP194",
     "A person, organization or piece of software or hardware associated to preservation events in the life of a data object. A `premis:agent` element MAY be defined for one or more events.",
     MeemooSIPConstraintCardinality.ZERO_OR_MORE,
     MeemooSIPConstraintObligation.MAY,
@@ -2131,8 +2143,8 @@ msip0193 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:agent",
 )
-msip0194 = MeemooSIPConstraint(
-    "MSIP0194",
+msip195 = MeemooSIPConstraint(
+    "MSIP195",
     "This element contains agent identifier information.<br><br>At least one agent identifier MUST be present to uniquely identify the agent.",
     MeemooSIPConstraintCardinality.AT_LEAST_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -2142,8 +2154,8 @@ msip0194 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:agent/premis:agentIdentifier",
 )
-msip0195 = MeemooSIPConstraint(
-    "MSIP0195",
+msip196 = MeemooSIPConstraint(
+    "MSIP196",
     "The type of the PREMIS agent identifier being used.<br><br>At least one identifier of type UUID MUST be defined in order to provide a unique identifier for each PREMIS agent.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -2153,8 +2165,8 @@ msip0195 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:agent/premis:agentIdentifier/premis:agentIdentifierType",
 )
-msip0196 = MeemooSIPConstraint(
-    "MSIP0196",
+msip197 = MeemooSIPConstraint(
+    "MSIP197",
     "The actual value that makes up the identifier of the PREMIS agent.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -2164,8 +2176,8 @@ msip0196 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:agent/premis:agentIdentifier/premis:agentIdentifierValue",
 )
-msip0197 = MeemooSIPConstraint(
-    "MSIP0197",
+msip198 = MeemooSIPConstraint(
+    "MSIP198",
     "The name of the agent.",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -2175,8 +2187,8 @@ msip0197 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:agent/premis:agentName",
 )
-msip0198 = MeemooSIPConstraint(
-    "MSIP0198",
+msip199 = MeemooSIPConstraint(
+    "MSIP199",
     "The type of agent, such as a specific type of organization (e.g. CP) or a specific type of hardware (e.g. video player).",
     MeemooSIPConstraintCardinality.EXACTLY_ONE,
     MeemooSIPConstraintObligation.MUST,
@@ -2186,8 +2198,8 @@ msip0198 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:agent/premis:agentType",
 )
-msip0199 = MeemooSIPConstraint(
-    "MSIP0199",
+msip200 = MeemooSIPConstraint(
+    "MSIP200",
     "Any extra metadata to further describe the agent. Its constraints are defined in the applied content profile.",
     MeemooSIPConstraintCardinality.AT_MOST_ONE,
     MeemooSIPConstraintObligation.MAY,
@@ -2197,8 +2209,8 @@ msip0199 = MeemooSIPConstraint(
     "/metadata/preservation/premis.xml",
     "/premis:premis/premis:agent/premis:agentExtension",
 )
-msip0200 = MeemooSIPConstraint(
-    "MSIP0200",
+msip201 = MeemooSIPConstraint(
+    "MSIP201",
     "The `/representations` directory MUST at least contain one `/representation_*` directory.",
     MeemooSIPConstraintCardinality.UNSPECIFIED,
     MeemooSIPConstraintObligation.UNSPECIFIED,
@@ -2208,8 +2220,8 @@ msip0200 = MeemooSIPConstraint(
     "/representations",
     "",
 )
-msip0201 = MeemooSIPConstraint(
-    "MSIP0201",
+msip202 = MeemooSIPConstraint(
+    "MSIP202",
     "The different subdirectories in the `/representations` directory MUST be named `/representation_*`, with `*` being a positive integer that is incremented by 1 for each additional representation in the `/representations` directory.",
     MeemooSIPConstraintCardinality.UNSPECIFIED,
     MeemooSIPConstraintObligation.UNSPECIFIED,
@@ -2219,153 +2231,938 @@ msip0201 = MeemooSIPConstraint(
     "/representations",
     "",
 )
+msip203 = MeemooSIPConstraint(
+    "MSIP203",
+    "A representation directory MUST contain exactly one `METS.xml` file. The word `METS` in the filename MUST be written in all caps as displayed here.",
+    MeemooSIPConstraintCardinality.UNSPECIFIED,
+    MeemooSIPConstraintObligation.UNSPECIFIED,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.GENERAL,
+    "/",
+    "",
+)
+msip204 = MeemooSIPConstraint(
+    "MSIP204",
+    "The top level representation directory MUST have the value of the `OBJID` attribute in the METS.xml header as directory name. See [`mets/@OBJID`](#OBJID) for more details.",
+    MeemooSIPConstraintCardinality.UNSPECIFIED,
+    MeemooSIPConstraintObligation.UNSPECIFIED,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.GENERAL,
+    "/",
+    "",
+)
+msip205 = MeemooSIPConstraint(
+    "MSIP205",
+    "A representation directory MUST contain exactly one `/metadata` directory.",
+    MeemooSIPConstraintCardinality.UNSPECIFIED,
+    MeemooSIPConstraintObligation.UNSPECIFIED,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.GENERAL,
+    "/",
+    "",
+)
+msip206 = MeemooSIPConstraint(
+    "MSIP206",
+    "A representation directory MUST contain exactly one `/data` directory.",
+    MeemooSIPConstraintCardinality.UNSPECIFIED,
+    MeemooSIPConstraintObligation.UNSPECIFIED,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.GENERAL,
+    "/",
+    "",
+)
+msip207 = MeemooSIPConstraint(
+    "MSIP207",
+    "A representation directory MAY contain exactly one `/documentation` directory.",
+    MeemooSIPConstraintCardinality.UNSPECIFIED,
+    MeemooSIPConstraintObligation.UNSPECIFIED,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.GENERAL,
+    "/",
+    "",
+)
+msip208 = MeemooSIPConstraint(
+    "MSIP208",
+    "A representation directory MAY contain exactly one `/schemas` directory.",
+    MeemooSIPConstraintCardinality.UNSPECIFIED,
+    MeemooSIPConstraintObligation.UNSPECIFIED,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.GENERAL,
+    "/",
+    "",
+)
+msip209 = MeemooSIPConstraint(
+    "MSIP209",
+    "This is the root element of the representation METS.<br>It MUST contain the following XML schema namespaces:<br>[`mets: http://www.loc.gov/METS/`](http://www.loc.gov/METS/)<br>[`csip: https://DILCIS.eu/XML/METS/CSIPExtensionMETS`](https://DILCIS.eu/XML/METS/CSIPExtensionMETS)<br>[`xsi: http://www.w3.org/2001/XMLSchema-instance`](http://www.w3.org/2001/XMLSchema-instance)<br>[`xlink: http://www.w3.org/1999/xlink`](http://www.w3.org/1999/xlink)",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/METS.xml",
+    "mets",
+)
+msip210 = MeemooSIPConstraint(
+    "MSIP210",
+    'This is an identifier for the representation METS document. Its value MUST be the same as the name of the top level representation folder (e.g., `"representation_1"` for the example above).',
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.ID,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/@OBJID",
+)
+msip211 = MeemooSIPConstraint(
+    "MSIP211",
+    "This attribute MUST be set to declare the category of the content held in the representation directory.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/@TYPE",
+)
+msip212 = MeemooSIPConstraint(
+    "MSIP212",
+    "When the `mets/@TYPE` attribute is set to `OTHER`, the `mets/@csip:OTHERTYPE` attribute SHOULD be used to declare the content category of the representation not contained in the fixed vocabulary of the `@TYPE` attribute.",
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.SHOULD,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    'mets[@TYPE="OTHER"]/@csip:OTHERTYPE',
+)
+msip213 = MeemooSIPConstraint(
+    "MSIP213",
+    "The URL of the E-ARK METS profile that the SIP conforms with.<br>This URL MUST be set to [`https://earksip.dilcis.eu/profile/E-ARK-SIP.xml`](https://earksip.dilcis.eu/profile/E-ARK-SIP.xml) to indicate conformance with the E-ARK specification.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.URL,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/@PROFILE",
+)
+msip214 = MeemooSIPConstraint(
+    "MSIP214",
+    "An optional short text describing the contents of the representation.",
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/@LABEL",
+)
+msip215 = MeemooSIPConstraint(
+    "MSIP215",
+    "General element that contains descriptive information about the representation.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/METS.xml",
+    "mets/metsHdr",
+)
+msip216 = MeemooSIPConstraint(
+    "MSIP216",
+    "This attribute records the date and time the representation was created.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.XSD_DATETIME,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/metsHdr/@CREATEDATE",
+)
+msip217 = MeemooSIPConstraint(
+    "MSIP217",
+    "In case the representation was modified since its creation, this attribute records the date and time of that modification.<br>This attribute MUST be present and used when the representation has been modified since its creation datetime.",
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.SHOULD,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.XSD_DATETIME,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/metsHdr/@LASTMODDATE",
+)
+msip218 = MeemooSIPConstraint(
+    "MSIP218",
+    "The value of `@csip:OAISPACKAGETYPE` MUST be set to `SIP` to indicate to meemoo that the delivered content is a SIP meant for ingest.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/metsHdr/@csip:OAISPACKAGETYPE",
+)
+msip219 = MeemooSIPConstraint(
+    "MSIP219",
+    "A way of indicating the status of the representation and to instruct meemoo on how to properly handle it.<br>If not set, the expected value is `NEW`.<br>Meemoo investigates the use of the `@RECORDSTATUS` attribute for future use cases such as e.g. a metadata update (i.e. ingest of metadata only with the goal of updating, adding or deleting existing metadata in meemoo's archive system).",
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/metsHdr/@RECORDSTATUS",
+)
+msip220 = MeemooSIPConstraint(
+    "MSIP220",
+    "",
+    MeemooSIPConstraintCardinality.ZERO_OR_MORE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/METS.xml",
+    "mets/metsHdr/agent",
+)
+msip221 = MeemooSIPConstraint(
+    "MSIP221",
+    "",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/metsHdr/agent/@ROLE",
+)
+msip222 = MeemooSIPConstraint(
+    "MSIP222",
+    "",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/metsHdr/agent/@TYPE",
+)
+msip223 = MeemooSIPConstraint(
+    "MSIP223",
+    "This attribute MUST be used if the attribute `agent/@TYPE` is set to `OTHER`. It is used to specify the exact other type that is being used.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/metsHdr/agent/@OTHERTYPE",
+)
+msip224 = MeemooSIPConstraint(
+    "MSIP224",
+    "",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/METS.xml",
+    "mets/metsHdr/agent/name",
+)
+msip225 = MeemooSIPConstraint(
+    "MSIP225",
+    "",
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/METS.xml",
+    "mets/metsHdr/agent/note",
+)
+msip226 = MeemooSIPConstraint(
+    "MSIP226",
+    "The data referenced in the file section file groups are described in the structural map within a single sub-division called `data`.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='data']",
+)
+msip227 = MeemooSIPConstraint(
+    "MSIP227",
+    "A unique identifier to the `data` division. This can be used for internal package references.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.ID,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='data']/@ID",
+)
+msip228 = MeemooSIPConstraint(
+    "MSIP228",
+    "The representations `div` element’s `@LABEL` attribute value MUST be `data`.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='data']",
+)
+msip229 = MeemooSIPConstraint(
+    "MSIP229",
+    "All file groups containing content described in the package are referenced via the relevant file group identifiers.<br>There MUST be one file group reference per `fptr` element.",
+    MeemooSIPConstraintCardinality.AT_LEAST_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/METS.xml",
+    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='data']/fptr",
+)
+msip230 = MeemooSIPConstraint(
+    "MSIP230",
+    "The pointer to the identifier for the `data` file group.<br>This identifier MUST correspond to an identifier of a `file/@ID` attribute in the `fileSec` section of the METS file.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.ID,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/METS.xml",
+    "mets/structMap[@LABEL='CSIP']/div/div[@LABEL='data']/fptr/@FILEID",
+)
+msip231 = MeemooSIPConstraint(
+    "MSIP231",
+    "This is the root element of the PREMIS file.<br><br>It MUST contain the following XML schema namespaces: <br>[`xsi: http://www.w3.org/2001/XMLSchema-instance`](http://www.w3.org/2001/XMLSchema-instance)<br>[`premis: http://www.loc.gov/premis/v3`](http://www.loc.gov/premis/v3).",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis",
+)
+msip232 = MeemooSIPConstraint(
+    "MSIP232",
+    "The `/data` directory MUST NOT contain any subdirectories.",
+    MeemooSIPConstraintCardinality.UNSPECIFIED,
+    MeemooSIPConstraintObligation.UNSPECIFIED,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.GENERAL,
+    "/data",
+    "",
+)
+msip233 = MeemooSIPConstraint(
+    "MSIP233",
+    "All files in the `/data` directory MUST be referenced in the corresponding representation `METS.xml` file.",
+    MeemooSIPConstraintCardinality.UNSPECIFIED,
+    MeemooSIPConstraintObligation.UNSPECIFIED,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.GENERAL,
+    "/data",
+    "",
+)
+msip234 = MeemooSIPConstraint(
+    "MSIP234",
+    "The `/metadata` directory MUST contain the subdirectory `/preservation` and it MAY contain the `/descriptive` subdirectory.",
+    MeemooSIPConstraintCardinality.UNSPECIFIED,
+    MeemooSIPConstraintObligation.UNSPECIFIED,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.GENERAL,
+    "/metadata",
+    "",
+)
+msip235 = MeemooSIPConstraint(
+    "MSIP235",
+    "The `/preservation` directory MUST contain exactly one file: `premis.xml`.",
+    MeemooSIPConstraintCardinality.UNSPECIFIED,
+    MeemooSIPConstraintObligation.UNSPECIFIED,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.GENERAL,
+    "/metadata/preservation",
+    "",
+)
+msip236 = MeemooSIPConstraint(
+    "MSIP236",
+    "This attribute signals which PREMIS version is being used.<br>The attribute's value MUST be set to `3.0`.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/@version",
+)
+msip237 = MeemooSIPConstraint(
+    "MSIP237",
+    'This attribute signals where to find the relevant XSD schema in order to validate the PREMIS file.<br><br>When used, its value MUST be set to `"http://www.loc.gov/premis/v3 https://www.loc.gov/standards/premis/premis.xsd"` to signal conformance with PREMIS 3.0.',
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.SHOULD,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/@xsi:schemaLocation",
+)
+msip238 = MeemooSIPConstraint(
+    "MSIP238",
+    "A `premis:object` element MUST be defined for each representation and file of the representation level in the SIP.",
+    MeemooSIPConstraintCardinality.AT_LEAST_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object",
+)
+msip239 = MeemooSIPConstraint(
+    "MSIP239",
+    "This attribute signals whether a PREMIS object is of type intellectual entity, representation or file.<br><br>In the case of the `premis.xml` file of the representation level, this attribute's value MUST be set to `premis:representation` in the case of a representation object, and to `premis:file` in the case of a file object.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/@xsi:type",
+)
+msip240 = MeemooSIPConstraint(
+    "MSIP240",
+    "This element contains object identifier information.<br><br>There MUST be exactly one object identifier present with `premis:objectIdentifierType` set to `UUID`. This is the main identifier for the concerned representation or file, which uniquely identifies the concerned IE and establishes a link between the relevant preservation metadata in the `premis.xml` file and the descriptive metadata in the `dc*.xml` file, if any is present. There MAY be zero or more additional object identifiers of a different type.",
+    MeemooSIPConstraintCardinality.AT_LEAST_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/premis:objectIdentifier",
+)
+msip241 = MeemooSIPConstraint(
+    "MSIP241",
+    "The type of the PREMIS object identifier being used.<br><br>At least one identifier of type `UUID` MUST be defined in order to provide a unique identifier for each PREMIS object.<br><br>This unique identifier is also used to link the concerned PREMIS object with the descriptive metadata in the `/metadata/descriptive/dc*.xml` file, if any is present.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/premis:objectIdentifier/premis:objectIdentifierType",
+)
+msip242 = MeemooSIPConstraint(
+    "MSIP242",
+    "The actual value that makes up the identifier of the PREMIS object.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/premis:objectIdentifier/premis:objectIdentifierValue",
+)
+msip243 = MeemooSIPConstraint(
+    "MSIP243",
+    "Information about a relationship between the current object and one or more other objects.<br><br> In the case of the `premis.xml` file of the representation level, this element MUST detail the relationships between the representation and IE on the one hand, and between the representation and file(s) on the other hand.",
+    MeemooSIPConstraintCardinality.AT_LEAST_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/premis:relationship",
+)
+msip244 = MeemooSIPConstraint(
+    "MSIP244",
+    "A high-level categorization of the nature of the relationship.<br><br>In the case of the `premis.xml` file of the representation level, this element's value MUST be set to `structural`.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipType",
+)
+msip245 = MeemooSIPConstraint(
+    "MSIP245",
+    'This attribute indicates the name of the authority/controlled vocabulary that is being used for the different relationship types. Its value MUST be set to `"relationshipType"`.',
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.URI,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipType/@authority",
+)
+msip246 = MeemooSIPConstraint(
+    "MSIP246",
+    'This attribute references the URI that contains the authority/controlled vocabulary. Its value MUST be set to `"http://id.loc.gov/vocabulary/preservation/relationshipType"`.',
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.URI,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipType/@authorityURI",
+)
+msip247 = MeemooSIPConstraint(
+    "MSIP247",
+    'This attribute references the URI that contains the specific entry from the authority/controlled vocabulary.<br><br>For the `structural` relationship type, this attribute\'s value MUST be set to `"http://id.loc.gov/vocabulary/preservation/relationshipType/str"`.',
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.URI,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipType/@valueURI",
+)
+msip248 = MeemooSIPConstraint(
+    "MSIP248",
+    "A detailed categorization of the nature of the relationship.<br><br>In the case of the `premis.xml` file of the representation level, this element's value MUST be set to `represents` when expressing the relationship between a representation and the IE it represents.<br>When expressing the relationship between a representation and a file, this element's value MUST be set to `includes` when this relationship is expressed from the side of the representation (i.e. the representation is the subject of the relationship); when this relationship is expressed from the side of the file (i.e. the file is the subject of the relationship), this element's value MUST be set to `is included in`.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipSubType",
+)
+msip249 = MeemooSIPConstraint(
+    "MSIP249",
+    'This attribute indicates the name of the authority/controlled vocabulary that is being used for the different relationship subtypes. Its value MUST be set to `"relationshipSubType"`.',
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.URI,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipSubType/@authority",
+)
+msip250 = MeemooSIPConstraint(
+    "MSIP250",
+    'This attribute references the URI that contains the authority/controlled vocabulary. Its value MUST be set to `"http://id.loc.gov/vocabulary/preservation/relationshipSubType"`.',
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.URI,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipSubType/@authorityURI",
+)
+msip251 = MeemooSIPConstraint(
+    "MSIP251",
+    'This attribute references the URI that contains the specific entry from the authority/controlled vocabulary.<br><br>If the `represents` relationship subtype is being used, this attribute\'s value MUST be set to `"http://id.loc.gov/vocabulary/preservation/relationshipSubType/rep"`.<br>If the `includes` relationship subtype is being used, this attribute\'s value MUST be set to `"http://id.loc.gov/vocabulary/preservation/relationshipSubType/inc"`.<br>If the `is included in` relationship subtype is being used, this attribute\'s value MUST be set to `"http://id.loc.gov/vocabulary/preservation/relationshipSubType/isi"`',
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.URI,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/premis:relationship/premis:relationshipSubType/@valueURI",
+)
+msip252 = MeemooSIPConstraint(
+    "MSIP252",
+    "This element references the object of the relationship that is expressed.",
+    MeemooSIPConstraintCardinality.AT_LEAST_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/premis:relationship/premis:relatedObjectIdentifier",
+)
+msip253 = MeemooSIPConstraint(
+    "MSIP253",
+    "The type of the PREMIS related object identifier being used.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/premis:relationship/premis:relatedObjectIdentifier/premis:relatedObjectIdentifierType",
+)
+msip254 = MeemooSIPConstraint(
+    "MSIP254",
+    "The actual value that makes up the identifier of the PREMIS related object.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    "/premis:premis/premis:object/premis:relationship/premis:relatedObjectIdentifier/premis:relatedObjectIdentifierValue",
+)
+msip255 = MeemooSIPConstraint(
+    "MSIP255",
+    "If the PREMIS object is of type file, this element MUST be used to further specify the various characteristics of the file object such as fixity, size and format information.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics',
+)
+msip256 = MeemooSIPConstraint(
+    "MSIP256",
+    "This element contains the fixity information of the PREMIS file object. It encapsulates the message digest algorithm that is being used and its value.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:fixity',
+)
+msip257 = MeemooSIPConstraint(
+    "MSIP257",
+    "This element details which algorithm is used to construct the message digest for the digital file object present.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:fixity/premis:messageDigestAlgorithm',
+)
+msip258 = MeemooSIPConstraint(
+    "MSIP258",
+    'This attribute indicates the name of the authority/controlled vocabulary that is being used for the different message digest algorithms. Its value MUST be set to `"cryptographicHashFunctions"`.',
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.URI,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:fixity/premis:messageDigestAlgorithm/@authority',
+)
+msip259 = MeemooSIPConstraint(
+    "MSIP259",
+    'This attribute references the URI that contains the authority/controlled vocabulary. Its value MUST be set to `"http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions"`.',
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.URI,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:fixity/premis:messageDigestAlgorithm/@authorityURI',
+)
+msip260 = MeemooSIPConstraint(
+    "MSIP260",
+    "This attribute references the URI that contains the specific entry from the authority/controlled vocabulary.",
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.URI,
+    MeemooSIPConstraintXMLNodeType.ATTRIBUTE,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:fixity/premis:messageDigestAlgorithm/@valueURI',
+)
+msip261 = MeemooSIPConstraint(
+    "MSIP261",
+    "This element contains the actual value calculated message digest algorithm specified in the `premis:messageDigestAlgorithm` element.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:fixity/premis:messageDigest',
+)
+msip262 = MeemooSIPConstraint(
+    "MSIP262",
+    "The size of the file object. This MUST be expressed in bytes.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.INTEGER,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:size',
+)
+msip263 = MeemooSIPConstraint(
+    "MSIP263",
+    "This element contains information about the format of the file object. At least one of `premis:formatDesignation` or `premis:formatRegistry` MUST be present.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:format',
+)
+msip264 = MeemooSIPConstraint(
+    "MSIP264",
+    "This element contains an identification of the format of the file object.",
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.SHOULD,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:format/premis:formatDesignation',
+)
+msip265 = MeemooSIPConstraint(
+    "MSIP265",
+    "A commonly accepted name for the file format.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:format/premis:formatDesignation/premis:formatName',
+)
+msip266 = MeemooSIPConstraint(
+    "MSIP266",
+    "The version of the format named in `premis:formatName`.",
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:format/premis:formatDesignation/premis:formatVersion',
+)
+msip267 = MeemooSIPConstraint(
+    "MSIP267",
+    "This element identifies and/or gives further information about the file format by referencing an entry in a format registry (e.g. [PRONOM](https://www.nationalarchives.gov.uk/PRONOM/Default.aspx)).",
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.SHOULD,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:format/premis:formatRegistry',
+)
+msip268 = MeemooSIPConstraint(
+    "MSIP268",
+    "Name of the referenced format registry",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:format/premis:formatRegistry/premis:formatRegistryName',
+)
+msip269 = MeemooSIPConstraint(
+    "MSIP269",
+    "Unique key that is used by the format registry for the concerned file format.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.ID,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:format/premis:formatRegistry/premis:formatRegistryKey',
+)
+msip270 = MeemooSIPConstraint(
+    "MSIP270",
+    "The purpose or expected use of the format registry. This MUST be set to `specification`.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.UNSPECIFIED,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:format/premis:formatRegistry/premis:formatRegistryRole',
+)
+msip271 = MeemooSIPConstraint(
+    "MSIP271",
+    'This attribute indicates the name of the authority/controlled vocabulary that is being used. Its value MUST be set to `"http://id.loc.gov/vocabulary/preservation/formatRegistryRole"`.',
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.URI,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:format/premis:formatRegistry/premis:formatRegistryRole/@authority',
+)
+msip272 = MeemooSIPConstraint(
+    "MSIP272",
+    'This attribute references the URI that contains the specific entry from the authority/controlled vocabulary.<br><br>This attribute\'s value MUST be set to `"http://id.loc.gov/vocabulary/preservation/formatRegistryRole/spe"`.',
+    MeemooSIPConstraintCardinality.AT_MOST_ONE,
+    MeemooSIPConstraintObligation.MAY,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.URI,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:objectCharacteristics/premis:format/premis:formatRegistry/premis:formatRegistryRole/@valueURI',
+)
+msip273 = MeemooSIPConstraint(
+    "MSIP273",
+    "This element contains the original name of the file object, including its extension.",
+    MeemooSIPConstraintCardinality.EXACTLY_ONE,
+    MeemooSIPConstraintObligation.MUST,
+    MeemooSIPConstraintSIPLevel.REPRESENTATION,
+    MeemooSIPConstraintDatatype.STRING,
+    MeemooSIPConstraintXMLNodeType.ELEMENT,
+    "/metadata/preservation/premis.xml",
+    '/premis:premis/premis:object[@xsi:type="premis:file"]/premis:originalName',
+)
 
 constraint_map = {
-    "CSIPSTR4": [msip0001],
-    "CSIPSTR2": [msip0002],
-    "CSIPSTR5": [msip0003],
-    "CSIPSTR9": [msip0004],
-    "CSIPSTR16": [msip0005],
-    "CSIPSTR15": [msip0006],
-    "CSIP1": [msip0008],
-    "CSIP2": [msip0009],
-    "CSIP3": [msip0010],
-    "CSIP4": [msip0011],
-    "CSIP5": [msip0012],
-    "CSIP6": [msip0013],
-    "SIP2": [msip0013],
-    "SIP1": [msip0014],
-    "CSIP117": [msip0015],
-    "CSIP7": [msip0016],
-    "CSIP8": [msip0017],
-    "SIP3": [msip0018],
-    "CSIP9": [msip0019],
-    "SIP4": [msip0019],
-    "CSIP10": [msip0020],
-    "CSIP13": [msip0020, msip0023],
-    "CSIP11": [msip0021],
-    "CSIP12": [msip0022],
-    "CSIP14": [msip0024, msip0030, msip0036, msip0047],
-    "CSIP15": [msip0025, msip0031, msip0037, msip0048],
-    "CSIP16": [msip0026],
-    "SIP9": [msip0027],
-    "SIP10": [msip0028],
-    "SIP11": [msip0029],
-    "SIP12": [msip0030],
-    "SIP13": [msip0031],
-    "SIP14": [msip0032],
-    "SIP15": [msip0033],
-    "SIP16": [msip0034],
-    "SIP17": [msip0035],
-    "SIP18": [msip0036],
-    "SIP19": [msip0037],
-    "SIP20": [msip0038],
-    "SIP21": [msip0039],
-    "SIP22": [msip0040],
-    "SIP23": [msip0041],
-    "SIP24": [msip0042],
-    "SIP25": [msip0043],
-    "SIP26": [msip0044],
-    "SIP27": [msip0045],
-    "SIP28": [msip0046],
-    "SIP29": [msip0047],
-    "SIP30": [msip0048],
-    "SIP31": [msip0049],
-    "CSIP17": [msip0054],
-    "CSIP18": [msip0055],
-    "CSIP19": [msip0056],
-    "CSIP20": [msip0057],
-    "CSIP21": [msip0058],
-    "CSIP22": [msip0059],
-    "CSIP23": [msip0060],
-    "CSIP24": [msip0061],
-    "CSIP25": [msip0062],
-    "CSIP26": [msip0063],
-    "CSIP27": [msip0064],
-    "CSIP28": [msip0065],
-    "CSIP29": [msip0066],
-    "CSIP30": [msip0067],
-    "CSIP31": [msip0068],
-    "CSIP32": [msip0069],
-    "CSIP33": [msip0070],
-    "CSIP34": [msip0071],
-    "CSIP35": [msip0072],
-    "CSIP36": [msip0073],
-    "CSIP37": [msip0074],
-    "CSIP38": [msip0075],
-    "CSIP39": [msip0076],
-    "CSIP40": [msip0077],
-    "CSIP41": [msip0078],
-    "CSIP42": [msip0079],
-    "CSIP43": [msip0080],
-    "CSIP44": [msip0081],
-    "CSIP45": [msip0082],
-    "CSIP46": [msip0083],
-    "CSIP47": [msip0084],
-    "CSIP48": [msip0085],
-    "CSIP49": [msip0086],
-    "CSIP50": [msip0087],
-    "CSIP51": [msip0088],
-    "CSIP52": [msip0089],
-    "CSIP53": [msip0090],
-    "CSIP54": [msip0091],
-    "CSIP55": [msip0092],
-    "CSIP56": [msip0093],
-    "CSIP57": [msip0094],
-    "CSIP58": [msip0095, msip0096, msip0099],
-    "CSIP59": [msip0100],
-    "CSIP60": [msip0101],
-    "CSIP61": [msip0102],
-    "CSIP62": [msip0103],
-    "CSIP63": [msip0104],
-    "CSIP64": [msip0105],
-    "CSIP65": [msip0106],
-    "CSIP66": [msip0107],
-    "CSIP67": [msip0108],
-    "CSIP68": [msip0109],
-    "CSIP69": [msip0110],
-    "CSIP70": [msip0111],
-    "CSIP71": [msip0112],
-    "CSIP72": [msip0113],
-    "CSIP73": [msip0114],
-    "CSIP74": [msip0115],
-    "CSIP75": [msip0116],
-    "CSIP76": [msip0117],
-    "CSIP77": [msip0118],
-    "CSIP78": [msip0119],
-    "CSIP79": [msip0120],
-    "CSIP80": [msip0121],
-    "CSIP81": [msip0122],
-    "CSIP82": [msip0123],
-    "CSIP83": [msip0124],
-    "CSIP84": [msip0125],
-    "CSIP85": [msip0126],
-    "CSIP88": [msip0127],
-    "CSIP89": [msip0128],
-    "CSIP90": [msip0129],
-    "CSIP91": [msip0130],
-    "CSIP92": [msip0131],
-    "CSIP93": [msip0132],
-    "CSIP94": [msip0133],
-    "CSIP95": [msip0134],
-    "CSIP96": [msip0135],
-    "CSIP116": [msip0136],
-    "CSIP97": [msip0137],
-    "CSIP98": [msip0138],
-    "CSIP99": [msip0139],
-    "CSIP100": [msip0140],
-    "CSIP118": [msip0141],
-    "CSIP101": [msip0142],
-    "CSIP102": [msip0143],
-    "CSIP103": [msip0144],
-    "CSIP109": [msip0145],
-    "CSIP108": [msip0146],
-    "CSIP110": [msip0147],
-    "CSIP111": [msip0148],
-    "CSIP112": [msip0149],
-    "CSIPSTR6": [msip0152],
-    "CSIPSTR7": [msip0152],
-    "CSIPSTR10": [msip0200],
+    "CSIPSTR4": [msip1],
+    "CSIPSTR2": [msip2],
+    "CSIPSTR5": [msip3],
+    "CSIPSTR9": [msip4],
+    "CSIPSTR16": [msip5],
+    "CSIPSTR15": [msip6],
+    "CSIP1": [msip8, msip210],
+    "CSIP2": [msip9, msip211],
+    "CSIP3": [msip10, msip212],
+    "CSIP4": [msip11],
+    "CSIP5": [msip12],
+    "CSIP6": [msip13, msip213],
+    "SIP2": [msip13, msip213],
+    "SIP1": [msip14, msip214],
+    "CSIP117": [msip15, msip215],
+    "CSIP7": [msip16, msip216],
+    "CSIP8": [msip17, msip217],
+    "SIP3": [msip18, msip219],
+    "CSIP9": [msip19, msip218],
+    "SIP4": [msip19, msip218],
+    "CSIP10": [msip20],
+    "CSIP13": [msip20, msip23],
+    "CSIP11": [msip21],
+    "CSIP12": [msip22, msip222],
+    "CSIP14": [msip24, msip30, msip36, msip47, msip224],
+    "CSIP15": [msip25, msip31, msip37, msip48, msip225],
+    "CSIP16": [msip26],
+    "SIP9": [msip27, msip220],
+    "SIP10": [msip28, msip221],
+    "SIP11": [msip29],
+    "SIP12": [msip30],
+    "SIP13": [msip31],
+    "SIP14": [msip32],
+    "SIP15": [msip33],
+    "SIP16": [msip34],
+    "SIP17": [msip35],
+    "SIP18": [msip36],
+    "SIP19": [msip37],
+    "SIP20": [msip38],
+    "SIP21": [msip39],
+    "SIP22": [msip40],
+    "SIP23": [msip41],
+    "SIP24": [msip42],
+    "SIP25": [msip43],
+    "SIP26": [msip44],
+    "SIP27": [msip45],
+    "SIP28": [msip46],
+    "SIP29": [msip47],
+    "SIP30": [msip48],
+    "SIP31": [msip49],
+    "SIP5": [msip50],
+    "SIP6": [msip51],
+    "SIP7": [msip52],
+    "SIP8": [msip53],
+    "CSIP17": [msip54],
+    "CSIP18": [msip55],
+    "CSIP19": [msip56],
+    "CSIP20": [msip57],
+    "CSIP21": [msip58],
+    "CSIP22": [msip59],
+    "CSIP23": [msip60],
+    "CSIP24": [msip61],
+    "CSIP25": [msip62],
+    "CSIP26": [msip63],
+    "CSIP27": [msip64],
+    "CSIP28": [msip65],
+    "CSIP29": [msip66],
+    "CSIP30": [msip67],
+    "CSIP31": [msip68],
+    "CSIP32": [msip69],
+    "CSIP33": [msip70],
+    "CSIP34": [msip71],
+    "CSIP35": [msip72],
+    "CSIP36": [msip73],
+    "CSIP37": [msip74],
+    "CSIP38": [msip75],
+    "CSIP39": [msip76],
+    "CSIP40": [msip77],
+    "CSIP41": [msip78],
+    "CSIP42": [msip79],
+    "CSIP43": [msip80],
+    "CSIP44": [msip81],
+    "CSIP45": [msip82],
+    "CSIP46": [msip83],
+    "CSIP47": [msip84],
+    "CSIP48": [msip85],
+    "CSIP49": [msip86],
+    "CSIP50": [msip87],
+    "CSIP51": [msip88],
+    "CSIP52": [msip89],
+    "CSIP53": [msip90],
+    "CSIP54": [msip91],
+    "CSIP55": [msip92],
+    "CSIP56": [msip93],
+    "CSIP57": [msip94],
+    "CSIP58": [msip95, msip96, msip99],
+    "CSIP59": [msip100],
+    "CSIP60": [msip101],
+    "CSIP61": [msip102],
+    "CSIP62": [msip103],
+    "CSIP63": [msip105],
+    "CSIP64": [msip106],
+    "CSIP65": [msip107],
+    "CSIP66": [msip108],
+    "CSIP67": [msip109],
+    "CSIP68": [msip110],
+    "CSIP69": [msip111],
+    "CSIP70": [msip112],
+    "CSIP71": [msip113],
+    "CSIP72": [msip114],
+    "CSIP73": [msip115],
+    "CSIP74": [msip116],
+    "CSIP75": [msip117],
+    "CSIP76": [msip118],
+    "CSIP77": [msip119],
+    "CSIP78": [msip120],
+    "CSIP79": [msip121],
+    "CSIP80": [msip122],
+    "CSIP81": [msip123],
+    "CSIP82": [msip124],
+    "CSIP83": [msip125],
+    "CSIP84": [msip126],
+    "CSIP85": [msip127],
+    "CSIP88": [msip128],
+    "CSIP89": [msip129],
+    "CSIP90": [msip130],
+    "CSIP91": [msip131],
+    "CSIP92": [msip132],
+    "CSIP93": [msip133],
+    "CSIP94": [msip134],
+    "CSIP95": [msip135],
+    "CSIP96": [msip136],
+    "CSIP116": [msip137],
+    "CSIP97": [msip138],
+    "CSIP98": [msip139],
+    "CSIP99": [msip140],
+    "CSIP100": [msip141],
+    "CSIP118": [msip142],
+    "CSIP101": [msip143],
+    "CSIP102": [msip144],
+    "CSIP103": [msip145],
+    "CSIP109": [msip146],
+    "CSIP108": [msip147],
+    "CSIP110": [msip148],
+    "CSIP111": [msip149],
+    "CSIP112": [msip150],
+    "CSIPSTR6": [msip153],
+    "CSIPSTR7": [msip153],
+    "CSIPSTR10": [msip201],
 }
 
 

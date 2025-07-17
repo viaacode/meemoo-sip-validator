@@ -9,8 +9,8 @@ from py_commons_ip.sip_validator import EARKSIPValidator
 from .constraints import (
     MeemooSIPConstraintEvaluation,
     MeemooSIPConstraintEvaluationStatus,
-    msip0011,
-    msip0012,
+    msip11,
+    msip12,
 )
 
 from .v21.constraints import get_meemoo_constraints
@@ -147,16 +147,16 @@ class MeemooSIPValidator:
 
         # Meemoo SIP validation
 
-        # Necessary constraints msip0011 and msip0012 to determine profile
-        msip0011_validation = self._validate_msip0011(root)
-        self.validation_report.add_constraint_evaluation(msip0011_validation)
-        if not msip0011_validation.is_valid:
+        # Necessary constraints msip11 and msip12 to determine profile
+        msip11_validation = self._validate_msip11(root)
+        self.validation_report.add_constraint_evaluation(msip11_validation)
+        if not msip11_validation.is_valid:
             # We can stop
             return False
 
-        msip0012_validation = self._validate_msip0012(root)
-        self.validation_report.add_constraint_evaluation(msip0012_validation)
-        if not msip0012_validation.is_valid:
+        msip12_validation = self._validate_msip12(root)
+        self.validation_report.add_constraint_evaluation(msip12_validation)
+        if not msip12_validation.is_valid:
             # We can stop
             return False
 
@@ -193,13 +193,13 @@ class MeemooSIPValidator:
                     MeemooSIPConstraintEvaluation(constraint, status)
                 )
 
-    def _validate_msip0011(self, root: _ElementTree) -> MeemooSIPConstraintEvaluation:
-        """Validate the msip0011 constraint.
+    def _validate_msip11(self, root: _ElementTree) -> MeemooSIPConstraintEvaluation:
+        """Validate the msip11 constraint.
 
-        Checks if the SIP is valid against the msip0011 constraint.
+        Checks if the SIP is valid against the msip11 constraint.
 
         Returns:
-            MeemooSIPConstraintEvaluation: Containing the evaluation of constraint msip0011.
+            MeemooSIPConstraintEvaluation: Containing the evaluation of constraint msip11.
         """
         try:
             content_information_type = root.xpath(
@@ -208,30 +208,30 @@ class MeemooSIPValidator:
             )[0]
         except IndexError:
             return MeemooSIPConstraintEvaluation(
-                msip0011,
+                msip11,
                 MeemooSIPConstraintEvaluationStatus.FAIL,
                 "The package METS does not contain a CONTENTINFORMATIONTYPE attribute. See: `mets/@csip:CONTENTINFORMATIONTYPE`",
             )
 
         if content_information_type != "OTHER":
             return MeemooSIPConstraintEvaluation(
-                msip0011,
+                msip11,
                 MeemooSIPConstraintEvaluationStatus.FAIL,
                 'The value of the CONTENTINFORMATIONTYPE attribute MUST be "OTHER". See: `mets/@csip:CONTENTINFORMATIONTYPE`',
             )
 
         return MeemooSIPConstraintEvaluation(
-            msip0011,
+            msip11,
             MeemooSIPConstraintEvaluationStatus.PASS,
         )
 
-    def _validate_msip0012(self, root: _ElementTree) -> MeemooSIPConstraintEvaluation:
-        """Validate the msip0012 constraint.
+    def _validate_msip12(self, root: _ElementTree) -> MeemooSIPConstraintEvaluation:
+        """Validate the msip12 constraint.
 
-        Checks if the SIP is valid against the msip0012 constraint.
+        Checks if the SIP is valid against the msip12 constraint.
 
         Returns:
-            MeemooSIPConstraintEvaluation: Containing the evaluation of constraint msip0012.
+            MeemooSIPConstraintEvaluation: Containing the evaluation of constraint msip12.
         """
         try:
             profile_type = root.xpath(
@@ -240,41 +240,41 @@ class MeemooSIPValidator:
             )[0]
         except IndexError:
             return MeemooSIPConstraintEvaluation(
-                msip0012,
+                msip12,
                 MeemooSIPConstraintEvaluationStatus.FAIL,
                 "METS does not contain a OTHERCONTENTINFORMATIONTYPE attribute. See: `mets/@csip:OTHERCONTENTINFORMATIONTYPE`",
             )
 
         if profile_type == "https://data.hetarchief.be/id/sip/2.1/basic":
             return MeemooSIPConstraintEvaluation(
-                msip0012,
+                msip12,
                 MeemooSIPConstraintEvaluationStatus.PASS,
                 "https://data.hetarchief.be/id/sip/2.1/basic",
             )
 
         elif profile_type == "https://data.hetarchief.be/id/sip/2.1/bibliographic":
             return MeemooSIPConstraintEvaluation(
-                msip0012,
+                msip12,
                 MeemooSIPConstraintEvaluationStatus.PASS,
                 "https://data.hetarchief.be/id/sip/2.1/bibliographic",
             )
 
         elif profile_type == "https://data.hetarchief.be/id/sip/2.1/material-artwork":
             return MeemooSIPConstraintEvaluation(
-                msip0012,
+                msip12,
                 MeemooSIPConstraintEvaluationStatus.PASS,
                 "https://data.hetarchief.be/id/sip/2.1/material-artwork",
             )
 
         elif profile_type == "https://data.hetarchief.be/id/sip/2.1/film":
             return MeemooSIPConstraintEvaluation(
-                msip0012,
+                msip12,
                 MeemooSIPConstraintEvaluationStatus.PASS,
                 "https://data.hetarchief.be/id/sip/2.1/film",
             )
         else:
             return MeemooSIPConstraintEvaluation(
-                msip0012,
+                msip12,
                 MeemooSIPConstraintEvaluationStatus.FAIL,
                 "The value of the OTHERCONTENTINFORMATIONTYPE attribute does not contain a valid value. See: `mets/@csip:OTHERCONTENTINFORMATIONTYPE`",
             )

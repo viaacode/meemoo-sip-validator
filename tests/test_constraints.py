@@ -12,12 +12,12 @@ from meemoo_sip_validator.constraints import (
     MeemooSIPConstraintSIPLevel,
     MeemooSIPConstraintXMLNodeType,
 )
-from meemoo_sip_validator.v21.constraints import msip0007, msip0150, msip0151, msip0153
+from meemoo_sip_validator.v21.constraints import msip7, msip150, msip151, msip153
 from meemoo_sip_validator.v21.validations import (
-    validate_msip0007,
-    validate_msip0150,
-    validate_msip0151,
-    validate_msip0153,
+    validate_msip7,
+    validate_msip150,
+    validate_msip151,
+    validate_msip153,
 )
 
 
@@ -53,145 +53,145 @@ class TestMeemooSIPConstraintEvaluation:
         assert evaluation.message is None
 
 
-def test_validate_msip0007_correct():
+def test_validate_msip7_correct():
     path = Path(
         "tests",
         "resources",
-        "msip0007",
+        "msip7",
         "correct_mets",
         "METS.xml",
     )
     root = etree.parse(path)
 
-    assert validate_msip0007(root) == MeemooSIPConstraintEvaluation(
-        msip0007, MeemooSIPConstraintEvaluationStatus.PASS
+    assert validate_msip7(root) == MeemooSIPConstraintEvaluation(
+        msip7, MeemooSIPConstraintEvaluationStatus.PASS
     )
 
 
-def test_validate_msip0007_missing():
+def test_validate_msip7_missing():
     path = Path(
         "tests",
         "resources",
-        "msip0007",
+        "msip7",
         "missing_mets",
         "METS.xml",
     )
     root = etree.parse(path)
 
-    assert validate_msip0007(root) == MeemooSIPConstraintEvaluation(
-        msip0007,
+    assert validate_msip7(root) == MeemooSIPConstraintEvaluation(
+        msip7,
         MeemooSIPConstraintEvaluationStatus.FAIL,
-        f"The element '{msip0007.xpath}' is not present",
+        f"The element '{msip7.xpath}' is not present",
     )
 
 
-def test_validate_msip0150_correct():
+def test_validate_msip150_correct():
     path = Path(
         "tests",
         "resources",
-        "msip0150",
+        "msip150",
         "correct_premis",
         "premis.xml",
     )
     root = etree.parse(path)
 
-    assert validate_msip0150(root) == MeemooSIPConstraintEvaluation(
-        msip0150,
+    assert validate_msip150(root) == MeemooSIPConstraintEvaluation(
+        msip150,
         MeemooSIPConstraintEvaluationStatus.PASS,
     )
 
 
-def test_validate_msip0150_missing():
+def test_validate_msip150_missing():
     path = Path(
         "tests",
         "resources",
-        "msip0150",
+        "msip150",
         "missing_premis",
         "premis.xml",
     )
     root = etree.parse(path)
 
-    assert validate_msip0150(root) == MeemooSIPConstraintEvaluation(
-        msip0150,
+    assert validate_msip150(root) == MeemooSIPConstraintEvaluation(
+        msip150,
         MeemooSIPConstraintEvaluationStatus.FAIL,
-        f"The element '{msip0150.xpath}' is not present",
+        f"The element '{msip150.xpath}' is not present",
     )
 
 
-def test_validate_msip0151_correct():
+def test_validate_msip151_correct():
     path = Path(
         "tests",
         "resources",
-        "msip0151",
+        "msip151",
         "correct_premis_version",
         "premis.xml",
     )
     root = etree.parse(path)
 
-    assert validate_msip0151(root) == MeemooSIPConstraintEvaluation(
-        msip0151,
+    assert validate_msip151(root) == MeemooSIPConstraintEvaluation(
+        msip151,
         MeemooSIPConstraintEvaluationStatus.PASS,
     )
 
 
-def test_validate_msip0151_missing():
+def test_validate_msip151_missing():
     path = Path(
         "tests",
         "resources",
-        "msip0151",
+        "msip151",
         "missing_premis_version",
         "premis.xml",
     )
     root = etree.parse(path)
 
-    assert validate_msip0151(root) == MeemooSIPConstraintEvaluation(
-        msip0151,
+    assert validate_msip151(root) == MeemooSIPConstraintEvaluation(
+        msip151,
         MeemooSIPConstraintEvaluationStatus.FAIL,
-        f"The attribute '{msip0151.xpath}' is not present",
+        f"The attribute '{msip151.xpath}' is not present",
     )
 
 
-def test_validate_msip0151_wrong():
+def test_validate_msip151_wrong():
     path = Path(
         "tests",
         "resources",
-        "msip0151",
+        "msip151",
         "wrong_premis_version",
         "premis.xml",
     )
     root = etree.parse(path)
 
-    assert validate_msip0151(root) == MeemooSIPConstraintEvaluation(
-        msip0151,
+    assert validate_msip151(root) == MeemooSIPConstraintEvaluation(
+        msip151,
         MeemooSIPConstraintEvaluationStatus.FAIL,
-        f"The value of '{msip0151.xpath}' is different than '3.0'",
+        f"The value of '{msip151.xpath}' is different than '3.0'",
     )
 
 
-def test_validate_msip0153_correct():
+def test_validate_msip153_correct():
     path = Path(
         "tests",
         "resources",
-        "msip0153",
+        "msip153",
         "correct_premis",
     )
 
-    assert validate_msip0153(path) == MeemooSIPConstraintEvaluation(
-        msip0153,
+    assert validate_msip153(path) == MeemooSIPConstraintEvaluation(
+        msip153,
         MeemooSIPConstraintEvaluationStatus.PASS,
     )
 
 
-def test_validate_msip0153_missing():
+def test_validate_msip153_missing():
     path = Path(
         "tests",
         "resources",
-        "msip0153",
+        "msip153",
         "missing_premis",
     )
 
-    assert validate_msip0153(path) == MeemooSIPConstraintEvaluation(
-        msip0153,
+    assert validate_msip153(path) == MeemooSIPConstraintEvaluation(
+        msip153,
         MeemooSIPConstraintEvaluationStatus.FAIL,
         f"The file {path.joinpath('metadata', 'preservation', 'premis.xml')} is not found",
     )
