@@ -3,7 +3,7 @@ from pathlib import Path
 from lxml.etree import _ElementTree
 
 from . import MeemooSIPConstraintEvaluation, MeemooSIPConstraintEvaluationStatus
-from .constraints import msip7, msip150, msip151, msip153
+from .constraints import msip7, msip151, msip152, msip154
 
 
 METS_NAMESPACES = {"mets": "http://www.loc.gov/METS/"}
@@ -27,22 +27,6 @@ def validate_msip7(root: _ElementTree) -> MeemooSIPConstraintEvaluation:
     )
 
 
-def validate_msip150(root: _ElementTree) -> MeemooSIPConstraintEvaluation:
-    premis_version = root.xpath(
-        msip150.xpath,
-        namespaces=PREMIS_NAMESPACES,
-    )
-    if len(premis_version) == 0:
-        return MeemooSIPConstraintEvaluation(
-            msip150,
-            MeemooSIPConstraintEvaluationStatus.FAIL,
-            f"The element '{msip150.xpath}' is not present",
-        )
-    return MeemooSIPConstraintEvaluation(
-        msip150, MeemooSIPConstraintEvaluationStatus.PASS
-    )
-
-
 def validate_msip151(root: _ElementTree) -> MeemooSIPConstraintEvaluation:
     premis_version = root.xpath(
         msip151.xpath,
@@ -52,29 +36,45 @@ def validate_msip151(root: _ElementTree) -> MeemooSIPConstraintEvaluation:
         return MeemooSIPConstraintEvaluation(
             msip151,
             MeemooSIPConstraintEvaluationStatus.FAIL,
-            f"The attribute '{msip151.xpath}' is not present",
-        )
-    if (premis_version)[0] != "3.0":
-        return MeemooSIPConstraintEvaluation(
-            msip151,
-            MeemooSIPConstraintEvaluationStatus.FAIL,
-            f"The value of '{msip151.xpath}' is different than '3.0'",
+            f"The element '{msip151.xpath}' is not present",
         )
     return MeemooSIPConstraintEvaluation(
         msip151, MeemooSIPConstraintEvaluationStatus.PASS
     )
 
 
-def validate_msip153(unzipped_folder: Path) -> MeemooSIPConstraintEvaluation:
+def validate_msip152(root: _ElementTree) -> MeemooSIPConstraintEvaluation:
+    premis_version = root.xpath(
+        msip152.xpath,
+        namespaces=PREMIS_NAMESPACES,
+    )
+    if len(premis_version) == 0:
+        return MeemooSIPConstraintEvaluation(
+            msip152,
+            MeemooSIPConstraintEvaluationStatus.FAIL,
+            f"The attribute '{msip152.xpath}' is not present",
+        )
+    if (premis_version)[0] != "3.0":
+        return MeemooSIPConstraintEvaluation(
+            msip152,
+            MeemooSIPConstraintEvaluationStatus.FAIL,
+            f"The value of '{msip152.xpath}' is different than '3.0'",
+        )
+    return MeemooSIPConstraintEvaluation(
+        msip152, MeemooSIPConstraintEvaluationStatus.PASS
+    )
+
+
+def validate_msip154(unzipped_folder: Path) -> MeemooSIPConstraintEvaluation:
     premis_path = unzipped_folder.joinpath(
-        msip153.get_relative_path().joinpath("premis.xml")
+        msip154.get_relative_path().joinpath("premis.xml")
     )
     if not premis_path.exists():
         return MeemooSIPConstraintEvaluation(
-            msip153,
+            msip154,
             MeemooSIPConstraintEvaluationStatus.FAIL,
             f"The file {premis_path} is not found",
         )
     return MeemooSIPConstraintEvaluation(
-        msip153, MeemooSIPConstraintEvaluationStatus.PASS
+        msip154, MeemooSIPConstraintEvaluationStatus.PASS
     )
