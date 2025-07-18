@@ -12,12 +12,23 @@ from meemoo_sip_validator.constraints import (
     MeemooSIPConstraintSIPLevel,
     MeemooSIPConstraintXMLNodeType,
 )
-from meemoo_sip_validator.v21.constraints import msip7, msip151, msip152, msip154
+from meemoo_sip_validator.v21.constraints import (
+    msip7,
+    msip151,
+    msip152,
+    msip154,
+)
 from meemoo_sip_validator.v21.validations import (
     validate_msip7,
     validate_msip151,
     validate_msip152,
     validate_msip154,
+)
+from meemoo_sip_validator.v21.basic.constraints import (
+    bacp22,
+)
+from meemoo_sip_validator.v21.basic.validations import (
+    validate_bacp22,
 )
 
 
@@ -194,4 +205,39 @@ def test_validate_msip154_missing():
         msip154,
         MeemooSIPConstraintEvaluationStatus.FAIL,
         f"The file {path.joinpath('metadata', 'preservation', 'premis.xml')} is not found",
+    )
+
+
+def test_validate_bacp22():
+    path = Path("tests", "resources", "bacp22", "correct", "dc+schema.xml")
+
+    root = etree.parse(path)
+
+    assert validate_bacp22(root) == MeemooSIPConstraintEvaluation(
+        bacp22,
+        MeemooSIPConstraintEvaluationStatus.PASS,
+    )
+
+
+def test_validate_bacp22_wrong_namespaces():
+    path = Path("tests", "resources", "bacp22", "wrong_namespaces", "dc+schema.xml")
+
+    root = etree.parse(path)
+
+    assert validate_bacp22(root) == MeemooSIPConstraintEvaluation(
+        bacp22,
+        MeemooSIPConstraintEvaluationStatus.FAIL,
+        f"The element '{bacp22.xpath}' does not declare the correct namespaces",
+    )
+
+
+def test_validate_bacp22_missing():
+    path = Path("tests", "resources", "bacp22", "wrong_missing", "dc+schema.xml")
+
+    root = etree.parse(path)
+
+    assert validate_bacp22(root) == MeemooSIPConstraintEvaluation(
+        bacp22,
+        MeemooSIPConstraintEvaluationStatus.FAIL,
+        f"The element '{bacp22.xpath}' is not present",
     )
