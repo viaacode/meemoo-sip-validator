@@ -183,9 +183,9 @@ class MeemooSIPValidator:
                 if validation["testing"]["outcome"] == "FAILED":
                     level = validation["level"]
                     if level == "MAY":
-                        status = MeemooSIPConstraintEvaluationStatus.WARNING
-                    elif level == "SHOULD":
                         status = MeemooSIPConstraintEvaluationStatus.INFO
+                    elif level == "SHOULD":
+                        status = MeemooSIPConstraintEvaluationStatus.WARNING
                     elif level == "MUST":
                         status = MeemooSIPConstraintEvaluationStatus.ERROR
 
