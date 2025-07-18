@@ -140,7 +140,7 @@ class MeemooSIPValidator:
             return False
 
         try:
-            root = etree.parse(Path(self.unzipped_path, "METS.xml"))
+            tree = etree.parse(Path(self.unzipped_path, "METS.xml"))
         except (etree.ParseError, OSError) as e:
             # Should not happen because we already validated E-ARK validity
             raise ValueError(f"METS could not be parsed: {e}.")
@@ -148,13 +148,13 @@ class MeemooSIPValidator:
         # Meemoo SIP validation
 
         # Necessary constraints msip11 and msip12 to determine profile
-        msip11_validation = self._validate_msip11(root)
+        msip11_validation = self._validate_msip11(tree)
         self.validation_report.add_constraint_evaluation(msip11_validation)
         if not msip11_validation.is_valid:
             # We can stop
             return False
 
-        msip12_validation = self._validate_msip12(root)
+        msip12_validation = self._validate_msip12(tree)
         self.validation_report.add_constraint_evaluation(msip12_validation)
         if not msip12_validation.is_valid:
             # We can stop
@@ -193,7 +193,7 @@ class MeemooSIPValidator:
                     MeemooSIPConstraintEvaluation(constraint, status)
                 )
 
-    def _validate_msip11(self, root: _ElementTree) -> MeemooSIPConstraintEvaluation:
+    def _validate_msip11(self, tree: _ElementTree) -> MeemooSIPConstraintEvaluation:
         """Validate the msip11 constraint.
 
         Checks if the SIP is valid against the msip11 constraint.
@@ -202,7 +202,7 @@ class MeemooSIPValidator:
             MeemooSIPConstraintEvaluation: Containing the evaluation of constraint msip11.
         """
         try:
-            content_information_type = root.xpath(
+            content_information_type = tree.xpath(
                 "/mets:mets/@csip:CONTENTINFORMATIONTYPE",
                 namespaces=NAMESPACES,
             )[0]
@@ -225,7 +225,7 @@ class MeemooSIPValidator:
             MeemooSIPConstraintEvaluationStatus.PASS,
         )
 
-    def _validate_msip12(self, root: _ElementTree) -> MeemooSIPConstraintEvaluation:
+    def _validate_msip12(self, tree: _ElementTree) -> MeemooSIPConstraintEvaluation:
         """Validate the msip12 constraint.
 
         Checks if the SIP is valid against the msip12 constraint.
@@ -234,7 +234,7 @@ class MeemooSIPValidator:
             MeemooSIPConstraintEvaluation: Containing the evaluation of constraint msip12.
         """
         try:
-            profile_type = root.xpath(
+            profile_type = tree.xpath(
                 "/mets:mets/@csip:OTHERCONTENTINFORMATIONTYPE",
                 namespaces=NAMESPACES,
             )[0]

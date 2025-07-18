@@ -72,9 +72,9 @@ def test_validate_msip7_correct():
         "correct_mets",
         "METS.xml",
     )
-    root = etree.parse(path)
+    tree = etree.parse(path)
 
-    assert validate_msip7(root) == MeemooSIPConstraintEvaluation(
+    assert validate_msip7(tree) == MeemooSIPConstraintEvaluation(
         msip7, MeemooSIPConstraintEvaluationStatus.PASS
     )
 
@@ -87,9 +87,9 @@ def test_validate_msip7_missing():
         "missing_mets",
         "METS.xml",
     )
-    root = etree.parse(path)
+    tree = etree.parse(path)
 
-    assert validate_msip7(root) == MeemooSIPConstraintEvaluation(
+    assert validate_msip7(tree) == MeemooSIPConstraintEvaluation(
         msip7,
         MeemooSIPConstraintEvaluationStatus.FAIL,
         f"The element '{msip7.xpath}' is not present",
@@ -104,9 +104,9 @@ def test_validate_msip151_correct():
         "correct_premis",
         "premis.xml",
     )
-    root = etree.parse(path)
+    tree = etree.parse(path)
 
-    assert validate_msip151(root) == MeemooSIPConstraintEvaluation(
+    assert validate_msip151(tree) == MeemooSIPConstraintEvaluation(
         msip151,
         MeemooSIPConstraintEvaluationStatus.PASS,
     )
@@ -120,9 +120,9 @@ def test_validate_msip151_missing():
         "missing_premis",
         "premis.xml",
     )
-    root = etree.parse(path)
+    tree = etree.parse(path)
 
-    assert validate_msip151(root) == MeemooSIPConstraintEvaluation(
+    assert validate_msip151(tree) == MeemooSIPConstraintEvaluation(
         msip151,
         MeemooSIPConstraintEvaluationStatus.FAIL,
         f"The element '{msip151.xpath}' is not present",
@@ -137,9 +137,9 @@ def test_validate_msip152_correct():
         "correct_premis_version",
         "premis.xml",
     )
-    root = etree.parse(path)
+    tree = etree.parse(path)
 
-    assert validate_msip152(root) == MeemooSIPConstraintEvaluation(
+    assert validate_msip152(tree) == MeemooSIPConstraintEvaluation(
         msip152,
         MeemooSIPConstraintEvaluationStatus.PASS,
     )
@@ -153,9 +153,9 @@ def test_validate_msip152_missing():
         "missing_premis_version",
         "premis.xml",
     )
-    root = etree.parse(path)
+    tree = etree.parse(path)
 
-    assert validate_msip152(root) == MeemooSIPConstraintEvaluation(
+    assert validate_msip152(tree) == MeemooSIPConstraintEvaluation(
         msip152,
         MeemooSIPConstraintEvaluationStatus.FAIL,
         f"The attribute '{msip152.xpath}' is not present",
@@ -170,9 +170,9 @@ def test_validate_msip152_wrong():
         "wrong_premis_version",
         "premis.xml",
     )
-    root = etree.parse(path)
+    tree = etree.parse(path)
 
-    assert validate_msip152(root) == MeemooSIPConstraintEvaluation(
+    assert validate_msip152(tree) == MeemooSIPConstraintEvaluation(
         msip152,
         MeemooSIPConstraintEvaluationStatus.FAIL,
         f"The value of '{msip152.xpath}' is different than '3.0'",
@@ -211,9 +211,9 @@ def test_validate_msip154_missing():
 def test_validate_bacp22():
     path = Path("tests", "resources", "bacp22", "correct", "dc+schema.xml")
 
-    root = etree.parse(path)
+    tree = etree.parse(path)
 
-    assert validate_bacp22(root) == MeemooSIPConstraintEvaluation(
+    assert validate_bacp22(tree) == MeemooSIPConstraintEvaluation(
         bacp22,
         MeemooSIPConstraintEvaluationStatus.PASS,
     )
@@ -222,9 +222,9 @@ def test_validate_bacp22():
 def test_validate_bacp22_wrong_namespaces():
     path = Path("tests", "resources", "bacp22", "wrong_namespaces", "dc+schema.xml")
 
-    root = etree.parse(path)
+    tree = etree.parse(path)
 
-    assert validate_bacp22(root) == MeemooSIPConstraintEvaluation(
+    assert validate_bacp22(tree) == MeemooSIPConstraintEvaluation(
         bacp22,
         MeemooSIPConstraintEvaluationStatus.FAIL,
         f"The element '{bacp22.xpath}' does not declare the correct namespaces",
@@ -234,9 +234,9 @@ def test_validate_bacp22_wrong_namespaces():
 def test_validate_bacp22_missing():
     path = Path("tests", "resources", "bacp22", "wrong_missing", "dc+schema.xml")
 
-    root = etree.parse(path)
+    tree = etree.parse(path)
 
-    assert validate_bacp22(root) == MeemooSIPConstraintEvaluation(
+    assert validate_bacp22(tree) == MeemooSIPConstraintEvaluation(
         bacp22,
         MeemooSIPConstraintEvaluationStatus.FAIL,
         f"The element '{bacp22.xpath}' is not present",

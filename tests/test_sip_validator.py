@@ -37,9 +37,9 @@ class TestMeemooSipValidator:
             "correct_contentinformationtype",
             "METS.xml",
         )
-        root = etree.parse(path)
+        tree = etree.parse(path)
         assert meemoo_sip_validator._validate_msip11(
-            root
+            tree
         ) == MeemooSIPConstraintEvaluation(
             msip11,
             MeemooSIPConstraintEvaluationStatus.PASS,
@@ -53,9 +53,9 @@ class TestMeemooSipValidator:
             "missing_contentinformationtype",
             "METS.xml",
         )
-        root = etree.parse(path)
+        tree = etree.parse(path)
         assert meemoo_sip_validator._validate_msip11(
-            root
+            tree
         ) == MeemooSIPConstraintEvaluation(
             msip11,
             MeemooSIPConstraintEvaluationStatus.FAIL,
@@ -70,9 +70,9 @@ class TestMeemooSipValidator:
             "wrong_contentinformationtype",
             "METS.xml",
         )
-        root = etree.parse(path)
+        tree = etree.parse(path)
         assert meemoo_sip_validator._validate_msip11(
-            root
+            tree
         ) == MeemooSIPConstraintEvaluation(
             msip11,
             MeemooSIPConstraintEvaluationStatus.FAIL,
@@ -97,10 +97,10 @@ class TestMeemooSipValidator:
             "METS.xml",
         )
 
-        root = etree.parse(path)
+        tree = etree.parse(path)
 
         assert meemoo_sip_validator._validate_msip12(
-            root
+            tree
         ) == MeemooSIPConstraintEvaluation(
             msip12,
             MeemooSIPConstraintEvaluationStatus.PASS,
@@ -116,10 +116,10 @@ class TestMeemooSipValidator:
             "METS.xml",
         )
 
-        root = etree.parse(path)
+        tree = etree.parse(path)
 
         assert meemoo_sip_validator._validate_msip12(
-            root
+            tree
         ) == MeemooSIPConstraintEvaluation(
             msip12,
             MeemooSIPConstraintEvaluationStatus.FAIL,
@@ -135,10 +135,10 @@ class TestMeemooSipValidator:
             "METS.xml",
         )
 
-        root = etree.parse(path)
+        tree = etree.parse(path)
 
         assert meemoo_sip_validator._validate_msip12(
-            root
+            tree
         ) == MeemooSIPConstraintEvaluation(
             msip12,
             MeemooSIPConstraintEvaluationStatus.FAIL,

@@ -14,8 +14,8 @@ DC_SCHEMA_NAMESPACES = {
 }
 
 
-def validate_bacp22(root: _ElementTree) -> MeemooSIPConstraintEvaluation:
-    metadata_element = root.getroot()
+def validate_bacp22(tree: _ElementTree) -> MeemooSIPConstraintEvaluation:
+    metadata_element = tree.getroot()
     if metadata_element.tag != f"{{{DC_SCHEMA_NAMESPACES[None]}}}{bacp22.xpath}":
         return MeemooSIPConstraintEvaluation(
             bacp22,

@@ -13,8 +13,8 @@ PREMIS_NAMESPACES = {
 }
 
 
-def validate_msip7(root: _ElementTree) -> MeemooSIPConstraintEvaluation:
-    mets_root = root.xpath(msip7.xpath, namespaces=METS_NAMESPACES)
+def validate_msip7(tree: _ElementTree) -> MeemooSIPConstraintEvaluation:
+    mets_root = tree.xpath(msip7.xpath, namespaces=METS_NAMESPACES)
 
     if len(mets_root) == 0:
         return MeemooSIPConstraintEvaluation(
@@ -27,8 +27,8 @@ def validate_msip7(root: _ElementTree) -> MeemooSIPConstraintEvaluation:
     )
 
 
-def validate_msip151(root: _ElementTree) -> MeemooSIPConstraintEvaluation:
-    premis_version = root.xpath(
+def validate_msip151(tree: _ElementTree) -> MeemooSIPConstraintEvaluation:
+    premis_version = tree.xpath(
         msip151.xpath,
         namespaces=PREMIS_NAMESPACES,
     )
@@ -43,8 +43,8 @@ def validate_msip151(root: _ElementTree) -> MeemooSIPConstraintEvaluation:
     )
 
 
-def validate_msip152(root: _ElementTree) -> MeemooSIPConstraintEvaluation:
-    premis_version = root.xpath(
+def validate_msip152(tree: _ElementTree) -> MeemooSIPConstraintEvaluation:
+    premis_version = tree.xpath(
         msip152.xpath,
         namespaces=PREMIS_NAMESPACES,
     )
