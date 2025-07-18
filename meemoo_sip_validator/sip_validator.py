@@ -25,8 +25,8 @@ class EARKValidation:
     """A sort of wrapper around the E-ARK validation.
 
     Attributes:
-        _report - The E-ARK validation report
-        _is_valid - A boolean specifying  if the validation was successful
+        _report: The E-ARK validation report.
+        _is_valid: A boolean specifying  if the validation was successful.
     """
 
     def __init__(self):
@@ -58,12 +58,14 @@ class ValidationReport:
 
     Attributes:
         - _constraint_evaluations: A list of evaluations of constraints.
+        - _profile: The profile version, e.g. "https://data.hetarchief.be/id/sip/2.1/film".
     """
 
     def __init__(
         self,
     ):
         self._constraint_evaluations: list[MeemooSIPConstraintEvaluation] = []
+        self._profile = None
 
     @property
     def constraint_evaluations(self) -> list[MeemooSIPConstraintEvaluation]:
@@ -79,9 +81,21 @@ class ValidationReport:
     ):
         self.constraint_evaluations.extend(constraint_evaluations)
 
+    @property
+    def profile(self) -> str | None:
+        return self._profile
+
+    @profile.setter
+    def profile(self, profile) -> str:
+        self._profile = profile
+
     def to_dict(self) -> dict:
         evals = [asdict(e) for e in self.constraint_evaluations]
-        return {"constraint_evaluations": evals, "is_valid": self.is_valid()}
+        return {
+            "constraint_evaluations": evals,
+            "is_valid": self.is_valid(),
+            "profile": self.profile,
+        }
 
     def is_valid(self) -> bool:
         for constraint_eval in self.constraint_evaluations:
@@ -159,6 +173,9 @@ class MeemooSIPValidator:
         if not msip12_validation.is_valid:
             # We can stop
             return False
+
+        # Set profile
+        self.validation_report.profile = msip12_validation.message
 
         self._map_eark_contraints()
 
