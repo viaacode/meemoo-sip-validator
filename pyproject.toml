@@ -25,3 +25,7 @@ dev = [
 
 [tool.setuptools.package-data]
 "meemoo_sip_validator" = ["assets/*.xml"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-vv"
