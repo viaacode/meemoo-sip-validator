@@ -21,10 +21,10 @@ def parse_xml_file(path: Path) -> Success | Error:
             code=Code.xsd_valid,
             message=f"Parsed XML: {path}",
         )
-    except:
+    except ET.ParseError as e:
         return Error(
             code=Code.xsd_valid,
-            message=f"Could not parse XML: {path}",
+            message=f"Could not parse XML - {e}. File: {path}",
             severity=Severity.ERROR,
         )
 

@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 
 import pytest
 
@@ -11,11 +12,10 @@ sip_paths = [p for p in sip_paths if "ftp_sidecar" not in str(p)]
 
 unzipped_paths = [next(path.iterdir()) for path in sip_paths]
 
-from rich import print
-
 
 @pytest.mark.parametrize("unzipped_path", unzipped_paths)
 def test_examples(unzipped_path: Path):
     report = validate_to_report(unzipped_path)
-    print(report)
+    report_dumped = report.model_dump()
+    print(json.dumps(report_dumped, indent=1))
     assert report.outcome == "PASSED"
