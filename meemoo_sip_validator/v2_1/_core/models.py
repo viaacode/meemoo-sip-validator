@@ -3,6 +3,15 @@ from enum import StrEnum, auto
 
 from pydantic import BaseModel
 
+# Make sip models available through this module
+from eark_models.sip.v2_2_0 import SIP as SIP
+from eark_models.premis.v3_0 import Premis as Premis
+import eark_models.premis.v3_0 as premis
+
+_ = premis  # fixes unused import error
+
+from .codes import Code
+
 
 class Severity(StrEnum):
     ERROR = auto()
@@ -12,14 +21,14 @@ class Severity(StrEnum):
 
 class Error(BaseModel):
     result: Literal["error"] = "error"
-    code: str
+    code: Code
     message: str
     severity: Severity
 
 
 class Success(BaseModel):
     result: Literal["success"] = "success"
-    code: str
+    code: Code
     message: str
 
 

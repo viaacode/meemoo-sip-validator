@@ -1,8 +1,20 @@
-from typing import Any
+from typing import Any, Self
 from pathlib import Path
 
-from .models import Report
+from pydantic.dataclasses import dataclass
+
+from eark_models.utils import XMLBase
+
+from .models import Report, SIP
 from . import xsd
+from .premis.reports import validate as validate_premis
+
+
+@dataclass
+class Dummy(XMLBase):
+    @classmethod
+    def from_xml(cls, path: Path) -> Self:
+        return cls()
 
 
 def validate_to_report(unzipped_path) -> Report:
@@ -10,7 +22,14 @@ def validate_to_report(unzipped_path) -> Report:
     # validator = EARKSIPValidator()
     # return validator.validate(unzipped_path)
 
-    return xsd.validate(unzipped_path)
+    xsd_report = xsd.validate_basic(unzipped_path)
+    if xsd_report.outcome == "FAILED":
+        return xsd_report
+
+    sip = SIP[Dummy].from_path(unzipped_path, Dummy)
+
+    premis_report = validate_premis(sip)
+    return xsd_report + premis_report
 
 
 def validate(unzipped_path: Path) -> dict[str, Any]:
