@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal, Generator
 from enum import StrEnum, auto
 
 from pydantic import BaseModel
@@ -45,3 +45,11 @@ class Report(BaseModel):
             for result in self.results
         )
         return "FAILED" if failed else "PASSED"
+
+    @property
+    def errors(self) -> Generator[Error, None, None]:
+        return (result for result in self.results if isinstance(result, Error))
+
+    @property
+    def successes(self) -> Generator[Success, None, None]:
+        return (result for result in self.results if isinstance(result, Success))

@@ -1,4 +1,5 @@
-from .. import utils
+from meemoo_sip_validator.v2_1._core.codes import Code
+from tests.v2_1 import utils
 
 
 from meemoo_sip_validator.v2_1._core.premis.reports import (
@@ -28,3 +29,4 @@ def test_duplicate_identifier():
     report = report_unique_object_identifiers(sip)
 
     assert report.outcome == "FAILED"
+    assert next(report.errors).code == Code.unique_object_identifiers
