@@ -23,6 +23,33 @@ def report_unique_object_identifiers(sip: SIP) -> Report:
     return Report(results=[result])
 
 
+def report_object_identifier_type(sip: SIP) -> Report:
+    premises = helpers.get_all_premis_models(sip)
+    all_object_identifiers = helpers.get_all_object_identifiers(premises)
+
+    errors = []
+    for identifier in all_object_identifiers:
+        if identifier.type.text not in thesauri.object_identifier_types:
+            error = Error(
+                code=Code.object_identifier_type_thesauri,
+                message=f"Usage of invalid PREMIS object identifier type: '{identifier.type.text}'",
+                severity=Severity.ERROR,
+            )
+            errors.append(error)
+
+    if len(errors) != 0:
+        return Report(results=errors)
+
+    return Report(
+        results=[
+            Success(
+                code=Code.object_identifier_type_thesauri,
+                message="Validated PREMIS object identifier types.",
+            )
+        ]
+    )
+
+
 def report_valid_event_types(sip: SIP) -> Report:
     premises = helpers.get_all_premis_models(sip)
     all_events = [event for premis in premises for event in premis.events]
@@ -31,7 +58,7 @@ def report_valid_event_types(sip: SIP) -> Report:
     for event in all_events:
         if event.type.text not in thesauri.event_types:
             error = Error(
-                code=Code.event_types_thesauri,
+                code=Code.event_type_thesauri,
                 message=f"Usage of non-existant event type '{event.type.text}' on event '{event.identifier.value}'. PREMIS event type must be one of ({', '.join(thesauri.event_types)})",
                 severity=Severity.ERROR,
             )
@@ -43,7 +70,7 @@ def report_valid_event_types(sip: SIP) -> Report:
     return Report(
         results=[
             Success(
-                code=Code.event_types_thesauri,
+                code=Code.event_type_thesauri,
                 message=f"Validated PREMIS Event types",
             )
         ]
@@ -102,7 +129,7 @@ def report_relationships_type(sip: SIP) -> Report:
     for relationship in all_relationships:
         if relationship.type.text not in thesauri.relationship_types:
             error = Error(
-                code=Code.event_types_thesauri,
+                code=Code.event_type_thesauri,
                 message=f"Usage of non-existant relationship type '{relationship.type.text}'. PREMIS  type must be one of ({', '.join(thesauri.event_types)})",
                 severity=Severity.ERROR,
             )
@@ -111,7 +138,7 @@ def report_relationships_type(sip: SIP) -> Report:
     return Report(
         results=[
             Success(
-                code=Code.event_types_thesauri,
+                code=Code.event_type_thesauri,
                 message="PREMIS relationship types validated",
             )
         ]
@@ -120,6 +147,7 @@ def report_relationships_type(sip: SIP) -> Report:
 
 checks: list[Callable[[SIP], Report]] = [
     report_unique_object_identifiers,
+    report_object_identifier_type,
     report_valid_event_types,
     report_related_objects_valid,
     report_relationships_type,

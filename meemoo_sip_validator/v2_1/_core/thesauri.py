@@ -27,3 +27,34 @@ event_types = [
 relationship_types = [
     "structural",
 ]
+
+object_identifier_types = [
+    # Main keys
+    "UUID",
+    "MEEMOO-LOCAL-ID",
+    "MEEMOO-PID",
+    # Overige lokale CP ID - https://developer.meemoo.be/docs/metadata/viaa/algemeen.html#mogelijke-sleutels
+    "Acquisition_number",
+    "Alternative_number",
+    "Analoge_drager",
+    "Api",
+    "Ardome",
+    "Basis",
+    "Bestandsnaam",
+    "DataPID",
+    "Historical_carrier",
+    "Historical_record_number",
+    "Inventarisnummer",
+    "MEDIA_ID",
+    "Object_number",
+    "Pdf",
+    "PersistenteURI_Record",
+    "PersistenteURI_VKC_Record",
+    "PersistenteURI_VKC_Werk",
+    "PersistenteURI_Werk",
+    "Priref",
+    "Vaf_ID",
+    "Topstuk_ID",
+    "Word_ID",
+    "WorkPID",
+]
