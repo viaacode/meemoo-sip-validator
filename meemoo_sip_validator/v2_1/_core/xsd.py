@@ -2,7 +2,7 @@ from importlib import resources
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
-from xmlschema import XMLSchema
+from xmlschema import XMLSchema, XMLSchemaException
 
 from .models import Report, Success, Error, Severity
 from .codes import Code
@@ -14,7 +14,6 @@ xlink_xsd_path = str(assets.joinpath("xlink-2.xsd.xml"))
 
 
 def parse_xml_file(path: Path) -> Success | Error:
-    # TODO: add code
     try:
         ET.parse(path)
         return Success(
@@ -34,27 +33,22 @@ def parse_xml_files(paths: list[Path]) -> Report:
 
 
 def valiate_files(paths: list[Path], schema: XMLSchema) -> Report:
+    code = Code.xsd_valid
     invalid_xsd_paths = [path for path in paths if not schema.is_valid(path)]
 
+    errors: list[Error | Success] = []
     if len(invalid_xsd_paths) != 0:
-        return Report(
-            results=[
-                Error(
-                    code=Code.xsd_valid,
-                    message=f"XSD validation failed on {path}.",
-                    severity=Severity.ERROR,
+        for path in invalid_xsd_paths:
+            try:
+                schema.validate(path)
+            except XMLSchemaException as e:
+                message = f"XSD validation failed on {path} - {e}"
+                errors.append(
+                    Error(code=code, message=message, severity=Severity.ERROR)
                 )
-                for path in invalid_xsd_paths
-            ]
-        )
 
-    return Report(
-        results=[
-            Success(
-                code=Code.xsd_valid, message="Structural XML files validated using XSD."
-            )
-        ]
-    )
+    message = f"Structural XML files validated using XSD: {schema.name}"
+    return Report(results=[Success(code=code, message=message)])
 
 
 def validate_structural(unzipped_path: Path) -> Report:
