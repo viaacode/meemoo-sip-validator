@@ -43,7 +43,7 @@ def report_object_identifier_type(sip: SIP) -> Report:
     return Report(results=[success])
 
 
-def report_valid_event_types(sip: SIP) -> Report:
+def report_event_type(sip: SIP) -> Report:
     code = Code.event_type_thesauri
     premises = helpers.get_all_premis_models(sip)
     all_events = [event for premis in premises for event in premis.events]
@@ -61,7 +61,7 @@ def report_valid_event_types(sip: SIP) -> Report:
     return Report(results=[Success(code=code, message="Validated PREMIS Event types")])
 
 
-def report_related_objects_valid(sip: SIP) -> Report:
+def report_related_objects_identifier(sip: SIP) -> Report:
     code = Code.related_object_identifier_valid
     premises = helpers.get_all_premis_models(sip)
     # TODO: is it possible to have a relationship to a "temporary" object created by an event?
@@ -121,8 +121,8 @@ def report_relationships_type(sip: SIP) -> Report:
 checks: list[Callable[[SIP], Report]] = [
     report_unique_object_identifiers,
     report_object_identifier_type,
-    report_valid_event_types,
-    report_related_objects_valid,
+    report_event_type,
+    report_related_objects_identifier,
     report_relationships_type,
 ]
 
