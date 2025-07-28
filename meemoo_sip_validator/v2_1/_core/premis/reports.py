@@ -234,6 +234,28 @@ def check_relationships_sub_type_per_object_type(
     )
 
 
+def check_agent_identifier_uniqueness(sip: SIP) -> RuleResult[premis.AgentIdentifier]:
+    premises = helpers.get_all_premis_models(sip)
+    all_agent_identifiers = [
+        identifier
+        for premis in premises
+        for agent in premis.agents
+        for identifier in agent.identifiers
+    ]
+    duplicate_identifiers = [
+        identifier
+        for identifier in all_agent_identifiers
+        if len([_id for _id in all_agent_identifiers if _id == identifier]) != 1
+    ]
+
+    return RuleResult(
+        code=Code.agent_identifier_uniqueness,
+        failed_items=duplicate_identifiers,
+        fail_msg=lambda identifier: f"Usage of duplicate agent identifier ({identifier.type.text}, {identifier.value.text}). PREMIS agent identifiers must be unique.",
+        success_msg="Validated PREMIS agent identifier uniqueness.",
+    )
+
+
 checks: list[Callable[[SIP], RuleResult]] = [
     check_object_identifier_types,
     check_object_identifiers_uniqueness,
@@ -246,6 +268,7 @@ checks: list[Callable[[SIP], RuleResult]] = [
     check_event_outcome,
     check_event_linking_agent_cardinality,
     check_event_linking_object_cardinality,
+    check_agent_identifier_uniqueness,
 ]
 
 
