@@ -24,6 +24,12 @@ event_types = [
     "creation",
 ]
 
+event_outcomes = [
+    "fail",
+    "success",
+    "warning",
+]
+
 relationship_types = [
     "structural",
 ]

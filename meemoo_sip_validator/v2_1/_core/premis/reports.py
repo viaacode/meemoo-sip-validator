@@ -53,7 +53,7 @@ def check_event_types(sip: SIP) -> RuleResult[premis.Event]:
     return RuleResult(
         code=Code.event_type_thesauri,
         failed_items=invalid_events,
-        fail_msg=lambda event: f"Usage of non-existant event type '{event.type.text}' on event '{event.identifier.value}'. PREMIS event type must be one of ({', '.join(thesauri.event_types)})",
+        fail_msg=lambda event: f"Usage of non-existant event type '{event.type.text}' on event '{event.identifier.value.text}'. PREMIS event type must be one of ({', '.join(thesauri.event_types)})",
         success_msg="Validated PREMIS event types",
     )
 
@@ -74,6 +74,35 @@ def check_event_identifier_uniqueness(sip: SIP) -> RuleResult[premis.EventIdenti
         failed_items=duplicate_identifiers,
         fail_msg=lambda identifier: f"Usage of duplicate event identifier ({identifier.type.text}, {identifier.value.text}). PREMIS event identifiers must be unique.",
         success_msg="Validated PREMIS event identifier uniqueness.",
+    )
+
+
+def check_event_outcome(sip: SIP) -> RuleResult[premis.Event]:
+    premises = helpers.get_all_premis_models(sip)
+    all_events = [event for premis in premises for event in premis.events]
+    invalid_events = [
+        event
+        for event in all_events
+        for outcome_information in event.outcome_information
+        if outcome_information.outcome is None
+        or outcome_information.outcome.text not in thesauri.event_outcomes
+    ]
+
+    def invalid_outcomes(event: premis.Event) -> str:
+        outcomes = [
+            outcome_information.outcome
+            for outcome_information in event.outcome_information
+            if outcome_information.outcome not in thesauri.event_outcomes
+        ]
+        return ",".join(
+            [outcome.text if outcome else "<MISSING>" for outcome in outcomes]
+        )
+
+    return RuleResult(
+        code=Code.event_type_thesauri,
+        failed_items=invalid_events,
+        fail_msg=lambda event: f"Usage of non-existant event outcome(s) '{invalid_outcomes(event)}' on event ({event.identifier.type.text}, {event.identifier.value.text}). Outcome must be one of ({','.join(thesauri.event_outcomes)})",
+        success_msg="Validated PREMIS event types",
     )
 
 
@@ -184,6 +213,7 @@ checks: list[Callable[[SIP], RuleResult]] = [
     check_relationships_sub_type_per_object_type,
     check_event_types,
     check_event_identifier_uniqueness,
+    check_event_outcome,
 ]
 
 
