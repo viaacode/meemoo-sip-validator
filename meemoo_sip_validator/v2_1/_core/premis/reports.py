@@ -271,6 +271,42 @@ def check_agent_type(sip: SIP) -> RuleResult[premis.Agent]:
     )
 
 
+def check_fixity_message_digest_algorithm(sip: SIP) -> RuleResult[premis.File]:
+    premises = helpers.get_all_premis_models(sip)
+    all_files = [
+        object
+        for premis in premises
+        for object in premis.objects
+        if object.xsi_type == "{http://www.loc.gov/premis/v3}file"
+    ]
+    invalid_files = [
+        file
+        for file in all_files
+        for characteristics in file.characteristics
+        for fixity in characteristics.fixity
+        if fixity.message_digest_algorithm.text not in thesauri.supported_hashes
+    ]
+
+    def get_unsupported_algorithms(file: premis.File) -> str:
+        algorithms = [
+            fixity.message_digest_algorithm
+            for characteristics in file.characteristics
+            for fixity in characteristics.fixity
+        ]
+        return ",".join(
+            algorithm.text
+            for algorithm in algorithms
+            if algorithm.text not in thesauri.supported_hashes
+        )
+
+    return RuleResult(
+        code=Code.fixity_message_digest_algorithm,
+        failed_items=invalid_files,
+        fail_msg=lambda file: f"Usage of non-supported message digest algorithm(s) '{get_unsupported_algorithms(file)}'. PREMIS message digest algorithm must be one of ({','.join(thesauri.supported_hashes)}).",
+        success_msg="Validated supported PREMIS fixity message digest algorithm.",
+    )
+
+
 checks: list[Callable[[SIP], RuleResult]] = [
     check_object_identifier_types,
     check_object_identifiers_uniqueness,
@@ -285,6 +321,7 @@ checks: list[Callable[[SIP], RuleResult]] = [
     check_event_linking_object_cardinality,
     check_agent_identifier_uniqueness,
     check_agent_type,
+    check_fixity_message_digest_algorithm,
 ]
 
 

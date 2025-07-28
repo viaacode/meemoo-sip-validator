@@ -107,3 +107,7 @@ agent_types = [
     "hardware",
     "software",
 ]
+
+supported_hashes = [
+    "MD5",
+]
