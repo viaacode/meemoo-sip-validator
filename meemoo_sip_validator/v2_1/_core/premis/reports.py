@@ -38,7 +38,7 @@ def check_object_identifiers_uniqueness(
     return RuleResult(
         code=Code.unique_object_identifiers,
         failed_items=duplicate_identifiers,
-        fail_msg=lambda id: f"Usage of non-unique PREMIS object identifier: {id}.",
+        fail_msg=lambda identifier: f"Usage of duplicate PREMIS object identifier: ({identifier.type.text}, {identifier.value.text}).",
         success_msg="PREMIS object identifier uniqueness validated.",
     )
 
@@ -54,7 +54,26 @@ def check_event_types(sip: SIP) -> RuleResult[premis.Event]:
         code=Code.event_type_thesauri,
         failed_items=invalid_events,
         fail_msg=lambda event: f"Usage of non-existant event type '{event.type.text}' on event '{event.identifier.value}'. PREMIS event type must be one of ({', '.join(thesauri.event_types)})",
-        success_msg="Validated PREMIS Event types",
+        success_msg="Validated PREMIS event types",
+    )
+
+
+def check_event_identifier_uniqueness(sip: SIP) -> RuleResult[premis.EventIdentifier]:
+    premises = helpers.get_all_premis_models(sip)
+    all_events_identifiers = [
+        event.identifier for premis in premises for event in premis.events
+    ]
+    duplicate_identifiers = [
+        identifier
+        for identifier in all_events_identifiers
+        if len([_id for _id in all_events_identifiers if _id == identifier]) != 1
+    ]
+
+    return RuleResult(
+        code=Code.event_type_thesauri,
+        failed_items=duplicate_identifiers,
+        fail_msg=lambda identifier: f"Usage of duplicate event identifier ({identifier.type.text}, {identifier.value.text}). PREMIS event identifiers must be unique.",
+        success_msg="Validated PREMIS event identifier uniqueness.",
     )
 
 
@@ -82,7 +101,7 @@ def check_related_objects_identifier(
     return RuleResult(
         code=Code.related_object_identifier_valid,
         failed_items=non_existant_object_identifiers,
-        fail_msg=lambda id: f"Usage of PREMIS related object identifier with invalid identifier {id}.",
+        fail_msg=lambda identifier: f"Usage of PREMIS related object identifier with non-existant identifier ({identifier.type.text}, {identifier.value.text}).",
         success_msg="Existance of PREMIS objects used as related objects validated.",
     )
 
@@ -164,6 +183,7 @@ checks: list[Callable[[SIP], RuleResult]] = [
     check_relationships_sub_type,
     check_relationships_sub_type_per_object_type,
     check_event_types,
+    check_event_identifier_uniqueness,
 ]
 
 
