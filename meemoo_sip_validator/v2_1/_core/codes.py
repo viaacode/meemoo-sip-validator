@@ -18,4 +18,5 @@ class Code(str, CodeEnum):
     related_object_identifier_valid = auto()
     relationship_type_thesauri = auto()
     relationship_sub_type_thesauri = auto()
+    relationship_sub_type_per_object_thesauri = auto()
     event_type_thesauri = auto()

@@ -28,33 +28,40 @@ relationship_types = [
     "structural",
 ]
 
-entity_relationship_sub_types = [
-    "is represented by",
-    "has master copy",
-    "has mezzanine copy",
-    "has access copy",
-    "has transcription copy",
-    "has carrier copy",
-]
+relationship_sub_types_per_object_type = {
+    "{http://www.loc.gov/premis/v3}intellectualEntity": [
+        "is represented by",
+        "has master copy",
+        "has mezzanine copy",
+        "has access copy",
+        "has transcription copy",
+        "has carrier copy",
+    ],
+    "{http://www.loc.gov/premis/v3}representation": [
+        "represents",
+        "is master copy of",
+        "is mezzanine copy of",
+        "is access copy of",
+        "is transcription copy of",
+        "is carrier copy of",
+        "includes",
+    ],
+    "{http://www.loc.gov/premis/v3}file": [
+        "is included in",
+    ],
+    "{http://www.loc.gov/premis/v3}bitstream": [],
+}
 
-representation_sub_types = [
-    "represents",
-    "is master copy of",
-    "is mezzanine copy of",
-    "is access copy of",
-    "is transcription copy of",
-    "is carrier copy of",
-]
-
-file_relationship_sub_type = [
-    "is included in",
-    "includes",
-]
 
 relationship_sub_types = (
-    entity_relationship_sub_types
-    + representation_sub_types
-    + file_relationship_sub_type
+    relationship_sub_types_per_object_type[
+        "{http://www.loc.gov/premis/v3}intellectualEntity"
+    ]
+    + relationship_sub_types_per_object_type[
+        "{http://www.loc.gov/premis/v3}representation"
+    ]
+    + relationship_sub_types_per_object_type["{http://www.loc.gov/premis/v3}file"]
+    + relationship_sub_types_per_object_type["{http://www.loc.gov/premis/v3}bitstream"]
 )
 
 object_identifier_types = [
