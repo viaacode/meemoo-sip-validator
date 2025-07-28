@@ -32,4 +32,4 @@ def test_duplicate_identifier():
 
     assert report.outcome == "FAILED"
     fail_codes = [failure.code for failure in report.failures]
-    assert Code.unique_object_identifiers in fail_codes
+    assert Code.object_identifiers_uniqueness in fail_codes

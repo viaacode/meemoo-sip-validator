@@ -1,5 +1,5 @@
 from typing import Literal, Generator, Callable
-from enum import StrEnum, auto
+from enum import Enum
 
 from pydantic import BaseModel
 
@@ -12,10 +12,10 @@ from .codes import Code
 _ = premis  # fixes unused import error
 
 
-class Severity(StrEnum):
-    ERROR = auto()
-    WARNING = auto()
-    INFO = auto()
+class Severity(str, Enum):
+    ERROR = "ERROR"
+    WARNING = "WARNING"
+    INFO = "INFO"
 
 
 class Failure(BaseModel):

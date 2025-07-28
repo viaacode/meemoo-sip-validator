@@ -36,7 +36,7 @@ def check_object_identifiers_uniqueness(
     ]
 
     return RuleResult(
-        code=Code.unique_object_identifiers,
+        code=Code.object_identifiers_uniqueness,
         failed_items=duplicate_identifiers,
         fail_msg=lambda identifier: f"Usage of duplicate PREMIS object identifier: ({identifier.type.text}, {identifier.value.text}).",
         success_msg="PREMIS object identifier uniqueness validated.",
@@ -54,7 +54,7 @@ def check_event_types(sip: SIP) -> RuleResult[premis.Event]:
         code=Code.event_type_thesauri,
         failed_items=invalid_events,
         fail_msg=lambda event: f"Usage of non-existant event type '{event.type.text}' on event '{event.identifier.value.text}'. PREMIS event type must be one of ({', '.join(thesauri.event_types)})",
-        success_msg="Validated PREMIS event types",
+        success_msg="Validated PREMIS event type vocabulary.",
     )
 
 
@@ -70,7 +70,7 @@ def check_event_identifier_uniqueness(sip: SIP) -> RuleResult[premis.EventIdenti
     ]
 
     return RuleResult(
-        code=Code.event_type_thesauri,
+        code=Code.event_identifier_uniqueness,
         failed_items=duplicate_identifiers,
         fail_msg=lambda identifier: f"Usage of duplicate event identifier ({identifier.type.text}, {identifier.value.text}). PREMIS event identifiers must be unique.",
         success_msg="Validated PREMIS event identifier uniqueness.",
@@ -99,10 +99,40 @@ def check_event_outcome(sip: SIP) -> RuleResult[premis.Event]:
         )
 
     return RuleResult(
-        code=Code.event_type_thesauri,
+        code=Code.event_outcome_thesauri,
         failed_items=invalid_events,
         fail_msg=lambda event: f"Usage of non-existant event outcome(s) '{invalid_outcomes(event)}' on event ({event.identifier.type.text}, {event.identifier.value.text}). Outcome must be one of ({','.join(thesauri.event_outcomes)})",
-        success_msg="Validated PREMIS event types",
+        success_msg="Validated PREMIS event outcome vocabulary.",
+    )
+
+
+def check_event_linking_agent_cardinality(sip: SIP) -> RuleResult[premis.Event]:
+    premises = helpers.get_all_premis_models(sip)
+    all_events = [event for premis in premises for event in premis.events]
+    invalid_events = [
+        event for event in all_events if len(event.linking_agent_identifiers) == 0
+    ]
+
+    return RuleResult(
+        code=Code.event_linking_agent_existance,
+        failed_items=invalid_events,
+        fail_msg=lambda event: f"Event ({event.identifier.type.text}, {event.identifier.value.text}) is missing a linking agent. At least one linking agent must be present.",
+        success_msg="Validated existance of a linking agent on PREMIS events.",
+    )
+
+
+def check_event_linking_object_cardinality(sip: SIP) -> RuleResult[premis.Event]:
+    premises = helpers.get_all_premis_models(sip)
+    all_events = [event for premis in premises for event in premis.events]
+    invalid_events = [
+        event for event in all_events if len(event.linking_object_identifiers) == 0
+    ]
+
+    return RuleResult(
+        code=Code.event_linking_object_existance,
+        failed_items=invalid_events,
+        fail_msg=lambda event: f"Event ({event.identifier.type.text}, {event.identifier.value.text}) is missing a linking object. At least one linking object must be present.",
+        success_msg="Validated existance of a linking object on PREMIS events.",
     )
 
 
@@ -214,6 +244,8 @@ checks: list[Callable[[SIP], RuleResult]] = [
     check_event_types,
     check_event_identifier_uniqueness,
     check_event_outcome,
+    check_event_linking_agent_cardinality,
+    check_event_linking_object_cardinality,
 ]
 
 
