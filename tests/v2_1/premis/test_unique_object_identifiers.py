@@ -26,7 +26,7 @@ def test_correct_case():
 def test_duplicate_identifier():
     sip = utils.empty_sip(utils.Dummy())
     sip.metadata.preservation.objects = utils.get_sample_objects()
-    sip.metadata.preservation.objects[1].identifiers[0].value.text = "1"
+    sip.metadata.preservation.objects[1].identifiers[0].value.text = "uuid-1"
 
     report = check_unique_object_identifiers(sip).to_report()
 

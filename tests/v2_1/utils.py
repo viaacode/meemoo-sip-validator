@@ -33,38 +33,5 @@ def empty_sip[T: XMLBase](descriptive: T) -> SIP[T]:
 
 
 def get_sample_objects() -> list[premis.Object]:
-    return [
-        # Object 1
-        premis.IntellectualEntity(
-            xsi_type="{http://www.loc.gov/premis/v3}intellectualEntity",
-            identifiers=[
-                premis.ObjectIdentifier(
-                    type=premis.ObjectIdentifierType(
-                        text="UUID", authority=None, authority_uri=None, value_uri=None
-                    ),
-                    value=premis.ObjectIdentifierValue(text="1"),
-                    simple_link=None,
-                )
-            ],
-            significant_properties=[],
-            original_name=None,
-            relationships=[],
-        ),
-        # Object 2
-        premis.Representation(
-            xsi_type="{http://www.loc.gov/premis/v3}representation",
-            identifiers=[
-                premis.ObjectIdentifier(
-                    type=premis.ObjectIdentifierType(
-                        text="UUID", authority=None, authority_uri=None, value_uri=None
-                    ),
-                    value=premis.ObjectIdentifierValue(text="2"),
-                    simple_link=None,
-                )
-            ],
-            significant_properties=[],
-            original_name=None,
-            relationships=[],
-            storages=[],
-        ),
-    ]
+    premis_model = premis.Premis.from_xml(Path("tests/v2_1/premis/assets/objects.xml"))
+    return premis_model.objects
