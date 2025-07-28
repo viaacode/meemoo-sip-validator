@@ -100,3 +100,10 @@ object_identifier_types = [
     "Word_ID",
     "WorkPID",
 ]
+
+agent_types = [
+    "person",
+    "organization",
+    "hardware",
+    "software",
+]

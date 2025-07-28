@@ -256,6 +256,21 @@ def check_agent_identifier_uniqueness(sip: SIP) -> RuleResult[premis.AgentIdenti
     )
 
 
+def check_agent_type(sip: SIP) -> RuleResult[premis.Agent]:
+    premises = helpers.get_all_premis_models(sip)
+    all_agents = [agent for premis in premises for agent in premis.agents]
+    invalid_agents = [
+        agent for agent in all_agents if agent.type.text not in thesauri.agent_types
+    ]
+
+    return RuleResult(
+        code=Code.agent_type_thesauri,
+        failed_items=invalid_agents,
+        fail_msg=lambda agent: f"Usage of non-existant agent type '{agent.type.text}'. PREMIS agent type must be one of ({','.join(thesauri.agent_types)}).",
+        success_msg="Validated PREMIS agent type vocabulary.",
+    )
+
+
 checks: list[Callable[[SIP], RuleResult]] = [
     check_object_identifier_types,
     check_object_identifiers_uniqueness,
@@ -269,6 +284,7 @@ checks: list[Callable[[SIP], RuleResult]] = [
     check_event_linking_agent_cardinality,
     check_event_linking_object_cardinality,
     check_agent_identifier_uniqueness,
+    check_agent_type,
 ]
 
 
