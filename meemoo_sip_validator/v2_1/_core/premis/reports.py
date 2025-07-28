@@ -18,13 +18,15 @@ def check_object_identifier_types(sip: SIP) -> RuleResult[premis.ObjectIdentifie
     ]
     return RuleResult(
         code=Code.object_identifier_type_thesauri,
-        error_items=invalid_identifiers,
-        error_msg=lambda id: f"Usage of invalid PREMIS object identifier type: '{id.type.text}'",
+        failed_items=invalid_identifiers,
+        fail_msg=lambda id: f"Usage of invalid PREMIS object identifier type: '{id.type.text}'",
         success_msg="Validated PREMIS object identifier types.",
     )
 
 
-def check_unique_object_identifiers(sip: SIP) -> RuleResult[premis.ObjectIdentifier]:
+def check_object_identifiers_uniqueness(
+    sip: SIP,
+) -> RuleResult[premis.ObjectIdentifier]:
     premises = helpers.get_all_premis_models(sip)
     all_object_identifiers = helpers.get_all_object_identifiers(premises)
     duplicate_identifiers = [
@@ -35,8 +37,8 @@ def check_unique_object_identifiers(sip: SIP) -> RuleResult[premis.ObjectIdentif
 
     return RuleResult(
         code=Code.unique_object_identifiers,
-        error_items=duplicate_identifiers,
-        error_msg=lambda id: f"Usage of non-unique PREMIS object identifier: {id}.",
+        failed_items=duplicate_identifiers,
+        fail_msg=lambda id: f"Usage of non-unique PREMIS object identifier: {id}.",
         success_msg="PREMIS object identifier uniqueness validated.",
     )
 
@@ -50,8 +52,8 @@ def check_event_types(sip: SIP) -> RuleResult[premis.Event]:
 
     return RuleResult(
         code=Code.event_type_thesauri,
-        error_items=invalid_events,
-        error_msg=lambda event: f"Usage of non-existant event type '{event.type.text}' on event '{event.identifier.value}'. PREMIS event type must be one of ({', '.join(thesauri.event_types)})",
+        failed_items=invalid_events,
+        fail_msg=lambda event: f"Usage of non-existant event type '{event.type.text}' on event '{event.identifier.value}'. PREMIS event type must be one of ({', '.join(thesauri.event_types)})",
         success_msg="Validated PREMIS Event types",
     )
 
@@ -79,8 +81,8 @@ def check_related_objects_identifier(
 
     return RuleResult(
         code=Code.related_object_identifier_valid,
-        error_items=non_existant_object_identifiers,
-        error_msg=lambda id: f"Usage of PREMIS related object identifier with invalid identifier {id}.",
+        failed_items=non_existant_object_identifiers,
+        fail_msg=lambda id: f"Usage of PREMIS related object identifier with invalid identifier {id}.",
         success_msg="Existance of PREMIS objects used as related objects validated.",
     )
 
@@ -101,8 +103,8 @@ def check_relationships_type(sip: SIP) -> RuleResult[premis.Relationship]:
 
     return RuleResult(
         code=Code.relationship_type_thesauri,
-        error_items=invalid_relationships,
-        error_msg=lambda relationship: f"Usage of non-existant relationship type '{relationship.type.text}'. PREMIS  type must be one of ({', '.join(thesauri.relationship_types)}).",
+        failed_items=invalid_relationships,
+        fail_msg=lambda relationship: f"Usage of non-existant relationship type '{relationship.type.text}'. PREMIS  type must be one of ({', '.join(thesauri.relationship_types)}).",
         success_msg="PREMIS relationship types vocabulary validated.",
     )
 
@@ -123,8 +125,8 @@ def check_relationships_sub_type(sip: SIP) -> RuleResult[premis.Relationship]:
 
     return RuleResult(
         code=Code.relationship_sub_type_thesauri,
-        error_items=invalid_relationships,
-        error_msg=lambda relationship: f"Usage of non-existant relationship sub-type '{relationship.sub_type.text}'. PREMIS relationship sub-type must be one of ({', '.join(thesauri.relationship_sub_types)}).",
+        failed_items=invalid_relationships,
+        fail_msg=lambda relationship: f"Usage of non-existant relationship sub-type '{relationship.sub_type.text}'. PREMIS relationship sub-type must be one of ({', '.join(thesauri.relationship_sub_types)}).",
         success_msg="PREMIS relationship sub-types vocabulary validated.",
     )
 
@@ -148,15 +150,15 @@ def check_relationships_sub_type_per_object_type(
 
     return RuleResult(
         code=Code.relationship_sub_type_per_object_thesauri,
-        error_items=invalid_relationships,
-        error_msg=lambda relationship: f"Usage of relationship sub-type '{relationship.sub_type.text}' on object with incorrect xsi:type.",
+        failed_items=invalid_relationships,
+        fail_msg=lambda relationship: f"Usage of relationship sub-type '{relationship.sub_type.text}' on object with incorrect xsi:type.",
         success_msg="PREMIS relationship sub-types vocabulary per object type validated.",
     )
 
 
 checks: list[Callable[[SIP], RuleResult]] = [
     check_object_identifier_types,
-    check_unique_object_identifiers,
+    check_object_identifiers_uniqueness,
     check_related_objects_identifier,
     check_relationships_type,
     check_relationships_sub_type,

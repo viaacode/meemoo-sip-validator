@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 
 from xmlschema import XMLSchema, XMLSchemaException
 
-from .models import Report, Success, Error, Severity
+from .models import Report, Success, Failure, Severity
 from .codes import Code
 
 assets = resources.files("meemoo_sip_validator.assets")
@@ -13,7 +13,7 @@ premis_xsd_path = str(assets.joinpath("premis-3-0.xsd.xml"))
 xlink_xsd_path = str(assets.joinpath("xlink-2.xsd.xml"))
 
 
-def parse_xml_file(path: Path) -> Success | Error:
+def parse_xml_file(path: Path) -> Success | Failure:
     try:
         ET.parse(path)
         return Success(
@@ -21,7 +21,7 @@ def parse_xml_file(path: Path) -> Success | Error:
             message=f"Parsed XML: {path}",
         )
     except ET.ParseError as e:
-        return Error(
+        return Failure(
             code=Code.xsd_valid,
             message=f"Could not parse XML - {e}. File: {path}",
             severity=Severity.ERROR,
@@ -36,15 +36,15 @@ def valiate_files(paths: list[Path], schema: XMLSchema) -> Report:
     code = Code.xsd_valid
     invalid_xsd_paths = [path for path in paths if not schema.is_valid(path)]
 
-    errors: list[Error | Success] = []
+    failures: list[Failure | Success] = []
     if len(invalid_xsd_paths) != 0:
         for path in invalid_xsd_paths:
             try:
                 schema.validate(path)
             except XMLSchemaException as e:
                 message = f"XSD validation failed on {path} - {e}"
-                errors.append(
-                    Error(code=code, message=message, severity=Severity.ERROR)
+                failures.append(
+                    Failure(code=code, message=message, severity=Severity.ERROR)
                 )
 
     message = f"Structural XML files validated using XSD: {schema.name}"

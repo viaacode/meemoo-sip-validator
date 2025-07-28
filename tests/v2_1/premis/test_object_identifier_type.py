@@ -30,5 +30,5 @@ def test_incorrect_object_identifier_type():
     report = check_object_identifier_types(sip).to_report()
 
     assert report.outcome == "FAILED"
-    error_codes = [error.code for error in report.errors]
-    assert Code.object_identifier_type_thesauri in error_codes
+    fail_codes = [failure.code for failure in report.failures]
+    assert Code.object_identifier_type_thesauri in fail_codes

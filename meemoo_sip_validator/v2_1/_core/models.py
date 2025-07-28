@@ -18,21 +18,21 @@ class Severity(StrEnum):
     INFO = auto()
 
 
-class Error(BaseModel):
-    result: Literal["error"] = "error"
+class Failure(BaseModel):
+    result: Literal["FAIL"] = "FAIL"
     code: Code
     message: str
     severity: Severity
 
 
 class Success(BaseModel):
-    result: Literal["success"] = "success"
+    result: Literal["PASS"] = "PASS"
     code: Code
     message: str
 
 
 class Report(BaseModel):
-    results: list[Success | Error]
+    results: list[Success | Failure]
 
     def __add__(self, other: "Report") -> "Report":
         return Report(results=self.results + other.results)
@@ -40,14 +40,14 @@ class Report(BaseModel):
     @property
     def outcome(self) -> Literal["PASSED", "FAILED"]:
         failed = any(
-            isinstance(result, Error) and result.severity == Severity.ERROR
+            isinstance(result, Failure) and result.severity == Severity.ERROR
             for result in self.results
         )
         return "FAILED" if failed else "PASSED"
 
     @property
-    def errors(self) -> Generator[Error, None, None]:
-        return (result for result in self.results if isinstance(result, Error))
+    def failures(self) -> Generator[Failure, None, None]:
+        return (result for result in self.results if isinstance(result, Failure))
 
     @property
     def successes(self) -> Generator[Success, None, None]:
@@ -56,20 +56,23 @@ class Report(BaseModel):
 
 class RuleResult[T](BaseModel):
     code: Code
-    error_items: list[T]
-    error_msg: Callable[[T], str]
+    failed_items: list[T]
+    fail_msg: Callable[[T], str]
     success_msg: str
 
     def to_report(self) -> Report:
-        no_errors = len(self.error_items) == 0
-        report_results: list[Success | Error] = []
-        if no_errors:
+        no_failures = len(self.failed_items) == 0
+        report_results: list[Success | Failure] = []
+        if no_failures:
             report_results.append(Success(code=self.code, message=self.success_msg))
         else:
-            for error_item in self.error_items:
-                error_msg = self.error_msg(error_item)
+            for fail_item in self.failed_items:
                 report_results.append(
-                    Error(code=self.code, message=error_msg, severity=Severity.ERROR)
+                    Failure(
+                        code=self.code,
+                        message=self.fail_msg(fail_item),
+                        severity=Severity.ERROR,
+                    )
                 )
 
         return Report(results=report_results)
