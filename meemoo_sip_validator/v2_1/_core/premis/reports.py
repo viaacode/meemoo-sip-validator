@@ -100,18 +100,41 @@ def check_relationships_type(sip: SIP) -> RuleResult[premis.Relationship]:
     ]
 
     return RuleResult(
-        code=Code.event_type_thesauri,
+        code=Code.relationship_type_thesauri,
         error_items=invalid_relationships,
-        error_msg=lambda relationship: f"Usage of non-existant relationship type '{relationship.type.text}'. PREMIS  type must be one of ({', '.join(thesauri.event_types)}).",
-        success_msg="PREMIS relationship types validated.",
+        error_msg=lambda relationship: f"Usage of non-existant relationship type '{relationship.type.text}'. PREMIS  type must be one of ({', '.join(thesauri.relationship_types)}).",
+        success_msg="PREMIS relationship types vocabulary validated.",
+    )
+
+
+def check_relationships_sub_type(sip: SIP) -> RuleResult[premis.Relationship]:
+    premises = helpers.get_all_premis_models(sip)
+    all_relationships = [
+        relationship
+        for premis in premises
+        for object in premis.objects
+        for relationship in object.relationships
+    ]
+    invalid_relationships = [
+        relationship
+        for relationship in all_relationships
+        if relationship.sub_type.text not in thesauri.relationship_sub_types
+    ]
+
+    return RuleResult(
+        code=Code.relationship_sub_type_thesauri,
+        error_items=invalid_relationships,
+        error_msg=lambda relationship: f"Usage of non-existant relationship sub-type '{relationship.type.text}'. PREMIS  type must be one of ({', '.join(thesauri.relationship_sub_types)}).",
+        success_msg="PREMIS relationship sub-types vocabulary validated.",
     )
 
 
 checks: list[Callable[[SIP], RuleResult]] = [
+    check_object_identifier_types,
     check_unique_object_identifiers,
     check_related_objects_identifier,
     check_relationships_type,
-    check_object_identifier_types,
+    check_relationships_sub_type,
     check_event_types,
 ]
 

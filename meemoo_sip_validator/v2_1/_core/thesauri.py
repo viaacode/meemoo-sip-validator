@@ -28,6 +28,35 @@ relationship_types = [
     "structural",
 ]
 
+entity_relationship_sub_types = [
+    "is represented by",
+    "has master copy",
+    "has mezzanine copy",
+    "has access copy",
+    "has transcription copy",
+    "has carrier copy",
+]
+
+representation_sub_types = [
+    "represents",
+    "is master copy of",
+    "is mezzanine copy of",
+    "is access copy of",
+    "is transcription copy of",
+    "is carrier copy of",
+]
+
+file_relationship_sub_type = [
+    "is included in",
+    "includes",
+]
+
+relationship_sub_types = (
+    entity_relationship_sub_types
+    + representation_sub_types
+    + file_relationship_sub_type
+)
+
 object_identifier_types = [
     # Main keys
     "UUID",
