@@ -1,4 +1,4 @@
-from typing import Literal, Generator
+from typing import Literal, Generator, Callable
 from enum import StrEnum, auto
 
 from pydantic import BaseModel
@@ -52,3 +52,24 @@ class Report(BaseModel):
     @property
     def successes(self) -> Generator[Success, None, None]:
         return (result for result in self.results if isinstance(result, Success))
+
+
+class RuleResult[T](BaseModel):
+    code: Code
+    error_items: list[T]
+    error_msg: Callable[[T], str]
+    success_msg: str
+
+    def to_report(self) -> Report:
+        no_errors = len(self.error_items) == 0
+        report_results: list[Success | Error] = []
+        if no_errors:
+            report_results.append(Success(code=self.code, message=self.success_msg))
+        else:
+            for error_item in self.error_items:
+                error_msg = self.error_msg(error_item)
+                report_results.append(
+                    Error(code=self.code, message=error_msg, severity=Severity.ERROR)
+                )
+
+        return Report(results=report_results)

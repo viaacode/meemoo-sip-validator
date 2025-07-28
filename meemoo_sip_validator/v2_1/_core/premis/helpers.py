@@ -1,5 +1,3 @@
-from collections import namedtuple
-
 from ..models import SIP, premis
 
 
@@ -28,27 +26,16 @@ def unique[T](items: list[T]) -> list[T]:
     return result
 
 
-ObjectIdentifierTuple = namedtuple(
-    "ObjectIdentifierTuple",
-    [
-        "type",
-        "type_authority",
-        "type_authority_uri",
-        "type_value_uri",
-        "value",
-        "simple_link",
-    ],
-)
-
-
-def convert_to_tuple(
-    object_identifier: premis.ObjectIdentifier | premis.RelatedObjectIdentifier,
-) -> ObjectIdentifierTuple:
-    return ObjectIdentifierTuple(
-        object_identifier.type.text,
-        object_identifier.type.authority,
-        object_identifier.type.authority_uri,
-        object_identifier.type.value_uri,
-        object_identifier.value.text,
-        object_identifier.simple_link,
+def to_identifier(
+    related_object_identifier: premis.RelatedObjectIdentifier,
+):
+    return premis.ObjectIdentifier(
+        type=premis.ObjectIdentifierType(
+            text=related_object_identifier.type.text,
+            authority=related_object_identifier.type.authority,
+            authority_uri=related_object_identifier.type.authority_uri,
+            value_uri=related_object_identifier.type.value_uri,
+        ),
+        value=premis.ObjectIdentifierValue(text=related_object_identifier.value.text),
+        simple_link=related_object_identifier.simple_link,
     )

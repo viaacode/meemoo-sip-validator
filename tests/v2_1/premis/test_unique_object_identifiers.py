@@ -3,13 +3,13 @@ from tests.v2_1 import utils
 
 
 from meemoo_sip_validator.v2_1._core.premis.reports import (
-    report_unique_object_identifiers,
+    check_unique_object_identifiers,
 )
 
 
 def test_empty_sip():
     sip = utils.empty_sip(utils.Dummy())
-    report = report_unique_object_identifiers(sip)
+    report = check_unique_object_identifiers(sip).to_report()
 
     assert report.outcome == "PASSED"
 
@@ -17,7 +17,8 @@ def test_empty_sip():
 def test_correct_case():
     sip = utils.empty_sip(utils.Dummy())
     sip.metadata.preservation.objects = utils.get_sample_objects()
-    report = report_unique_object_identifiers(sip)
+
+    report = check_unique_object_identifiers(sip).to_report()
 
     assert report.outcome == "PASSED"
 
@@ -26,7 +27,9 @@ def test_duplicate_identifier():
     sip = utils.empty_sip(utils.Dummy())
     sip.metadata.preservation.objects = utils.get_sample_objects()
     sip.metadata.preservation.objects[1].identifiers[0].value.text = "1"
-    report = report_unique_object_identifiers(sip)
+
+    report = check_unique_object_identifiers(sip).to_report()
 
     assert report.outcome == "FAILED"
-    assert next(report.errors).code == Code.unique_object_identifiers
+    error_codes = [error.code for error in report.errors]
+    assert Code.unique_object_identifiers in error_codes

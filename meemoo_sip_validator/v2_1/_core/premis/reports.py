@@ -5,95 +5,87 @@ from functools import reduce
 from .. import thesauri
 from ..codes import Code
 from . import helpers
-from ..models import SIP, Report, Error, Severity, Success
+from ..models import SIP, Report, premis, RuleResult
 
 
-def report_unique_object_identifiers(sip: SIP) -> Report:
-    code = Code.unique_object_identifiers
+def check_object_identifier_types(sip: SIP) -> RuleResult[premis.ObjectIdentifier]:
     premises = helpers.get_all_premis_models(sip)
     all_object_identifiers = helpers.get_all_object_identifiers(premises)
+    invalid_identifiers = [
+        identifier
+        for identifier in all_object_identifiers
+        if identifier.type.text not in thesauri.object_identifier_types
+    ]
+    return RuleResult(
+        code=Code.object_identifier_type_thesauri,
+        error_items=invalid_identifiers,
+        error_msg=lambda id: f"Usage of invalid PREMIS object identifier type: '{id.type.text}'",
+        success_msg="Validated PREMIS object identifier types.",
+    )
 
-    unique_identifiers = helpers.unique(all_object_identifiers)
-    if len(unique_identifiers) != len(all_object_identifiers):
-        message = "PREMIS object identifiers must be unique over all premis.xml files in the SIP."
-        result = Error(code=code, message=message, severity=Severity.ERROR)
-    else:
-        message = "PREMIS object identifiers are unique."
-        result = Success(code=code, message=message)
 
-    return Report(results=[result])
-
-
-def report_object_identifier_type(sip: SIP) -> Report:
-    code = Code.object_identifier_type_thesauri
+def check_unique_object_identifiers(sip: SIP) -> RuleResult[premis.ObjectIdentifier]:
     premises = helpers.get_all_premis_models(sip)
     all_object_identifiers = helpers.get_all_object_identifiers(premises)
+    duplicate_identifiers = [
+        identifier
+        for identifier in all_object_identifiers
+        if len([_id for _id in all_object_identifiers if _id == identifier]) != 1
+    ]
 
-    errors = []
-    for identifier in all_object_identifiers:
-        if identifier.type.text not in thesauri.object_identifier_types:
-            message = f"Usage of invalid PREMIS object identifier type: '{identifier.type.text}'"
-            error = Error(code=code, message=message, severity=Severity.ERROR)
-            errors.append(error)
-
-    if len(errors) != 0:
-        return Report(results=errors)
-
-    success = Success(code=code, message="Validated PREMIS object identifier types.")
-    return Report(results=[success])
+    return RuleResult(
+        code=Code.unique_object_identifiers,
+        error_items=duplicate_identifiers,
+        error_msg=lambda id: f"Usage of non-unique PREMIS object identifier: {id}.",
+        success_msg="PREMIS object identifier uniqueness validated.",
+    )
 
 
-def report_event_type(sip: SIP) -> Report:
-    code = Code.event_type_thesauri
+def check_event_types(sip: SIP) -> RuleResult[premis.Event]:
     premises = helpers.get_all_premis_models(sip)
     all_events = [event for premis in premises for event in premis.events]
+    invalid_events = [
+        event for event in all_events if event.type.text not in thesauri.event_types
+    ]
 
-    errors: list[Error | Success] = []
-    for event in all_events:
-        if event.type.text not in thesauri.event_types:
-            message = f"Usage of non-existant event type '{event.type.text}' on event '{event.identifier.value}'. PREMIS event type must be one of ({', '.join(thesauri.event_types)})"
-            error = Error(code=code, message=message, severity=Severity.ERROR)
-            errors.append(error)
-
-    if len(errors) != 0:
-        return Report(results=errors)
-
-    return Report(results=[Success(code=code, message="Validated PREMIS Event types")])
+    return RuleResult(
+        code=Code.event_type_thesauri,
+        error_items=invalid_events,
+        error_msg=lambda event: f"Usage of non-existant event type '{event.type.text}' on event '{event.identifier.value}'. PREMIS event type must be one of ({', '.join(thesauri.event_types)})",
+        success_msg="Validated PREMIS Event types",
+    )
 
 
-def report_related_objects_identifier(sip: SIP) -> Report:
-    code = Code.related_object_identifier_valid
+def check_related_objects_identifier(
+    sip: SIP,
+) -> RuleResult[premis.RelatedObjectIdentifier]:
     premises = helpers.get_all_premis_models(sip)
     # TODO: is it possible to have a relationship to a "temporary" object created by an event?
-    all_related_identifiers = {
-        helpers.convert_to_tuple(related_object_identifier)
+    all_related_identifiers = [
+        related_object_identifier
         for premis in premises
         for object in premis.objects
         for relationship in object.relationships
         for related_object_identifier in relationship.related_object_identifier
-    }
-    all_object_identifiers = {
-        helpers.convert_to_tuple(object)
-        for object in helpers.get_all_object_identifiers(premises)
-    }
+    ]
+    all_object_identifiers = [
+        object for object in helpers.get_all_object_identifiers(premises)
+    ]
+    non_existant_object_identifiers = [
+        related_identifier
+        for related_identifier in all_related_identifiers
+        if helpers.to_identifier(related_identifier) not in all_object_identifiers
+    ]
 
-    non_existant_object_identifiers = all_related_identifiers - all_object_identifiers
-
-    errors: list[Error | Success] = []
-    for identifier in non_existant_object_identifiers:
-        message = f"Usage of PREMIS related object identifier with invalid identifier {identifier}"
-        error = Error(code=code, message=message, severity=Severity.ERROR)
-        errors.append(error)
-
-    if len(non_existant_object_identifiers) != 0:
-        return Report(results=errors)
-
-    message = "Existance of PREMIS objects related to relationships validated"
-    return Report(results=[Success(code=code, message=message)])
+    return RuleResult(
+        code=Code.related_object_identifier_valid,
+        error_items=non_existant_object_identifiers,
+        error_msg=lambda id: f"Usage of PREMIS related object identifier with invalid identifier {id}.",
+        success_msg="Existance of PREMIS objects used as related objects validated.",
+    )
 
 
-def report_relationships_type(sip: SIP) -> Report:
-    code = Code.event_type_thesauri
+def check_relationships_type(sip: SIP) -> RuleResult[premis.Relationship]:
     premises = helpers.get_all_premis_models(sip)
     all_relationships = [
         relationship
@@ -101,32 +93,30 @@ def report_relationships_type(sip: SIP) -> Report:
         for object in premis.objects
         for relationship in object.relationships
     ]
+    invalid_relationships = [
+        relationship
+        for relationship in all_relationships
+        if relationship.type.text not in thesauri.relationship_types
+    ]
 
-    errors: list[Error | Success] = []
-    for relationship in all_relationships:
-        if relationship.type.text not in thesauri.relationship_types:
-            message = f"Usage of non-existant relationship type '{relationship.type.text}'. PREMIS  type must be one of ({', '.join(thesauri.event_types)})"
-            error = Error(
-                code=code,
-                message=message,
-                severity=Severity.ERROR,
-            )
-            errors.append(error)
-
-    return Report(
-        results=[Success(code=code, message="PREMIS relationship types validated")]
+    return RuleResult(
+        code=Code.event_type_thesauri,
+        error_items=invalid_relationships,
+        error_msg=lambda relationship: f"Usage of non-existant relationship type '{relationship.type.text}'. PREMIS  type must be one of ({', '.join(thesauri.event_types)}).",
+        success_msg="PREMIS relationship types validated.",
     )
 
 
-checks: list[Callable[[SIP], Report]] = [
-    report_unique_object_identifiers,
-    report_object_identifier_type,
-    report_event_type,
-    report_related_objects_identifier,
-    report_relationships_type,
+checks: list[Callable[[SIP], RuleResult]] = [
+    check_unique_object_identifiers,
+    check_related_objects_identifier,
+    check_relationships_type,
+    check_object_identifier_types,
+    check_event_types,
 ]
 
 
 def validate(sip: SIP) -> Report:
-    reports = (check(sip) for check in checks)
+    rule_results = (check(sip) for check in checks)
+    reports = (rule.to_report() for rule in rule_results)
     return reduce(Report.__add__, reports)
