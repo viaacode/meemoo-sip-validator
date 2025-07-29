@@ -30,6 +30,14 @@ event_outcomes = [
     "warning",
 ]
 
+event_agent_roles = [
+    "authorizer",
+    "executing program",
+    "implementer",
+    "validator",
+    "instrument",
+]
+
 relationship_types = [
     "structural",
 ]

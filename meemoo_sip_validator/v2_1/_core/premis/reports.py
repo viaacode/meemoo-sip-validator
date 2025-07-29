@@ -180,6 +180,41 @@ def check_event_linking_object_cardinality(sip: SIP) -> RuleResult[premis.Event]
     )
 
 
+def check_event_linking_agent_role_vocabulary(
+    sip: SIP,
+) -> RuleResult[premis.LinkingAgentIdentifier]:
+    premises = helpers.get_all_premis_models(sip)
+    all_linking_agent_idnetifiers = [
+        linking_agent_identifier
+        for premis in premises
+        for event in premis.events
+        for linking_agent_identifier in event.linking_agent_identifiers
+    ]
+    invalid_linking_agent_identifiers = [
+        linking_agent_identifier
+        for linking_agent_identifier in all_linking_agent_idnetifiers
+        if any(
+            role.text not in thesauri.event_agent_roles
+            for role in linking_agent_identifier.roles
+        )
+    ]
+
+    def invalid_roles(agent_id: premis.LinkingAgentIdentifier) -> str:
+        roles = [
+            role.text
+            for role in agent_id.roles
+            if role not in thesauri.event_agent_roles
+        ]
+        return ", ".join(roles)
+
+    return RuleResult(
+        code=Code.event_outcome_thesauri,
+        failed_items=invalid_linking_agent_identifiers,
+        fail_msg=lambda agent_id: f"Usage of non-existant linking agent identifier role '{invalid_roles(agent_id)}' on linking agent ({agent_id.type.text}, {agent_id.value.text}). Agent role must be one of ({', '.join(thesauri.event_agent_roles)})",
+        success_msg="Validated PREMIS linking agent identifier role vocabulary.",
+    )
+
+
 def check_related_objects_identifier_uses_existing_object(
     sip: SIP,
 ) -> RuleResult[premis.RelatedObjectIdentifier]:
@@ -395,6 +430,7 @@ checks: list[Callable[[SIP], RuleResult]] = [
     check_agent_identifier_uniqueness,
     check_agent_identifier_type_uuid_existance,
     check_agent_type_vocabulary,
+    check_event_linking_agent_role_vocabulary,
     check_fixity_message_digest_algorithm_vocabulary,
 ]
 
