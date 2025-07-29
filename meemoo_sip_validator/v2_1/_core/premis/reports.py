@@ -58,6 +58,25 @@ def check_event_types(sip: SIP) -> RuleResult[premis.Event]:
     )
 
 
+def check_event_identifier_type_is_uuid(sip: SIP) -> RuleResult[premis.EventIdentifier]:
+    premises = helpers.get_all_premis_models(sip)
+    all_events_identifiers = [
+        event.identifier for premis in premises for event in premis.events
+    ]
+    invalid_event_identifiers = [
+        identifier
+        for identifier in all_events_identifiers
+        if identifier.type.text != "UUID"
+    ]
+
+    return RuleResult(
+        code=Code.event_identifier_type_is_uuid,
+        failed_items=invalid_event_identifiers,
+        fail_msg=lambda identifier: f"Usage of PREMIS event {identifier.type.text, identifier.value.text} with invalid type '{identifier.type.text}'. All event identifiers must have at type 'UUID'.",
+        success_msg="Validated event identifier type.",
+    )
+
+
 def check_event_identifier_uniqueness(sip: SIP) -> RuleResult[premis.EventIdentifier]:
     premises = helpers.get_all_premis_models(sip)
     all_events_identifiers = [
@@ -338,6 +357,7 @@ checks: list[Callable[[SIP], RuleResult]] = [
     check_relationships_sub_type,
     check_relationships_sub_type_per_object_type,
     check_event_types,
+    check_event_identifier_type_is_uuid,
     check_event_identifier_uniqueness,
     check_event_outcome,
     check_event_linking_agent_cardinality,

@@ -21,6 +21,7 @@ class Code(str, CodeEnum):
     relationship_sub_type_thesauri = auto()
     relationship_sub_type_per_object_thesauri = auto()
     event_type_thesauri = auto()
+    event_identifier_type_is_uuid = auto()
     event_identifier_uniqueness = auto()
     event_outcome_thesauri = auto()
     event_linking_agent_existance = auto()
