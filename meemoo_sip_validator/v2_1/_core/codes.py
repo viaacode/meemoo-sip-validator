@@ -26,4 +26,5 @@ class Code(str, CodeEnum):
     event_linking_agent_existance = auto()
     event_linking_object_existance = auto()
     agent_identifier_uniqueness = auto()
+    agent_identifier_type_uuid_existance = auto()
     agent_type_thesauri = auto()

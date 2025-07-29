@@ -234,6 +234,29 @@ def check_relationships_sub_type_per_object_type(
     )
 
 
+def check_agent_identifier_type_uuid_existance(sip: SIP) -> RuleResult[premis.Agent]:
+    premises = helpers.get_all_premis_models(sip)
+    all_agent = [agent for premis in premises for agent in premis.agents]
+    agents_without_uuid = [
+        agent
+        for agent in all_agent
+        if "UUID" not in [identifier.type.text for identifier in agent.identifiers]
+    ]
+
+    def agent_id_to_str(agent: premis.Agent) -> str:
+        first_id = next(iter(agent.identifiers), None)
+        if first_id is None:
+            return "<MISSING IDENTIFIERS>"
+        return str((first_id.type.text, first_id.value.text))
+
+    return RuleResult(
+        code=Code.agent_identifier_type_uuid_existance,
+        failed_items=agents_without_uuid,
+        fail_msg=lambda agent: f"Usage of PREMIS agent {agent_id_to_str(agent)} without identifier of type 'UUID'. All agents must have at least one identifier of type 'UUID'.",
+        success_msg="Validated existance of identifier with type 'UUID' on all PREMIS agents.",
+    )
+
+
 def check_agent_identifier_uniqueness(sip: SIP) -> RuleResult[premis.AgentIdentifier]:
     premises = helpers.get_all_premis_models(sip)
     all_agent_identifiers = [
@@ -320,6 +343,7 @@ checks: list[Callable[[SIP], RuleResult]] = [
     check_event_linking_agent_cardinality,
     check_event_linking_object_cardinality,
     check_agent_identifier_uniqueness,
+    check_agent_identifier_type_uuid_existance,
     check_agent_type,
     check_fixity_message_digest_algorithm,
 ]
