@@ -1,4 +1,4 @@
-from typing import Self
+from typing import Self, override
 from pathlib import Path
 
 from eark_models.mets.v1_12_1 import METS
@@ -13,6 +13,7 @@ from meemoo_sip_validator.v2_1._core.models import SIP
 
 @dataclass
 class Dummy(XMLParseable):
+    @override
     @classmethod
     def from_xml(cls, path: Path) -> Self:
         return cls()

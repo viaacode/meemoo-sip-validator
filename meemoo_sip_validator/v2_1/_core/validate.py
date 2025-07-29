@@ -1,4 +1,6 @@
-from typing import Any, Self
+# pyright: reportExplicitAny=false
+
+from typing import Any, Self, override
 from pathlib import Path
 
 from pydantic.dataclasses import dataclass
@@ -12,12 +14,13 @@ from .premis.reports import validate as validate_premis
 
 @dataclass
 class Dummy(XMLParseable):
+    @override
     @classmethod
     def from_xml(cls, path: Path) -> Self:
         return cls()
 
 
-def validate_to_report(unzipped_path) -> Report:
+def validate_to_report(unzipped_path: Path) -> Report:
     # from py_commons_ip.sip_validator import EARKSIPValidator
     # validator = EARKSIPValidator()
     # return validator.validate(unzipped_path)

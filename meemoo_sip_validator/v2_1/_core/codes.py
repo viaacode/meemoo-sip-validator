@@ -1,8 +1,11 @@
-from typing import Any
+# pyright: reportExplicitAny=false
+
+from typing import Any, override
 from enum import Enum, auto
 
 
 class CodeEnum(Enum):
+    @override
     @staticmethod
     def _generate_next_value_(
         name: str, start: int, count: int, last_values: list[Any]

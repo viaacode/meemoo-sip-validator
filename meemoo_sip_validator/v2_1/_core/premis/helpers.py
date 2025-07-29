@@ -1,7 +1,10 @@
+# pyright: reportExplicitAny=false
+
+from typing import Any
 from ..models import SIP, premis
 
 
-def get_all_premis_models(sip: SIP) -> list[premis.Premis]:
+def get_all_premis_models(sip: SIP[Any]) -> list[premis.Premis]:
     return [sip.metadata.preservation] + [
         r.metadata.preservation for r in sip.representations
     ]

@@ -15,7 +15,7 @@ xlink_xsd_path = str(assets.joinpath("xlink-2.xsd.xml"))
 
 def parse_xml_file(path: Path) -> Success | Failure:
     try:
-        ET.parse(path)
+        _ = ET.parse(path)
         return Success(
             code=Code.xsd_valid,
             message=f"Parsed XML: {path}",

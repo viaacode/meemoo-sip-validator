@@ -1,4 +1,6 @@
-from typing import Callable
+# pyright: reportExplicitAny=false
+
+from typing import Any
 from functools import reduce
 
 
@@ -9,7 +11,7 @@ from ..models import SIP, Report, premis, RuleResult
 
 
 def check_object_identifier_type_vocabulary(
-    sip: SIP,
+    sip: SIP[Any],
 ) -> RuleResult[premis.ObjectIdentifier]:
     premises = helpers.get_all_premis_models(sip)
     all_object_identifiers = helpers.get_all_object_identifiers(premises)
@@ -26,7 +28,9 @@ def check_object_identifier_type_vocabulary(
     )
 
 
-def check_object_identifier_type_uuid_existance(sip: SIP) -> RuleResult[premis.Object]:
+def check_object_identifier_type_uuid_existance(
+    sip: SIP[Any],
+) -> RuleResult[premis.Object]:
     premises = helpers.get_all_premis_models(sip)
     all_object = [object for premis in premises for object in premis.objects]
     objects_without_uuid = [
@@ -50,7 +54,7 @@ def check_object_identifier_type_uuid_existance(sip: SIP) -> RuleResult[premis.O
 
 
 def check_object_identifiers_uniqueness(
-    sip: SIP,
+    sip: SIP[Any],
 ) -> RuleResult[premis.ObjectIdentifier]:
     premises = helpers.get_all_premis_models(sip)
     all_object_identifiers = helpers.get_all_object_identifiers(premises)
@@ -68,7 +72,7 @@ def check_object_identifiers_uniqueness(
     )
 
 
-def check_event_type_vocabulary(sip: SIP) -> RuleResult[premis.Event]:
+def check_event_type_vocabulary(sip: SIP[Any]) -> RuleResult[premis.Event]:
     premises = helpers.get_all_premis_models(sip)
     all_events = [event for premis in premises for event in premis.events]
     invalid_events = [
@@ -83,7 +87,9 @@ def check_event_type_vocabulary(sip: SIP) -> RuleResult[premis.Event]:
     )
 
 
-def check_event_identifier_type_is_uuid(sip: SIP) -> RuleResult[premis.EventIdentifier]:
+def check_event_identifier_type_is_uuid(
+    sip: SIP[Any],
+) -> RuleResult[premis.EventIdentifier]:
     premises = helpers.get_all_premis_models(sip)
     all_events_identifiers = [
         event.identifier for premis in premises for event in premis.events
@@ -102,7 +108,9 @@ def check_event_identifier_type_is_uuid(sip: SIP) -> RuleResult[premis.EventIden
     )
 
 
-def check_event_identifier_uniqueness(sip: SIP) -> RuleResult[premis.EventIdentifier]:
+def check_event_identifier_uniqueness(
+    sip: SIP[Any],
+) -> RuleResult[premis.EventIdentifier]:
     premises = helpers.get_all_premis_models(sip)
     all_events_identifiers = [
         event.identifier for premis in premises for event in premis.events
@@ -121,7 +129,7 @@ def check_event_identifier_uniqueness(sip: SIP) -> RuleResult[premis.EventIdenti
     )
 
 
-def check_event_outcome_vocabulary(sip: SIP) -> RuleResult[premis.Event]:
+def check_event_outcome_vocabulary(sip: SIP[Any]) -> RuleResult[premis.Event]:
     premises = helpers.get_all_premis_models(sip)
     all_events = [event for premis in premises for event in premis.events]
     invalid_events = [
@@ -150,7 +158,7 @@ def check_event_outcome_vocabulary(sip: SIP) -> RuleResult[premis.Event]:
     )
 
 
-def check_event_linking_agent_cardinality(sip: SIP) -> RuleResult[premis.Event]:
+def check_event_linking_agent_cardinality(sip: SIP[Any]) -> RuleResult[premis.Event]:
     premises = helpers.get_all_premis_models(sip)
     all_events = [event for premis in premises for event in premis.events]
     invalid_events = [
@@ -165,7 +173,7 @@ def check_event_linking_agent_cardinality(sip: SIP) -> RuleResult[premis.Event]:
     )
 
 
-def check_event_linking_object_cardinality(sip: SIP) -> RuleResult[premis.Event]:
+def check_event_linking_object_cardinality(sip: SIP[Any]) -> RuleResult[premis.Event]:
     premises = helpers.get_all_premis_models(sip)
     all_events = [event for premis in premises for event in premis.events]
     invalid_events = [
@@ -181,7 +189,7 @@ def check_event_linking_object_cardinality(sip: SIP) -> RuleResult[premis.Event]
 
 
 def check_event_linking_agent_role_vocabulary(
-    sip: SIP,
+    sip: SIP[Any],
 ) -> RuleResult[premis.LinkingAgentIdentifier]:
     premises = helpers.get_all_premis_models(sip)
     all_linking_agent_idnetifiers = [
@@ -216,7 +224,7 @@ def check_event_linking_agent_role_vocabulary(
 
 
 def check_related_objects_identifier_uses_existing_object(
-    sip: SIP,
+    sip: SIP[Any],
 ) -> RuleResult[premis.RelatedObjectIdentifier]:
     premises = helpers.get_all_premis_models(sip)
     # TODO: is it possible to have a relationship to a "temporary" object created by an event?
@@ -244,7 +252,9 @@ def check_related_objects_identifier_uses_existing_object(
     )
 
 
-def check_relationships_type_vocabulary(sip: SIP) -> RuleResult[premis.Relationship]:
+def check_relationships_type_vocabulary(
+    sip: SIP[Any],
+) -> RuleResult[premis.Relationship]:
     premises = helpers.get_all_premis_models(sip)
     all_relationships = [
         relationship
@@ -267,7 +277,7 @@ def check_relationships_type_vocabulary(sip: SIP) -> RuleResult[premis.Relations
 
 
 def check_relationships_sub_type_vocabulary(
-    sip: SIP,
+    sip: SIP[Any],
 ) -> RuleResult[premis.Relationship]:
     premises = helpers.get_all_premis_models(sip)
     all_relationships = [
@@ -291,7 +301,7 @@ def check_relationships_sub_type_vocabulary(
 
 
 def check_relationships_sub_type_vocabulary_per_object_type(
-    sip: SIP,
+    sip: SIP[Any],
 ) -> RuleResult[premis.Relationship]:
     premises = helpers.get_all_premis_models(sip)
     object_and_relationhip_pairs = [
@@ -315,7 +325,9 @@ def check_relationships_sub_type_vocabulary_per_object_type(
     )
 
 
-def check_agent_identifier_type_uuid_existance(sip: SIP) -> RuleResult[premis.Agent]:
+def check_agent_identifier_type_uuid_existance(
+    sip: SIP[Any],
+) -> RuleResult[premis.Agent]:
     premises = helpers.get_all_premis_models(sip)
     all_agent = [agent for premis in premises for agent in premis.agents]
     agents_without_uuid = [
@@ -338,7 +350,9 @@ def check_agent_identifier_type_uuid_existance(sip: SIP) -> RuleResult[premis.Ag
     )
 
 
-def check_agent_identifier_uniqueness(sip: SIP) -> RuleResult[premis.AgentIdentifier]:
+def check_agent_identifier_uniqueness(
+    sip: SIP[Any],
+) -> RuleResult[premis.AgentIdentifier]:
     premises = helpers.get_all_premis_models(sip)
     all_agent_identifiers = [
         identifier
@@ -360,7 +374,7 @@ def check_agent_identifier_uniqueness(sip: SIP) -> RuleResult[premis.AgentIdenti
     )
 
 
-def check_agent_type_vocabulary(sip: SIP) -> RuleResult[premis.Agent]:
+def check_agent_type_vocabulary(sip: SIP[Any]) -> RuleResult[premis.Agent]:
     premises = helpers.get_all_premis_models(sip)
     all_agents = [agent for premis in premises for agent in premis.agents]
     invalid_agents = [
@@ -376,7 +390,7 @@ def check_agent_type_vocabulary(sip: SIP) -> RuleResult[premis.Agent]:
 
 
 def check_fixity_message_digest_algorithm_vocabulary(
-    sip: SIP,
+    sip: SIP[Any],
 ) -> RuleResult[premis.File]:
     premises = helpers.get_all_premis_models(sip)
     all_files = [
@@ -413,7 +427,7 @@ def check_fixity_message_digest_algorithm_vocabulary(
     )
 
 
-checks: list[Callable[[SIP], RuleResult]] = [
+checks = [
     check_object_identifier_type_vocabulary,
     check_object_identifiers_uniqueness,
     check_object_identifier_type_uuid_existance,
@@ -435,7 +449,7 @@ checks: list[Callable[[SIP], RuleResult]] = [
 ]
 
 
-def validate(sip: SIP) -> Report:
+def validate(sip: SIP[Any]) -> Report:
     rule_results = (check(sip) for check in checks)
     reports = (rule.to_report() for rule in rule_results)
     return reduce(Report.__add__, reports)

@@ -1,4 +1,7 @@
-from typing import Literal, Generator, Callable, Protocol, Any
+# pyright: reportExplicitAny=false
+
+from typing import Literal, Callable, Protocol, Any
+from collections.abc import Generator
 from enum import Enum
 from dataclasses import dataclass
 
@@ -8,7 +11,7 @@ import eark_models.premis.v3_0 as premis
 
 from .codes import Code
 
-_ = premis  # fixes unused import error
+__all__ = ["premis"]
 
 
 class Severity(str, Enum):
