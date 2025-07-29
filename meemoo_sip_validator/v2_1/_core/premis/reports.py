@@ -158,7 +158,9 @@ def check_event_outcome_vocabulary(sip: SIP[Any]) -> RuleResult[premis.Event]:
     )
 
 
-def check_event_linking_agent_cardinality(sip: SIP[Any]) -> RuleResult[premis.Event]:
+def check_event_linking_agent_identifier_cardinality(
+    sip: SIP[Any],
+) -> RuleResult[premis.Event]:
     premises = helpers.get_all_premis_models(sip)
     all_events = [event for premis in premises for event in premis.events]
     invalid_events = [
@@ -166,14 +168,16 @@ def check_event_linking_agent_cardinality(sip: SIP[Any]) -> RuleResult[premis.Ev
     ]
 
     return RuleResult(
-        code=Code.event_linking_agent_existance,
+        code=Code.event_linking_agent_identifier_existance,
         failed_items=invalid_events,
         fail_msg=lambda event: f"Event ({event.identifier.type.text}, {event.identifier.value.text}) is missing a linking agent. At least one linking agent must be present.",
         success_msg="Validated existance of a linking agent on PREMIS events.",
     )
 
 
-def check_event_linking_object_cardinality(sip: SIP[Any]) -> RuleResult[premis.Event]:
+def check_event_linking_object_identifier_cardinality(
+    sip: SIP[Any],
+) -> RuleResult[premis.Event]:
     premises = helpers.get_all_premis_models(sip)
     all_events = [event for premis in premises for event in premis.events]
     invalid_events = [
@@ -181,7 +185,7 @@ def check_event_linking_object_cardinality(sip: SIP[Any]) -> RuleResult[premis.E
     ]
 
     return RuleResult(
-        code=Code.event_linking_object_existance,
+        code=Code.event_linking_object_identifier_existance,
         failed_items=invalid_events,
         fail_msg=lambda event: f"Event ({event.identifier.type.text}, {event.identifier.value.text}) is missing a linking object. At least one linking object must be present.",
         success_msg="Validated existance of a linking object on PREMIS events.",
@@ -192,7 +196,7 @@ def check_event_linking_agent_role_vocabulary(
     sip: SIP[Any],
 ) -> RuleResult[premis.LinkingAgentIdentifier]:
     premises = helpers.get_all_premis_models(sip)
-    all_linking_agent_idnetifiers = [
+    all_linking_agent_identifiers = [
         linking_agent_identifier
         for premis in premises
         for event in premis.events
@@ -200,7 +204,7 @@ def check_event_linking_agent_role_vocabulary(
     ]
     invalid_linking_agent_identifiers = [
         linking_agent_identifier
-        for linking_agent_identifier in all_linking_agent_idnetifiers
+        for linking_agent_identifier in all_linking_agent_identifiers
         if any(
             role.text not in thesauri.event_agent_roles
             for role in linking_agent_identifier.roles
@@ -216,10 +220,36 @@ def check_event_linking_agent_role_vocabulary(
         return ", ".join(roles)
 
     return RuleResult(
-        code=Code.event_outcome_thesauri,
+        code=Code.event_linking_agent_identifier_role_thesauri,
         failed_items=invalid_linking_agent_identifiers,
         fail_msg=lambda agent_id: f"Usage of non-existant linking agent identifier role '{invalid_roles(agent_id)}' on linking agent ({agent_id.type.text}, {agent_id.value.text}). Agent role must be one of ({', '.join(thesauri.event_agent_roles)})",
         success_msg="Validated PREMIS linking agent identifier role vocabulary.",
+    )
+
+
+def check_event_has_one_implementer(
+    sip: SIP[Any],
+) -> RuleResult[premis.Event]:
+    premises = helpers.get_all_premis_models(sip)
+    all_events = [event for premis in premises for event in premis.events]
+
+    def get_implementer_roles(event: premis.Event) -> list[premis.LinkingAgentRole]:
+        return [
+            role
+            for linking_agent_identifier in event.linking_agent_identifiers
+            for role in linking_agent_identifier.roles
+            if role.text == "implementer"
+        ]
+
+    invalid_events = [
+        event for event in all_events if len(get_implementer_roles(event)) != 1
+    ]
+
+    return RuleResult(
+        code=Code.event_implementer_cardinality,
+        failed_items=invalid_events,
+        fail_msg=lambda event: f"Usage of PREMIS event {event.identifier.type.text, event.identifier.value.text} with zero or more than one implementer agents. All events must have exactly one linking agent identifier with the 'implementer' role.",
+        success_msg="Validated PREMIS presence of implementer for all events.",
     )
 
 
@@ -439,12 +469,13 @@ checks = [
     check_event_identifier_type_is_uuid,
     check_event_identifier_uniqueness,
     check_event_outcome_vocabulary,
-    check_event_linking_agent_cardinality,
-    check_event_linking_object_cardinality,
+    check_event_linking_agent_role_vocabulary,
+    check_event_has_one_implementer,
+    check_event_linking_agent_identifier_cardinality,
+    check_event_linking_object_identifier_cardinality,
     check_agent_identifier_uniqueness,
     check_agent_identifier_type_uuid_existance,
     check_agent_type_vocabulary,
-    check_event_linking_agent_role_vocabulary,
     check_fixity_message_digest_algorithm_vocabulary,
 ]
 
