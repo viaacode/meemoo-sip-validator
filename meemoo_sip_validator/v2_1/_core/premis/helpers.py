@@ -30,12 +30,17 @@ def to_identifier(
     related_object_identifier: premis.RelatedObjectIdentifier,
 ):
     return premis.ObjectIdentifier(
+        __source__=related_object_identifier.__source__,
         type=premis.ObjectIdentifierType(
+            __source__=related_object_identifier.__source__,
             text=related_object_identifier.type.text,
             authority=related_object_identifier.type.authority,
             authority_uri=related_object_identifier.type.authority_uri,
             value_uri=related_object_identifier.type.value_uri,
         ),
-        value=premis.ObjectIdentifierValue(text=related_object_identifier.value.text),
+        value=premis.ObjectIdentifierValue(
+            __source__=related_object_identifier.__source__,
+            text=related_object_identifier.value.text,
+        ),
         simple_link=related_object_identifier.simple_link,
     )

@@ -3,7 +3,7 @@ from pathlib import Path
 
 from pydantic.dataclasses import dataclass
 
-from eark_models.utils import XMLBase
+from eark_models.utils import XMLParseable
 
 from .models import Report, SIP
 from . import xsd
@@ -11,7 +11,7 @@ from .premis.reports import validate as validate_premis
 
 
 @dataclass
-class Dummy(XMLBase):
+class Dummy(XMLParseable):
     @classmethod
     def from_xml(cls, path: Path) -> Self:
         return cls()
@@ -34,4 +34,4 @@ def validate_to_report(unzipped_path) -> Report:
 
 def validate(unzipped_path: Path) -> dict[str, Any]:
     report = validate_to_report(unzipped_path)
-    return report.model_dump()
+    return report.to_dict()

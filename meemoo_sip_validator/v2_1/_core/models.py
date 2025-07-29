@@ -1,7 +1,6 @@
-from typing import Literal, Generator, Callable
+from typing import Literal, Generator, Callable, Protocol, Any
 from enum import Enum
-
-from pydantic import BaseModel
+from dataclasses import dataclass
 
 # Make sip models available through this module
 from eark_models.sip.v2_2_0 import SIP as SIP
@@ -18,20 +17,40 @@ class Severity(str, Enum):
     INFO = "INFO"
 
 
-class Failure(BaseModel):
-    result: Literal["FAIL"] = "FAIL"
+@dataclass
+class Failure:
     code: Code
     message: str
     severity: Severity
+    source: str | None
+    result: Literal["FAIL"] = "FAIL"
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "code": self.code,
+            "message": self.message,
+            "severity": self.severity,
+            "source": self.source,
+            "result": self.result,
+        }
 
 
-class Success(BaseModel):
-    result: Literal["PASS"] = "PASS"
+@dataclass
+class Success:
     code: Code
     message: str
+    result: Literal["PASS"] = "PASS"
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "code": self.code,
+            "message": self.message,
+            "result": self.result,
+        }
 
 
-class Report(BaseModel):
+@dataclass
+class Report:
     results: list[Success | Failure]
 
     def __add__(self, other: "Report") -> "Report":
@@ -53,8 +72,16 @@ class Report(BaseModel):
     def successes(self) -> Generator[Success, None, None]:
         return (result for result in self.results if isinstance(result, Success))
 
+    def to_dict(self) -> dict[str, Any]:
+        return {"results": [result.to_dict() for result in self.results]}
 
-class RuleResult[T](BaseModel):
+
+class WithSource(Protocol):
+    __source__: str
+
+
+@dataclass
+class RuleResult[T: WithSource]:
     code: Code
     failed_items: list[T]
     fail_msg: Callable[[T], str]
@@ -72,6 +99,7 @@ class RuleResult[T](BaseModel):
                         code=self.code,
                         message=self.fail_msg(fail_item),
                         severity=Severity.ERROR,
+                        source=fail_item.__source__,
                     )
                 )
 

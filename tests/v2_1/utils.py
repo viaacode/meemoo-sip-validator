@@ -3,25 +3,28 @@ from pathlib import Path
 
 from eark_models.mets.v1_12_1 import METS
 import eark_models.premis.v3_0 as premis
-from eark_models.sip.v2_2_0 import SIP, PackageMetadata
-from eark_models.utils import XMLBase
+from eark_models.sip.v2_2_0 import PackageMetadata
+from eark_models.utils import XMLParseable
 
 from pydantic.dataclasses import dataclass
 
+from meemoo_sip_validator.v2_1._core.models import SIP
+
 
 @dataclass
-class Dummy(XMLBase):
+class Dummy(XMLParseable):
     @classmethod
     def from_xml(cls, path: Path) -> Self:
         return cls()
 
 
-def empty_sip[T: XMLBase](descriptive: T) -> SIP[T]:
-    return SIP[T](
+def empty_sip[T: XMLParseable](descriptive: T) -> SIP[T]:
+    return SIP(
         mets=METS(),
         metadata=PackageMetadata(
             descriptive=descriptive,
             preservation=premis.Premis(
+                __source__=".",
                 objects=[],
                 events=[],
                 agents=[],

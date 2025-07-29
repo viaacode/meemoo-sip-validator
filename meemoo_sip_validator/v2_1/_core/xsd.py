@@ -22,6 +22,7 @@ def parse_xml_file(path: Path) -> Success | Failure:
         )
     except ET.ParseError as e:
         return Failure(
+            source=str(path),
             code=Code.xsd_valid,
             message=f"Could not parse XML - {e}. File: {path}",
             severity=Severity.ERROR,
@@ -44,7 +45,12 @@ def valiate_files(paths: list[Path], schema: XMLSchema) -> Report:
             except XMLSchemaException as e:
                 message = f"XSD validation failed on {path} - {e}"
                 failures.append(
-                    Failure(code=code, message=message, severity=Severity.ERROR)
+                    Failure(
+                        source=str(path),
+                        code=code,
+                        message=message,
+                        severity=Severity.ERROR,
+                    )
                 )
 
     message = f"Structural XML files validated using XSD: {schema.name}"

@@ -3,6 +3,7 @@ import json
 
 import pytest
 
+from meemoo_sip_validator.v2_1._core.models import Report
 from meemoo_sip_validator.v2_1 import validate_to_report
 
 sip_paths = set(Path("tests/sip-examples/2.1").iterdir())
@@ -24,6 +25,6 @@ unzipped_path_names = [str(path.parent.name) for path in unzipped_paths]
 @pytest.mark.parametrize("unzipped_path", unzipped_paths, ids=unzipped_path_names)
 def test_examples(unzipped_path: Path):
     report = validate_to_report(unzipped_path)
-    report_dumped = report.model_dump()
-    print(json.dumps(report_dumped, indent=1))
+    failures_dumped = Report(results=list(report.failures)).to_dict()
+    print(json.dumps(failures_dumped, indent=1))
     assert report.outcome == "PASSED"
