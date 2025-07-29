@@ -38,6 +38,11 @@ event_agent_roles = [
     "instrument",
 ]
 
+event_object_roles = [
+    "source",
+    "outcome",
+]
+
 relationship_types = [
     "structural",
 ]

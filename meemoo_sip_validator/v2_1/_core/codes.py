@@ -32,6 +32,7 @@ class Code(str, CodeEnum):
     event_linking_agent_identifier_role_thesauri = auto()
     event_linking_agent_identifier_existance = auto()
     event_linking_object_identifier_existance = auto()
+    event_linking_object_identifier_role_thesauri = auto()
     agent_identifier_uniqueness = auto()
     agent_identifier_type_uuid_existance = auto()
     agent_type_thesauri = auto()

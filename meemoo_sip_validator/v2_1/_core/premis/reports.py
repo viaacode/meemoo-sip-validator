@@ -222,8 +222,43 @@ def check_event_linking_agent_role_vocabulary(
     return RuleResult(
         code=Code.event_linking_agent_identifier_role_thesauri,
         failed_items=invalid_linking_agent_identifiers,
-        fail_msg=lambda agent_id: f"Usage of non-existant linking agent identifier role '{invalid_roles(agent_id)}' on linking agent ({agent_id.type.text}, {agent_id.value.text}). Agent role must be one of ({', '.join(thesauri.event_agent_roles)})",
+        fail_msg=lambda agent_id: f"Usage of non-existant linking agent identifier role(s) '{invalid_roles(agent_id)}' on linking agent ({agent_id.type.text}, {agent_id.value.text}). Agent roles must be one of ({', '.join(thesauri.event_agent_roles)})",
         success_msg="Validated PREMIS linking agent identifier role vocabulary.",
+    )
+
+
+def check_event_linking_object_role_vocabulary(
+    sip: SIP[Any],
+) -> RuleResult[premis.LinkingObjectIdentifier]:
+    premises = helpers.get_all_premis_models(sip)
+    all_linking_object_identifiers = [
+        linking_object_identifier
+        for premis in premises
+        for event in premis.events
+        for linking_object_identifier in event.linking_object_identifiers
+    ]
+    invalid_linking_object_identifiers = [
+        linking_object_identifier
+        for linking_object_identifier in all_linking_object_identifiers
+        if any(
+            role.text not in thesauri.event_object_roles
+            for role in linking_object_identifier.roles
+        )
+    ]
+
+    def invalid_roles(object_id: premis.LinkingObjectIdentifier) -> str:
+        roles = [
+            role.text
+            for role in object_id.roles
+            if role not in thesauri.event_object_roles
+        ]
+        return ", ".join(roles)
+
+    return RuleResult(
+        code=Code.event_linking_object_identifier_role_thesauri,
+        failed_items=invalid_linking_object_identifiers,
+        fail_msg=lambda object_id: f"Usage of non-existant linking object identifier role(s) '{invalid_roles(object_id)}' on linking object ({object_id.type.text}, {object_id.value.text}). Object roles must be one of ({', '.join(thesauri.event_object_roles)})",
+        success_msg="Validated PREMIS linking object identifier role vocabulary.",
     )
 
 
@@ -470,6 +505,7 @@ checks = [
     check_event_identifier_uniqueness,
     check_event_outcome_vocabulary,
     check_event_linking_agent_role_vocabulary,
+    check_event_linking_object_role_vocabulary,
     check_event_has_one_implementer,
     check_event_linking_agent_identifier_cardinality,
     check_event_linking_object_identifier_cardinality,
