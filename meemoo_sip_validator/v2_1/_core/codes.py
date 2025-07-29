@@ -14,6 +14,7 @@ class CodeEnum(Enum):
 class Code(str, CodeEnum):
     xsd_valid = auto()
     object_identifiers_uniqueness = auto()
+    object_identifier_type_uuid_existance = auto()
     object_identifier_type_thesauri = auto()
     fixity_message_digest_algorithm = auto()
     related_object_identifier_valid = auto()
