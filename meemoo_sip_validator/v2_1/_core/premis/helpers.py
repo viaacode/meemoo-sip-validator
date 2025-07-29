@@ -1,6 +1,8 @@
 # pyright: reportExplicitAny=false
 
 from typing import Any
+
+from meemoo_sip_validator.v2_1._core import thesauri
 from ..models import SIP, premis
 
 
@@ -47,3 +49,20 @@ def to_identifier(
         ),
         simple_link=related_object_identifier.simple_link,
     )
+
+
+def find_related_object(
+    related_object_identifier: premis.RelatedObjectIdentifier,
+    all_objects: list[premis.Object],
+) -> premis.Object | None:
+    related_identifier = to_identifier(related_object_identifier)
+    objects = [
+        object for object in all_objects if related_identifier in object.identifiers
+    ]
+    if len(objects) != 1:
+        return None
+    return objects[0]
+
+
+def get_inverse_relationship(sub_type: premis.RelationshipSubType) -> str:
+    return thesauri.inverse_relationship_sub_type_map[sub_type.text]

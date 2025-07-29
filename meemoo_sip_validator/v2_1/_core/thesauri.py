@@ -71,6 +71,23 @@ relationship_sub_types_per_object_type = {
     "{http://www.loc.gov/premis/v3}bitstream": [],
 }
 
+inverse_relationship_sub_type_map = {
+    "represents": "is represented by",
+    "is represented by": "represents",
+    "has master copy": "is master copy of",
+    "is master copy of": "has master copy",
+    "has mezzanine copy": "is mezzanine copy of",
+    "is mezzanine copy of": "has mezzanine copy",
+    "has access copy": "is access copy of",
+    "is access copy of": "has access copy",
+    "has transcription copy": "is transcription copy of",
+    "is transcription copy of": "has transcription copy",
+    "has carrier copy": "is carrier copy of",
+    "is carrier copy of": "has carrier copy",
+    "includes": "is included in",
+    "is included in": "includes",
+}
+
 
 relationship_sub_types = (
     relationship_sub_types_per_object_type[

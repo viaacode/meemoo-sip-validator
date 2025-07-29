@@ -25,7 +25,7 @@ class Failure:
     code: Code
     message: str
     severity: Severity
-    source: str | None
+    source: str
     result: Literal["FAIL"] = "FAIL"
 
     def to_dict(self) -> dict[str, Any]:
@@ -107,3 +107,9 @@ class RuleResult[T: WithSource]:
                 )
 
         return Report(results=report_results)
+
+
+@dataclass(kw_only=True)
+class TupleWithSource[*T]:
+    __source__: str
+    items: tuple[*T]

@@ -1,4 +1,4 @@
-# pyright: reportExplicitAny=false
+# pyright: reportExplicitAny = false
 
 from typing import Any
 from functools import reduce
@@ -7,7 +7,7 @@ from functools import reduce
 from .. import thesauri
 from ..codes import Code
 from . import helpers
-from ..models import SIP, Report, premis, RuleResult
+from ..models import SIP, Report, premis, RuleResult, TupleWithSource
 
 
 def check_object_identifier_type_vocabulary(
@@ -298,7 +298,7 @@ def check_related_objects_identifier_uses_existing_object(
         for premis in premises
         for object in premis.objects
         for relationship in object.relationships
-        for related_object_identifier in relationship.related_object_identifier
+        for related_object_identifier in relationship.related_object_identifiers
     ]
     all_object_identifiers = [
         object for object in helpers.get_all_object_identifiers(premises)
@@ -314,6 +314,61 @@ def check_related_objects_identifier_uses_existing_object(
         failed_items=non_existant_object_identifiers,
         fail_msg=lambda identifier: f"Usage of PREMIS related object identifier with non-existant identifier ({identifier.type.text}, {identifier.value.text}).",
         success_msg="Existance of PREMIS objects used as related objects validated.",
+    )
+
+
+def check_related_objects_inverse_relationship_valid(
+    sip: SIP[Any],
+) -> RuleResult[
+    TupleWithSource[premis.RelationshipSubType, premis.RelatedObjectIdentifier]
+]:
+    premises = helpers.get_all_premis_models(sip)
+    all_relationship_sub_type_and_rel_object_id_pairs = (
+        (relationship.sub_type, related_object_identifier, object)
+        for premis in premises
+        for object in premis.objects
+        for relationship in object.relationships
+        for related_object_identifier in relationship.related_object_identifiers
+    )
+    all_objects = [object for premis in premises for object in premis.objects]
+
+    invalid_items: list[
+        TupleWithSource[premis.RelationshipSubType, premis.RelatedObjectIdentifier]
+    ] = []
+    for (
+        sub_type,
+        rel_obj_id,
+        self_object,
+    ) in all_relationship_sub_type_and_rel_object_id_pairs:
+        related_object = helpers.find_related_object(rel_obj_id, all_objects)
+        if related_object is None:
+            # could not determine related object
+            continue
+
+        relationships_pointing_to_self = [
+            relationship
+            for relationship in related_object.relationships
+            for related_object_identifier in relationship.related_object_identifiers
+            if helpers.to_identifier(related_object_identifier)
+            in self_object.identifiers
+        ]
+        inverse_found = any(
+            helpers.get_inverse_relationship(relationship.sub_type) == sub_type.text
+            for relationship in relationships_pointing_to_self
+        )
+        if not inverse_found:
+            invalid_items.append(
+                TupleWithSource(
+                    __source__=sub_type.__source__,
+                    items=(sub_type, rel_obj_id),
+                )
+            )
+
+    return RuleResult(
+        code=Code.related_object_inverse_valid,
+        failed_items=invalid_items,
+        fail_msg=lambda pair: f"Could not find inverse relationship for PREMIS related object identifier {pair.items[1].type.text, pair.items[1].value.text} with relationship sub-type '{pair.items[0].text}'.",
+        success_msg="Validated inverse sub-types of PREMIS related object identifiers.",
     )
 
 
@@ -497,6 +552,7 @@ checks = [
     check_object_identifiers_uniqueness,
     check_object_identifier_type_uuid_existance,
     check_related_objects_identifier_uses_existing_object,
+    check_related_objects_inverse_relationship_valid,
     check_relationships_type_vocabulary,
     check_relationships_sub_type_vocabulary,
     check_relationships_sub_type_vocabulary_per_object_type,

@@ -21,6 +21,7 @@ class Code(str, CodeEnum):
     object_identifier_type_thesauri = auto()
     fixity_message_digest_algorithm = auto()
     related_object_identifier_valid = auto()
+    related_object_inverse_valid = auto()
     relationship_type_thesauri = auto()
     relationship_sub_type_thesauri = auto()
     relationship_sub_type_per_object_thesauri = auto()
