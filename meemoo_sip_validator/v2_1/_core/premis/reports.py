@@ -284,7 +284,51 @@ def check_event_has_one_implementer(
         code=Code.event_implementer_cardinality,
         failed_items=invalid_events,
         fail_msg=lambda event: f"Usage of PREMIS event {event.identifier.type.text, event.identifier.value.text} with zero or more than one implementer agents. All events must have exactly one linking agent identifier with the 'implementer' role.",
-        success_msg="Validated PREMIS presence of implementer for all events.",
+        success_msg="Validated presence of implementer for all PREMIS events.",
+    )
+
+
+def check_event_sources_exist(
+    sip: SIP[Any],
+) -> RuleResult[premis.LinkingObjectIdentifier]:
+    premises = helpers.get_all_premis_models(sip)
+    all_events = [event for premis in premises for event in premis.events]
+    source_objects = [
+        linking_object_identifier
+        for event in all_events
+        for linking_object_identifier in event.linking_object_identifiers
+        if "source" in [role.text for role in linking_object_identifier.roles]
+    ]
+    all_object_identifiers = helpers.get_all_object_identifiers(premises)
+
+    def is_outcome(linking_obj: premis.LinkingObjectIdentifier) -> bool:
+        return "outcome" in [role.text for role in linking_obj.roles]
+
+    def object_id_exists(linking_obj: premis.LinkingObjectIdentifier) -> bool:
+        return helpers.to_identifier(linking_obj) not in all_object_identifiers
+
+    all_temporary_created_object_ids = [
+        helpers.to_identifier(linking_object_identifier)
+        for event in all_events
+        for linking_object_identifier in event.linking_object_identifiers
+        if is_outcome(linking_object_identifier)
+        and object_id_exists(linking_object_identifier)
+    ]
+    all_objects_including_temporary = (
+        all_temporary_created_object_ids + all_object_identifiers
+    )
+
+    invalid_source_objects = [
+        source
+        for source in source_objects
+        if helpers.to_identifier(source) not in all_objects_including_temporary
+    ]
+
+    return RuleResult(
+        code=Code.event_source_exists,
+        failed_items=invalid_source_objects,
+        fail_msg=lambda linking_obj: f"Usage of PREMIS event linking object identifier {linking_obj.type.text, linking_obj.value.text} with role 'source', but no object or event outcome object with that identifier was found.",
+        success_msg="Validated existance of source object for all PREMIS events.",
     )
 
 
@@ -625,6 +669,7 @@ checks = [
     check_event_has_one_implementer,
     check_event_linking_agent_identifier_cardinality,
     check_event_linking_object_identifier_cardinality,
+    check_event_sources_exist,
     check_agent_identifier_uniqueness,
     check_agent_identifier_type_uuid_existance,
     check_agent_type_vocabulary,
