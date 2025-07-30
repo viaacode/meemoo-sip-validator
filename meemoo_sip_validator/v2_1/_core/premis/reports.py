@@ -547,6 +547,66 @@ def check_fixity_message_digest_algorithm_vocabulary(
     )
 
 
+def check_file_orignal_name_present(sip: SIP[Any]) -> RuleResult[premis.File]:
+    # TODO: this could be checked in xml
+    pairs = helpers.get_file_and_representation_pairs(sip)
+    invalid_files = [file for file, _ in pairs if file.original_name is None]
+
+    return RuleResult(
+        code=Code.file_original_name_present,
+        failed_items=invalid_files,
+        fail_msg=lambda file: f"Usage of PREMIS file {helpers.get_object_id(file)} with missing original name. All files must have a orignal name element.",
+        success_msg="Validated presense of orignal name on PREMIS file.",
+    )
+
+
+def check_file_references_existing_data(sip: SIP[Any]) -> RuleResult[premis.File]:
+    pairs = helpers.get_file_and_representation_pairs(sip)
+    invalid_files: list[premis.File] = []
+    for file, representation in pairs:
+        if file.original_name is None:
+            continue  # already checked by other function
+        file_data_matches = [
+            path for path in representation.data if path.name == file.original_name.text
+        ]
+        if len(file_data_matches) != 1:
+            invalid_files.append(file)
+
+    return RuleResult(
+        code=Code.file_is_mappable_to_data,
+        failed_items=invalid_files,
+        fail_msg=lambda file: f"Could not find data referenced by PREMIS file {helpers.get_object_id(file)} using original name '{file.original_name}'.",
+        success_msg="Validated reference from PREMIS files to data.",
+    )
+
+
+def check_fixity_message_digest_matches_actual_hash(
+    sip: SIP[Any],
+) -> RuleResult[premis.File]:
+    pairs = helpers.get_file_and_data_pairs(sip)
+    invalid_files: list[premis.File] = []
+    for file, path in pairs:
+        calculated_digest = helpers.calculate_message_digest(path)
+        fixities = [
+            fixity
+            for characteristics in file.characteristics
+            for fixity in characteristics.fixity
+            if fixity.message_digest_algorithm.text in thesauri.supported_hashes
+        ]
+        if len(fixities) != 1:
+            continue  # TODO: check this in new rule
+        fixity = fixities[0]
+        if fixity.message_digest.text != calculated_digest:
+            invalid_files.append(file)
+
+    return RuleResult(
+        code=Code.fixity_message_digest_matches_actual,
+        failed_items=invalid_files,
+        fail_msg=lambda file: f"Incorrect message digest for PREMIS file {helpers.get_object_id(file)}.",
+        success_msg="Validated PREMIS file message digest values.",
+    )
+
+
 checks = [
     check_object_identifier_type_vocabulary,
     check_object_identifiers_uniqueness,
@@ -569,6 +629,9 @@ checks = [
     check_agent_identifier_type_uuid_existance,
     check_agent_type_vocabulary,
     check_fixity_message_digest_algorithm_vocabulary,
+    check_fixity_message_digest_matches_actual_hash,
+    check_file_orignal_name_present,
+    check_file_references_existing_data,
 ]
 
 

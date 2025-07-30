@@ -6,12 +6,12 @@ from enum import Enum
 from dataclasses import dataclass
 
 # Make sip models available through this module
-from eark_models.sip.v2_2_0 import SIP as SIP
+from eark_models.sip.v2_2_0 import SIP as SIP, Representation
 import eark_models.premis.v3_0 as premis
 
 from .codes import Code
 
-__all__ = ["premis"]
+__all__ = ["premis", "Representation"]
 
 
 class Severity(str, Enum):
