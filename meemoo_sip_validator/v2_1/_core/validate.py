@@ -20,12 +20,12 @@ class Dummy(XMLParseable):
         return cls()
 
 
-def validate_to_report(unzipped_path: Path) -> Report:
+def _validate(unzipped_path: Path) -> Report:
     # from py_commons_ip.sip_validator import EARKSIPValidator
     # validator = EARKSIPValidator()
     # return validator.validate(unzipped_path)
 
-    xsd_report = xsd.validate_basic(unzipped_path)
+    xsd_report = xsd.validate(unzipped_path)
     if xsd_report.outcome == "FAILED":
         return xsd_report
 
@@ -33,6 +33,10 @@ def validate_to_report(unzipped_path: Path) -> Report:
 
     premis_report = validate_premis(sip)
     return xsd_report + premis_report
+
+
+def validate_to_report(unzipped_path: Path) -> Report:
+    return _validate(unzipped_path)
 
 
 def validate(unzipped_path: Path) -> dict[str, Any]:

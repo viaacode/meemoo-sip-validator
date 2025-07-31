@@ -5,32 +5,17 @@ import xml.etree.ElementTree as ET
 from xmlschema import XMLSchema, XMLSchemaException
 
 from .models import Report, Success, Failure, Severity
+from .profiles import Profile
 from .codes import Code
 
 assets = resources.files("meemoo_sip_validator.assets")
+
 mets_xsd_path = str(assets.joinpath("mets-1-12.xsd.xml"))
 premis_xsd_path = str(assets.joinpath("premis-3-0.xsd.xml"))
 xlink_xsd_path = str(assets.joinpath("xlink-2.xsd.xml"))
-
-
-def parse_xml_file(path: Path) -> Success | Failure:
-    try:
-        _ = ET.parse(path)
-        return Success(
-            code=Code.xsd_valid,
-            message=f"Parsed XML: {path}",
-        )
-    except ET.ParseError as e:
-        return Failure(
-            source=str(path),
-            code=Code.xsd_valid,
-            message=f"Could not parse XML - {e}. File: {path}",
-            severity=Severity.ERROR,
-        )
-
-
-def parse_xml_files(paths: list[Path]) -> Report:
-    return Report(results=[parse_xml_file(path) for path in paths])
+basic_xsd_path = str(assets.joinpath("2.1/basic-2-1.xsd.xml"))
+film_xsd_path = str(assets.joinpath("2.1/film-2-1.xsd.xml"))
+material_artwork_xsd_path = str(assets.joinpath("2.1/material-artwork-2-1.xsd.xml"))
 
 
 def valiate_files(paths: list[Path], schema: XMLSchema) -> Report:
@@ -72,7 +57,44 @@ def validate_structural(unzipped_path: Path) -> Report:
 
 
 def validate_basic(unzipped_path: Path) -> Report:
-    descriptive_paths = list(unzipped_path.rglob("dc+schema.xml"))
-    descriptive_report = parse_xml_files(descriptive_paths)
+    basic_xsd = XMLSchema(basic_xsd_path)
+    descriptive_files = list(unzipped_path.rglob("dc+schema.xml"))
 
-    return validate_structural(unzipped_path) + descriptive_report
+    basic_report = valiate_files(descriptive_files, basic_xsd)
+
+    return basic_report
+
+
+def validate_profile(unzipped_path: Path, profile: Profile) -> Report:
+    match profile:
+        case Profile.BASIC:
+            return validate_basic(unzipped_path)
+        case Profile.FILM:
+            return validate_basic(unzipped_path)
+        case Profile.MATERIAL_ARTWORK:
+            return validate_basic(unzipped_path)
+
+
+def validate(unzipped_path: Path) -> Report:
+    root_mets_path = unzipped_path.joinpath("METS.xml")
+    mets_root = ET.parse(root_mets_path).getroot()
+    profile = mets_root.get(
+        "{https://DILCIS.eu/XML/METS/CSIPExtensionMETS}OTHERCONTENTINFORMATIONTYPE"
+    )
+
+    profiles = [p.value for p in Profile]
+    if profile not in profiles:
+        return Report(
+            results=[
+                Failure(
+                    code=Code.mets_other_content_information_type,
+                    message="The root mets must contain the csip:OTHERCONTENTINFORMATIONTYPE attribute indicating the profile ot the SIP.",
+                    severity=Severity.ERROR,
+                    source=str(root_mets_path),
+                ),
+            ]
+        )
+
+    profile = Profile(profile)
+
+    return validate_structural(unzipped_path) + validate_profile(unzipped_path, profile)

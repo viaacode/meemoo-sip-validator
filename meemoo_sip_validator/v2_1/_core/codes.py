@@ -16,6 +16,7 @@ class CodeEnum(Enum):
 # TODO: assign fixed codes
 class Code(str, CodeEnum):
     xsd_valid = auto()
+    mets_other_content_information_type = auto()
     object_identifiers_uniqueness = auto()
     object_identifier_type_uuid_existance = auto()
     object_identifier_type_thesauri = auto()
