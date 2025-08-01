@@ -2,7 +2,7 @@ from meemoo_sip_validator.v2_1._core.codes import Code
 from tests.v2_1 import utils
 
 
-from meemoo_sip_validator.v2_1._core.premis.reports import (
+from meemoo_sip_validator.v2_1._core.premis.premis import (
     check_object_identifiers_uniqueness,
 )
 

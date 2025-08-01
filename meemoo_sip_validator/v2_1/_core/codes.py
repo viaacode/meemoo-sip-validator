@@ -16,13 +16,14 @@ class CodeEnum(Enum):
 # TODO: assign fixed codes
 class Code(str, CodeEnum):
     xsd_valid = auto()
+    edtf_valid = auto()
     mets_other_content_information_type = auto()
     object_identifiers_uniqueness = auto()
     object_identifier_type_uuid_existance = auto()
     object_identifier_type_thesauri = auto()
     file_original_name_present = auto()
     file_is_mappable_to_data = auto()
-    fixity_message_digest_algorithm = auto()
+    fixity_message_digest_algorithm_thesauri = auto()
     fixity_message_digest_matches_actual = auto()
     related_object_identifier_valid = auto()
     related_object_inverse_valid = auto()

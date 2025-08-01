@@ -3,7 +3,7 @@ import json
 
 import pytest
 
-from meemoo_sip_validator.v2_1._core.models import Report
+from meemoo_sip_validator.v2_1._core.report import Report
 from meemoo_sip_validator.v2_1 import validate_to_report
 
 sip_paths = set(Path("tests/sip-examples/2.1").iterdir())

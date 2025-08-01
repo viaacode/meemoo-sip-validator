@@ -3,7 +3,7 @@
 
   <xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="../xml.xsd.xml"/>
   <xsd:import namespace="http://id.loc.gov/datatypes/edtf/" schemaLocation="../edtf.xsd.xml"/>
-  <xsd:import namespace="https://schema.org/" schemaLocation="../basic-schema-2-1.xsd.xml"/>
+  <xsd:import namespace="https://schema.org/" schemaLocation="basic-schema-2-1.xsd.xml"/>
 
   <xsd:element name="anyDcterms" abstract="true"/>
 

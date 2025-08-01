@@ -7,7 +7,8 @@ from functools import reduce
 from .. import thesauri
 from ..codes import Code
 from . import helpers
-from ..models import SIP, Report, premis, RuleResult, TupleWithSource
+from ..report import Report, RuleResult, TupleWithSource
+from ..models import SIP, premis
 
 
 def check_object_identifier_type_vocabulary(
@@ -584,7 +585,7 @@ def check_fixity_message_digest_algorithm_vocabulary(
         )
 
     return RuleResult(
-        code=Code.fixity_message_digest_algorithm,
+        code=Code.fixity_message_digest_algorithm_thesauri,
         failed_items=invalid_files,
         fail_msg=lambda file: f"Usage of non-supported message digest algorithm(s) '{get_unsupported_algorithms(file)}'. PREMIS message digest algorithm must be one of ({','.join(thesauri.supported_hashes)}).",
         success_msg="Validated supported PREMIS fixity message digest algorithm.",
@@ -680,7 +681,7 @@ checks = [
 ]
 
 
-def validate(sip: SIP[Any]) -> Report:
+def validate_premis(sip: SIP[Any]) -> Report:
     rule_results = (check(sip) for check in checks)
     reports = (rule.to_report() for rule in rule_results)
     return reduce(Report.__add__, reports)

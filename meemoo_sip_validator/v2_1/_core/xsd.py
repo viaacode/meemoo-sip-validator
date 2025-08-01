@@ -1,11 +1,10 @@
 from importlib import resources
 from pathlib import Path
-import xml.etree.ElementTree as ET
 
 from xmlschema import XMLSchema, XMLSchemaException
 
-from .models import Report, Success, Failure, Severity
-from .profiles import Profile
+from .report import Report, Success, Failure, Severity
+from .utils import Profile, get_profile
 from .codes import Code
 
 assets = resources.files("meemoo_sip_validator.assets")
@@ -76,21 +75,16 @@ def validate_profile(unzipped_path: Path, profile: Profile) -> Report:
 
 
 def validate(unzipped_path: Path) -> Report:
-    root_mets_path = unzipped_path.joinpath("METS.xml")
-    mets_root = ET.parse(root_mets_path).getroot()
-    profile = mets_root.get(
-        "{https://DILCIS.eu/XML/METS/CSIPExtensionMETS}OTHERCONTENTINFORMATIONTYPE"
-    )
+    profile = get_profile(unzipped_path)
 
-    profiles = [p.value for p in Profile]
-    if profile not in profiles:
+    if profile is None:
         return Report(
             results=[
                 Failure(
                     code=Code.mets_other_content_information_type,
                     message="The root mets must contain the csip:OTHERCONTENTINFORMATIONTYPE attribute indicating the profile ot the SIP.",
                     severity=Severity.ERROR,
-                    source=str(root_mets_path),
+                    source=str(unzipped_path.joinpath("METS.xml")),
                 ),
             ]
         )
