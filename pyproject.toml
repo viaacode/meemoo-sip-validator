@@ -9,10 +9,10 @@ description = "A library to validate meemoo SIP's"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "py-commons-ip==0.2.0",
+    "py-commons-ip==0.3.0",
     "xmlschema==4.1.0",
     "edtf-validate==2.0.0",
-    "sipin-eark-models==0.0.5",
+    "sipin-eark-models==0.0.6",
 ]
 classifiers = [
   "Programming Language :: Python :: 3.12",
@@ -27,7 +27,7 @@ dev = [
 ]
 
 [tool.setuptools.package-data]
-"meemoo_sip_validator" = ["assets/*.xml"]
+"meemoo_sip_validator" = ["assets/**/*.xml"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
