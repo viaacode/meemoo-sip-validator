@@ -1,5 +1,3 @@
-# pyright: reportExplicitAny = false, reportAny = false
-
 from functools import reduce
 from typing import Any, cast
 from collections.abc import Iterable
@@ -26,11 +24,10 @@ def check_edtf_values(sip: SIP[DCPlusSchema]) -> RuleResult[EDTF]:
     all_edtf = collect_edtfs(dc_schema)
     invalid_edtfs = [edtf for edtf in all_edtf if not is_valid_mediahaven_edtf(edtf)]
 
-    # TODO: create new check or better message for unsupported level 2
     return RuleResult(
         code=Code.edtf_valid,
         failed_items=invalid_edtfs,
-        fail_msg=lambda edtf: f"Invalid EDTF level {edtf.xsi_type[-1]} value '{edtf.text}'.",
+        fail_msg=lambda edtf: f"Invalid or unsupported EDTF level {edtf.xsi_type[-1]} with value '{edtf.text}'.",
         success_msg="Validated EDTF values in dc+schema.xml.",
     )
 

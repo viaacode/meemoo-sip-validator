@@ -1,5 +1,3 @@
-# pyright: reportExplicitAny=false
-
 from typing import Any
 from pathlib import Path
 from hashlib import md5

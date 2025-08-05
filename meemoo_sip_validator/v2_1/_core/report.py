@@ -1,5 +1,3 @@
-# pyright: reportExplicitAny=false
-
 from typing import Literal, Callable, Protocol, Any
 from collections.abc import Generator
 from enum import Enum

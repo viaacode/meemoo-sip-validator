@@ -1,5 +1,3 @@
-# pyright: reportExplicitAny=false, reportAny=false
-
 from typing import Any, Callable
 from pathlib import Path
 import json

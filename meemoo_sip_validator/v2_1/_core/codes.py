@@ -1,5 +1,3 @@
-# pyright: reportExplicitAny=false
-
 from typing import Any, override
 from enum import Enum, auto
 
