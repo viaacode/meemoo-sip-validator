@@ -25,6 +25,7 @@ class Dummy(XMLParseable):
 
 def empty_sip[T: XMLParseable](descriptive: T) -> SIP[T]:
     return SIP(
+        unzipped_path=Path(""),
         mets=METS(),
         metadata=PackageMetadata(
             descriptive=descriptive,
