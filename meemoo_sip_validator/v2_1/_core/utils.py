@@ -18,7 +18,11 @@ profiles = [p.value for p in Profile]
 
 def get_profile(sip_path: Path) -> Profile | None:
     root_mets_path = sip_path / "METS.xml"
-    mets_root = ET.parse(root_mets_path).getroot()
+    try:
+        mets_root = ET.parse(root_mets_path).getroot()
+    except:
+        return None
+
     profile = mets_root.get(
         "{https://DILCIS.eu/XML/METS/CSIPExtensionMETS}OTHERCONTENTINFORMATIONTYPE"
     )

@@ -9,35 +9,27 @@ from .utils import ValidatorError
 
 from .models import SIP, DCPlusSchema
 from .report import Report, Failure, Severity, Success
-from . import xsd, codes, utils
+from . import xsd, codes, utils, structural
 from .premis.premis import validate_premis
 from .descriptive.dc_schema import validate_dc_schema
 
 
 def _validate(sip_path: Path) -> Report:
-    commons_ip_result = py_commons_ip.validate(sip_path, "2.2.0")
-    is_valid_commons_ip, commons_ip_json_report = commons_ip_result
-    commons_ip_report = commons_ip_report_to_meemoo_report(commons_ip_json_report)
-
-    if not is_valid_commons_ip:
-        return commons_ip_report
-
     profile = utils.get_profile(sip_path)
     if profile is None:
         return get_profile_failure_report(sip_path)
-
-    xsd_report = xsd.validate(sip_path)
-    if xsd_report.outcome == "FAILED":
-        return commons_ip_report + xsd_report
 
     validate_descriptive = get_descriptive_validation_fn(profile)
     DescriptiveModel = get_descriptive_model(profile)
 
     sip = SIP[DescriptiveModel].from_path(sip_path, DescriptiveModel)
-    premis_report = validate_premis(sip)
-    descriptive_report = validate_descriptive(sip)
 
-    return commons_ip_report + xsd_report + premis_report + descriptive_report
+    return (
+        _validate_commons_ip(sip_path)
+        + xsd.validate_xsd(sip_path)
+        + validate_premis(sip_path)
+        + validate_descriptive(sip)
+    )
 
 
 def validate_to_report(sip_path: Path) -> Report:
@@ -82,6 +74,12 @@ def get_descriptive_validation_fn(
             return validate_dc_schema
         case utils.Profile.MATERIAL_ARTWORK:
             return validate_dc_schema
+
+
+def _validate_commons_ip(sip_path: Path) -> Report:
+    commons_ip_result = py_commons_ip.validate(sip_path, "2.2.0")
+    _, commons_ip_json_report = commons_ip_result
+    return commons_ip_report_to_meemoo_report(commons_ip_json_report)
 
 
 def commons_ip_report_to_meemoo_report(report: str) -> Report:

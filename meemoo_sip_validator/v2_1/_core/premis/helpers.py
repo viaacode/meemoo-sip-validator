@@ -4,12 +4,27 @@ from hashlib import md5
 
 from meemoo_sip_validator.v2_1._core import thesauri
 from ..models import SIP, premis, Representation
+from ..report import Report, Failure, Success, Severity
+from ..codes import Code
 
 
-def get_all_premis_models(sip: SIP[Any]) -> list[premis.Premis]:
-    return [sip.metadata.preservation] + [
-        r.metadata.preservation for r in sip.representations
-    ]
+def get_all_premis_models(sip_path: Path) -> tuple[list[premis.Premis], Report]:
+    premis_paths = sip_path.rglob("premis.xml")
+    premis_models: list[premis.Premis] = []
+    failures: list[Failure | Success] = []
+    for path in premis_paths:
+        try:
+            premis_models.append(premis.Premis.from_xml(path))
+        except premis.InvalidXMLError:
+            failures.append(
+                Failure(
+                    code=Code.xsd_valid,
+                    severity=Severity.ERROR,
+                    message=f"Unable to parse premis file: {path}",
+                    source=str(path),
+                )
+            )
+    return premis_models, Report(results=failures)
 
 
 def get_all_object_identifiers(

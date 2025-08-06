@@ -17,25 +17,25 @@ film_xsd_path = str(assets.joinpath("2.1/film-2-1.xsd.xml"))
 material_artwork_xsd_path = str(assets.joinpath("2.1/material-artwork-2-1.xsd.xml"))
 
 
-def valiate_files(paths: list[Path], schema: XMLSchema) -> Report:
+def validate_files_with_xsd(paths: list[Path], schema: XMLSchema) -> Report:
     code = Code.xsd_valid
-    invalid_xsd_paths = [path for path in paths if not schema.is_valid(path)]
-
     failures: list[Failure | Success] = []
-    if len(invalid_xsd_paths) != 0:
-        for path in invalid_xsd_paths:
-            try:
-                schema.validate(path)
-            except XMLSchemaException as e:
-                message = f"XSD validation failed on {path} - {e}"
-                failures.append(
-                    Failure(
-                        source=str(path),
-                        code=code,
-                        message=message,
-                        severity=Severity.ERROR,
-                    )
+    for path in paths:
+        try:
+            schema.validate(path)
+        except XMLSchemaException as e:
+            message = f"XSD validation failed on {path} - {e}"
+            failures.append(
+                Failure(
+                    source=str(path),
+                    code=code,
+                    message=message,
+                    severity=Severity.ERROR,
                 )
+            )
+
+    if len(failures) != 0:
+        return Report(results=failures)
 
     message = f"Structural XML files validated using XSD: {schema.name}"
     return Report(results=[Success(code=code, message=message)])
@@ -45,7 +45,7 @@ def validate_mets(sip_path: Path) -> Report:
     xlink_location = [("http://www.w3.org/1999/xlink", xlink_xsd_path)]
     mets_xsd = XMLSchema(mets_xsd_path, locations=xlink_location)
     mets_files = list(sip_path.rglob("METS.xml"))
-    mets_report = valiate_files(mets_files, mets_xsd)
+    mets_report = validate_files_with_xsd(mets_files, mets_xsd)
 
     return mets_report
 
@@ -53,31 +53,28 @@ def validate_mets(sip_path: Path) -> Report:
 def validate_preservation(sip_path: Path) -> Report:
     premis_xsd = XMLSchema(premis_xsd_path)
     premis_files = list(sip_path.rglob("premis.xml"))
-    premis_report = valiate_files(premis_files, premis_xsd)
+    premis_report = validate_files_with_xsd(premis_files, premis_xsd)
 
     return premis_report
 
 
-def validate_descriptive_basic(sip_path: Path) -> Report:
+def validate_descriptive(sip_path: Path, profile: Profile) -> Report:
     basic_xsd = XMLSchema(basic_xsd_path)
+    film_xsd = XMLSchema(film_xsd_path)
+    material_xsd = XMLSchema(material_artwork_xsd_path)
+
     descriptive_files = list(sip_path.rglob("dc+schema.xml"))
 
-    basic_report = valiate_files(descriptive_files, basic_xsd)
-
-    return basic_report
-
-
-def validate_descriptive(sip_path: Path, profile: Profile) -> Report:
     match profile:
         case Profile.BASIC:
-            return validate_descriptive_basic(sip_path)
+            return validate_files_with_xsd(descriptive_files, basic_xsd)
         case Profile.FILM:
-            return validate_descriptive_basic(sip_path)
+            return validate_files_with_xsd(descriptive_files, film_xsd)
         case Profile.MATERIAL_ARTWORK:
-            return validate_descriptive_basic(sip_path)
+            return validate_files_with_xsd(descriptive_files, material_xsd)
 
 
-def validate(sip_path: Path) -> Report:
+def validate_xsd(sip_path: Path) -> Report:
     profile = get_profile(sip_path)
     if profile is None:
         return get_profile_failure_report(sip_path)
