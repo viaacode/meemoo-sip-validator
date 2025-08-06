@@ -60,6 +60,10 @@ class Report:
         return "FAILED" if failed else "PASSED"
 
     @property
+    def is_valid(self) -> bool:
+        return self.outcome == "PASSED"
+
+    @property
     def failures(self) -> Generator[Failure, None, None]:
         return (result for result in self.results if isinstance(result, Failure))
 

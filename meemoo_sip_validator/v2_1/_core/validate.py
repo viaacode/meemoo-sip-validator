@@ -43,9 +43,9 @@ def validate_to_report(unzipped_path: Path) -> Report:
     return _validate(unzipped_path)
 
 
-def validate(unzipped_path: Path) -> dict[str, Any]:
+def validate(unzipped_path: Path) -> tuple[bool, dict[str, Any]]:
     report = validate_to_report(unzipped_path)
-    return report.to_dict()
+    return report.is_valid, report.to_dict()
 
 
 def get_profile_failure_report(unzipped_path: Path) -> Report:

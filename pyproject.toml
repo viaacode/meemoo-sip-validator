@@ -4,7 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "meemoo-sip-validator"
-version = "0.1.0"
+# The version of this library is set by adding a tag vX.Y.Z to a commit.
+# The CI/CD pipeline will patch the version bellow.
+version = "0.0.1" # Don't change me
 description = "A library to validate meemoo SIP's"
 readme = "README.md"
 requires-python = ">=3.12"
