@@ -18,13 +18,13 @@ exclude = [
 excluded_paths = {Path(p) for p in exclude}
 
 sip_paths = sip_paths - excluded_paths
-unzipped_paths = [(next(path.iterdir())) for path in sip_paths]
-unzipped_path_names = [str(path.parent.name) for path in unzipped_paths]
+sip_paths = [(next(path.iterdir())) for path in sip_paths]
+sip_path_names = [str(path.parent.name) for path in sip_paths]
 
 
-@pytest.mark.parametrize("unzipped_path", unzipped_paths, ids=unzipped_path_names)
-def test_examples(unzipped_path: Path):
-    report = validate_to_report(unzipped_path)
+@pytest.mark.parametrize("sip_path", sip_paths, ids=sip_path_names)
+def test_examples(sip_path: Path):
+    report = validate_to_report(sip_path)
     failures_dumped = Report(results=list(report.failures)).to_dict()
     print(json.dumps(failures_dumped, indent=1))
     assert report.outcome == "PASSED"

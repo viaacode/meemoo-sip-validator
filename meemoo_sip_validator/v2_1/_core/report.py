@@ -22,7 +22,7 @@ class Failure:
 
     def to_dict(self) -> dict[str, Any]:
         return {
-            "code": self.code,
+            # "code": self.code,
             "message": self.message,
             "severity": self.severity,
             "source": self.source,
@@ -38,7 +38,7 @@ class Success:
 
     def to_dict(self) -> dict[str, Any]:
         return {
-            "code": self.code,
+            # "code": self.code,
             "message": self.message,
             "result": self.result,
         }
