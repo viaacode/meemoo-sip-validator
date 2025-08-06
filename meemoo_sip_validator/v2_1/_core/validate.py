@@ -1,15 +1,11 @@
 from typing import Any, Callable
 from pathlib import Path
-import json
 
 from eark_models.utils import XMLParseable
-import py_commons_ip
-
-from .utils import ValidatorError
 
 from .models import SIP, DCPlusSchema
-from .report import Report, Failure, Severity, Success
-from . import xsd, codes, utils, structural
+from .report import Report, Failure, Severity
+from . import xsd, codes, utils, commons_ip
 from .premis.premis import validate_premis
 from .descriptive.dc_schema import validate_dc_schema
 
@@ -22,14 +18,15 @@ def _validate(sip_path: Path) -> Report:
     validate_descriptive = get_descriptive_validation_fn(profile)
     DescriptiveModel = get_descriptive_model(profile)
 
-    sip = SIP[DescriptiveModel].from_path(sip_path, DescriptiveModel)
-
-    return (
-        _validate_commons_ip(sip_path)
+    combined_report = (
+        commons_ip.validate_commons_ip(sip_path)
         + xsd.validate_xsd(sip_path)
         + validate_premis(sip_path)
-        + validate_descriptive(sip)
     )
+
+    # TODO: this could fail
+    sip = SIP[DescriptiveModel].from_path(sip_path, DescriptiveModel)
+    return combined_report + validate_descriptive(sip)
 
 
 def validate_to_report(sip_path: Path) -> Report:
@@ -74,57 +71,3 @@ def get_descriptive_validation_fn(
             return validate_dc_schema
         case utils.Profile.MATERIAL_ARTWORK:
             return validate_dc_schema
-
-
-def _validate_commons_ip(sip_path: Path) -> Report:
-    commons_ip_result = py_commons_ip.validate(sip_path, "2.2.0")
-    _, commons_ip_json_report = commons_ip_result
-    return commons_ip_report_to_meemoo_report(commons_ip_json_report)
-
-
-def commons_ip_report_to_meemoo_report(report: str) -> Report:
-    # TODO: add csip codes to Code enum
-    report_dict = json.loads(report)
-
-    results: list[Failure | Success] = []
-
-    validations = report_dict["validation"]
-    for validation in validations:
-        code = validation["id"]
-        level = validation["level"]
-        outcome = validation["testing"]["outcome"]
-
-        issues = validation["testing"]["issues"]
-        warnings = validation["testing"]["warnings"]
-        notes = validation["testing"]["notes"]
-        messages = issues + warnings + notes
-
-        if outcome == "FAILED":
-            if level == "MUST":
-                severity = Severity.ERROR
-            elif level == "SHOULD":
-                severity = Severity.WARNING
-            elif level == "MAY":
-                severity = Severity.INFO
-            else:
-                raise ValidatorError(f"Unexpected Commons IP level '{level}'")
-
-            result = Failure(
-                code=code,
-                severity=Severity(severity),
-                message=" ".join(messages),
-                source="Unknown source",
-            )
-
-        elif outcome == "PASSED":
-            result = Success(
-                code=code,
-                message=" ".join(messages),
-            )
-
-        else:
-            continue
-
-        results.append(result)
-
-    return Report(results=results)
