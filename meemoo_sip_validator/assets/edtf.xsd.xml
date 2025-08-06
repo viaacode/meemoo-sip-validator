@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://id.loc.gov/datatypes/edtf/" targetNamespace="http://id.loc.gov/datatypes/edtf/">
+
+  <xsd:simpleType name="EDTF">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="EDTF-level0">
+    <xsd:restriction base="EDTF"/>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="EDTF-level1">
+    <xsd:restriction base="EDTF"/>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="EDTF-level2">
+    <xsd:restriction base="EDTF"/>
+  </xsd:simpleType>
+  
+</xsd:schema>

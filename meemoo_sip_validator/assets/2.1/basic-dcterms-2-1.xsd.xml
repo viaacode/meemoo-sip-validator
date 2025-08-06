@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://purl.org/dc/terms/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:edtf="http://id.loc.gov/datatypes/edtf/" xmlns:schema="https://schema.org/" targetNamespace="http://purl.org/dc/terms/" elementFormDefault="qualified">
+
+  <xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="../xml.xsd.xml"/>
+  <xsd:import namespace="http://id.loc.gov/datatypes/edtf/" schemaLocation="../edtf.xsd.xml"/>
+  <xsd:import namespace="https://schema.org/" schemaLocation="basic-schema-2-1.xsd.xml"/>
+
+  <xsd:element name="anyDcterms" abstract="true"/>
+
+  <xsd:element name="title" type="langString" substitutionGroup="anyDcterms"/>
+  <xsd:element name="alternative" type="langString" substitutionGroup="anyDcterms"/>
+  <xsd:element name="identifier" type="xsd:ID" substitutionGroup="anyDcterms"/>
+  <xsd:element name="extent" type="xsd:duration" substitutionGroup="anyDcterms"/>
+  <xsd:element name="available" type="xsd:dateTime" substitutionGroup="anyDcterms"/>
+  <xsd:element name="description" type="langString" substitutionGroup="anyDcterms"/>
+  <xsd:element name="abstract" type="langString" substitutionGroup="anyDcterms"/>
+  <xsd:element name="created" type="edtf:EDTF" substitutionGroup="anyDcterms"/>
+  <xsd:element name="issued" type="edtf:EDTF" substitutionGroup="anyDcterms"/>
+
+  <xsd:element name="publisher" type="schema:roleComplexType" substitutionGroup="anyDcterms"/>
+  <xsd:element name="creator" type="schema:roleComplexType" substitutionGroup="anyDcterms"/>
+  <xsd:element name="contributor" type="schema:roleComplexType" substitutionGroup="anyDcterms"/>
+
+  <xsd:element name="spatial" type="xsd:string" substitutionGroup="anyDcterms"/>
+  <xsd:element name="temporal" type="langString" substitutionGroup="anyDcterms"/>
+  <xsd:element name="subject" type="langString" substitutionGroup="anyDcterms"/>
+  <xsd:element name="language" type="xsd:string" substitutionGroup="anyDcterms"/>
+  <xsd:element name="license" type="xsd:string" substitutionGroup="anyDcterms"/>
+  <xsd:element name="rightsHolder" type="langString" substitutionGroup="anyDcterms"/>
+  <xsd:element name="rights" type="langString" substitutionGroup="anyDcterms"/>
+  <xsd:element name="type" type="typeSimpleType" substitutionGroup="anyDcterms"/>
+  <xsd:element name="format" type="formatSimpleType" substitutionGroup="anyDcterms"/>
+
+  <xsd:complexType name="langString">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute ref="xml:lang" use="required"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:simpleType name="typeSimpleType">
+    <xsd:restriction base="xsd:string">
+     	<xsd:enumeration value="Audio"/>
+     	<xsd:enumeration value="DVD"/>
+     	<xsd:enumeration value="DVDChapter"/>
+     	<xsd:enumeration value="Film"/>
+     	<xsd:enumeration value="Image"/>
+     	<xsd:enumeration value="NewspaperIssue"/>
+     	<xsd:enumeration value="NewspaperIssuePage"/>
+     	<xsd:enumeration value="Video"/>
+     	<xsd:enumeration value="SilentFilm"/>
+     	<xsd:enumeration value="SoundFilm"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="formatSimpleType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="audio"/>
+      <xsd:enumeration value="video"/>
+      <xsd:enumeration value="film"/>
+      <xsd:enumeration value="paper"/>
+      <xsd:enumeration value="newspaper"/>
+      <xsd:enumeration value="newspaperpage"/>
+      <xsd:enumeration value="videofragment"/>
+      <xsd:enumeration value="audiofragment"/>
+      <xsd:enumeration value="image"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+</xsd:schema>

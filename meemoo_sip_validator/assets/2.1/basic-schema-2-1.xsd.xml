@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="https://schema.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xml="http://www.w3.org/XML/1998/namespace"  xmlns:edtf="http://id.loc.gov/datatypes/edtf/" targetNamespace="https://schema.org/" elementFormDefault="qualified" attributeFormDefault="qualified">
+
+  <xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="../xml.xsd.xml"/>
+  <xsd:import namespace="http://id.loc.gov/datatypes/edtf/" schemaLocation="../edtf.xsd.xml"/>
+
+  <xsd:element name="anySchema" abstract="true"/>
+
+  <xsd:element name="creator" type="creatorComplexType" substitutionGroup="anySchema"/>
+  <xsd:element name="publisher" type="publisherComplexType" substitutionGroup="anySchema"/>
+  <xsd:element name="contributor" type="contributorComplexType" substitutionGroup="anySchema"/>
+
+  <xsd:element name="height" type="dimensionComplexType" substitutionGroup="anySchema"/>
+  <xsd:element name="width" type="dimensionComplexType" substitutionGroup="anySchema"/>
+  <xsd:element name="depth" type="dimensionComplexType" substitutionGroup="anySchema"/>
+  <xsd:element name="weight" type="weightComplexType" substitutionGroup="anySchema"/>
+
+  <xsd:element name="artMedium" type="langString" substitutionGroup="anySchema"/>
+  <xsd:element name="artform" type="langString" substitutionGroup="anySchema"/>
+  <xsd:element name="creditText" type="langString" substitutionGroup="anySchema"/>
+  <xsd:element name="genre" type="langString" substitutionGroup="anySchema"/>
+
+  <xsd:element name="isPartOf" type="isPartOfComplexType" substitutionGroup="anySchema"/>
+
+
+  <xsd:complexType name="langString">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute ref="xml:lang" use="required"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="roleComplexType">
+    <xsd:sequence>
+      <xsd:element name="name" type="langString" maxOccurs="unbounded"/>
+      <xsd:element name="birthDate" type="edtf:EDTF" minOccurs="0"/>
+      <xsd:element name="deathDate" type="edtf:EDTF" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="creatorComplexType">
+    <xsd:complexContent>
+      <xsd:extension base="roleComplexType">
+        <xsd:attribute name="roleName" type="creatorRoleName" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="contributorComplexType">
+    <xsd:complexContent>
+      <xsd:extension base="roleComplexType">
+        <xsd:attribute name="roleName" type="contributorRoleName" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="publisherComplexType">
+    <xsd:complexContent>
+      <xsd:extension base="roleComplexType">
+        <xsd:attribute name="roleName" type="publisherRoleName" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:simpleType name="creatorRoleName">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Maker"/>
+      <xsd:enumeration value="Archiefvormer"/>
+      <xsd:enumeration value="Architect"/>
+      <xsd:enumeration value="Auteur"/>
+      <xsd:enumeration value="Acteur"/>
+      <xsd:enumeration value="Cineast"/>
+      <xsd:enumeration value="Componist"/>
+      <xsd:enumeration value="Choreograaf"/>
+      <xsd:enumeration value="Danser"/>
+      <xsd:enumeration value="Documentairemaker"/>
+      <xsd:enumeration value="Fotograaf"/>
+      <xsd:enumeration value="Geïnterviewde"/>
+      <xsd:enumeration value="Interviewer"/>
+      <xsd:enumeration value="Kunstenaar"/>
+      <xsd:enumeration value="Muzikant"/>
+      <xsd:enumeration value="Performer"/>
+      <xsd:enumeration value="Producer"/>
+      <xsd:enumeration value="Productiehuis"/>
+      <xsd:enumeration value="Regisseur"/>
+      <xsd:enumeration value="Schrijver"/>
+      <xsd:enumeration value="Opdrachtgever"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="contributorRoleName">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Aanwezig"/>
+      <xsd:enumeration value="Adviseur"/>
+      <xsd:enumeration value="Afwezig"/>
+      <xsd:enumeration value="Archivaris"/>
+      <xsd:enumeration value="Arrangeur"/>
+      <xsd:enumeration value="ArtistiekDirecteur"/>
+      <xsd:enumeration value="Assistent"/>
+      <xsd:enumeration value="Auteur"/>
+      <xsd:enumeration value="Belichting"/>
+      <xsd:enumeration value="Bijdrager"/>
+      <xsd:enumeration value="Cameraman"/>
+      <xsd:enumeration value="Co-producer"/>
+      <xsd:enumeration value="Commentator"/>
+      <xsd:enumeration value="Componist"/>
+      <xsd:enumeration value="DecorOntwerper"/>
+      <xsd:enumeration value="Digitaliseringspartner"/>
+      <xsd:enumeration value="Dirigent"/>
+      <xsd:enumeration value="Dramaturg"/>
+      <xsd:enumeration value="Fabrikant"/>
+      <xsd:enumeration value="Fotografie"/>
+      <xsd:enumeration value="Geluid"/>
+      <xsd:enumeration value="Geluidsman"/>
+      <xsd:enumeration value="GrafischOntwerper"/>
+      <xsd:enumeration value="KostuumOntwerper"/>
+      <xsd:enumeration value="Kunstenaar"/>
+      <xsd:enumeration value="Make-up"/>
+      <xsd:enumeration value="Muzikant"/>
+      <xsd:enumeration value="Monteur"/>
+      <xsd:enumeration value="Nieuwsanker"/>
+      <xsd:enumeration value="Omroeper"/>
+      <xsd:enumeration value="Onderzoeker"/>
+      <xsd:enumeration value="Post-productie"/>
+      <xsd:enumeration value="Producer"/>
+      <xsd:enumeration value="Reporter"/>
+      <xsd:enumeration value="Scenarist"/>
+      <xsd:enumeration value="Soundtrack"/>
+      <xsd:enumeration value="Sponsor"/>
+      <xsd:enumeration value="TechnischAdviseur"/>
+      <xsd:enumeration value="Uitvoerder"/>
+      <xsd:enumeration value="Verontschuldigd"/>
+      <xsd:enumeration value="Vertaler"/>
+      <xsd:enumeration value="Verteller"/>
+      <xsd:enumeration value="Voorzitter"/>
+      <xsd:enumeration value="Afgebeelde"/>
+      <xsd:enumeration value="Ontvanger"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="publisherRoleName">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Distributeur"/>
+      <xsd:enumeration value="Exposant"/>
+      <xsd:enumeration value="Persagentschap"/>
+      <xsd:enumeration value="Publisher"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="dimensionComplexType">
+    <xsd:all>
+      <xsd:element name="value" type="xsd:float"/>
+      <xsd:element name="unitText">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="mm"/>
+            <xsd:enumeration value="cm"/>
+            <xsd:enumeration value="m"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="unitCode" minOccurs="0">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="MMT"/>
+            <xsd:enumeration value="CMT"/>
+            <xsd:enumeration value="MTR"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+
+  <xsd:complexType name="weightComplexType">
+    <xsd:all>
+      <xsd:element name="value" type="xsd:float"/>
+      <xsd:element name="unitText">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="kg"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="unitCode" minOccurs="0">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="KGM"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+
+  <xsd:complexType name="isPartOfComplexType" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="name" type="langString" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="Episode">
+    <xsd:complexContent>
+      <xsd:extension base="isPartOfComplexType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArchiveComponent">
+    <xsd:complexContent>
+      <xsd:extension base="isPartOfComplexType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreativeWorkSeries">
+    <xsd:complexContent>
+      <xsd:extension base="isPartOfComplexType">
+        <xsd:sequence>
+          <xsd:element name="position" type="xsd:nonNegativeInteger"/>
+          <xsd:element name="hasPart" minOccurs="0">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="name" type="langString" maxOccurs="unbounded"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BroadcastEvent">
+    <xsd:complexContent>
+      <xsd:extension base="isPartOfComplexType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreativeWorkSeason">
+    <xsd:complexContent>
+      <xsd:extension base="isPartOfComplexType">
+        <xsd:sequence>
+          <xsd:element name="seasonNumber" type="xsd:nonNegativeInteger"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+</xsd:schema>

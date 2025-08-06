@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="https://data.hetarchief.be/id/sip/2.1/film" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:schema="https://schema.org/" xmlns:dcterms="http://purl.org/dc/terms/" targetNamespace="https://data.hetarchief.be/id/sip/2.1/film" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+  <xsd:import namespace="http://purl.org/dc/terms/" schemaLocation="basic-dcterms-2-1.xsd.xml"/>
+  <xsd:import namespace="https://schema.org/" schemaLocation="basic-schema-2-1.xsd.xml"/>
+
+  <xsd:element name="metadata" type="metadataComplexType"/>
+
+  <xsd:complexType name="metadataComplexType">
+    <xsd:choice maxOccurs="unbounded">
+      <xsd:element ref="dcterms:anyDcterms"/>
+      <xsd:element ref="schema:anySchema"/>
+    </xsd:choice>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<premis:premis version="3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:premis="http://www.loc.gov/premis/v3" xmlns:haObj="https://data.hetarchief.be/ns/object/" xsi:schemaLocation="http://www.loc.gov/premis/v3 https://www.loc.gov/standards/premis/premis.xsd">
+
+  <premis:object xsi:type="premis:intellectualEntity">
+    <premis:objectIdentifier>
+      <premis:objectIdentifierType>UUID</premis:objectIdentifierType>
+      <premis:objectIdentifierValue>uuid-1</premis:objectIdentifierValue>
+    </premis:objectIdentifier>
+
+    <premis:relationship>
+      <premis:relationshipType>structural</premis:relationshipType>
+      <premis:relationshipSubType>is represented by</premis:relationshipSubType>
+      <premis:relatedObjectIdentifier>
+        <premis:relatedObjectIdentifierType>UUID</premis:relatedObjectIdentifierType>
+        <premis:relatedObjectIdentifierValue>uuid-2</premis:relatedObjectIdentifierValue>
+      </premis:relatedObjectIdentifier>
+    </premis:relationship>
+  </premis:object>
+
+  <premis:object xsi:type="premis:representation">
+    <premis:objectIdentifier>
+      <premis:objectIdentifierType>UUID</premis:objectIdentifierType>
+      <premis:objectIdentifierValue>uuid-2</premis:objectIdentifierValue>
+    </premis:objectIdentifier>
+
+    <premis:relationship>
+      <premis:relationshipType>structural</premis:relationshipType>
+      <premis:relationshipSubType>represents</premis:relationshipSubType>
+      <premis:relatedObjectIdentifier>
+        <premis:relatedObjectIdentifierType>UUID</premis:relatedObjectIdentifierType>
+        <premis:relatedObjectIdentifierValue>uuid-1</premis:relatedObjectIdentifierValue>
+      </premis:relatedObjectIdentifier>
+    </premis:relationship>
+  </premis:object>
+</premis:premis>
+ 
