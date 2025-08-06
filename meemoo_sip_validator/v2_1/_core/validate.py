@@ -5,7 +5,7 @@ from eark_models.utils import XMLParseable
 
 from .models import SIP, DCPlusSchema
 from .report import Report, Failure, Severity
-from . import xsd, codes, utils, commons_ip
+from . import xsd, codes, utils, commons_ip, structural
 from .premis.premis import validate_premis
 from .descriptive.dc_schema import validate_dc_schema
 
@@ -19,7 +19,8 @@ def _validate(sip_path: Path) -> Report:
     DescriptiveModel = get_descriptive_model(profile)
 
     combined_report = (
-        commons_ip.validate_commons_ip(sip_path)
+        structural.validate_structural(sip_path)
+        + commons_ip.validate_commons_ip(sip_path)
         + xsd.validate_xsd(sip_path)
         + validate_premis(sip_path)
     )
