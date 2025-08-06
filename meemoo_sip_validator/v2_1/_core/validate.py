@@ -5,7 +5,7 @@ import json
 from eark_models.utils import XMLParseable
 import py_commons_ip
 
-from tests.v2_1.utils import ValidatorError
+from .utils import ValidatorError
 
 from .models import SIP, DCPlusSchema
 from .report import Report, Failure, Severity, Success

@@ -11,10 +11,6 @@ from pydantic.dataclasses import dataclass
 from meemoo_sip_validator.v2_1._core.models import SIP
 
 
-class ValidatorError(Exception):
-    pass
-
-
 @dataclass
 class Dummy(XMLParseable):
     @override

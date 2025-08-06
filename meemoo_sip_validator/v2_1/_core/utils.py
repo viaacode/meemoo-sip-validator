@@ -3,6 +3,10 @@ import xml.etree.ElementTree as ET
 from enum import Enum
 
 
+class ValidatorError(Exception):
+    pass
+
+
 class Profile(Enum):
     BASIC = "https://data.hetarchief.be/id/sip/2.1/basic"
     FILM = "https://data.hetarchief.be/id/sip/2.1/film"

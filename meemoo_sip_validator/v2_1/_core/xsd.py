@@ -41,21 +41,24 @@ def valiate_files(paths: list[Path], schema: XMLSchema) -> Report:
     return Report(results=[Success(code=code, message=message)])
 
 
-def validate_structural(unzipped_path: Path) -> Report:
+def validate_mets(unzipped_path: Path) -> Report:
     xlink_location = [("http://www.w3.org/1999/xlink", xlink_xsd_path)]
     mets_xsd = XMLSchema(mets_xsd_path, locations=xlink_location)
     mets_files = list(unzipped_path.rglob("METS.xml"))
-
-    premis_xsd = XMLSchema(premis_xsd_path)
-    premis_files = list(unzipped_path.rglob("premis.xml"))
-
-    premis_report = valiate_files(premis_files, premis_xsd)
     mets_report = valiate_files(mets_files, mets_xsd)
 
-    return premis_report + mets_report
+    return mets_report
 
 
-def validate_basic(unzipped_path: Path) -> Report:
+def validate_preservation(unzipped_path: Path) -> Report:
+    premis_xsd = XMLSchema(premis_xsd_path)
+    premis_files = list(unzipped_path.rglob("premis.xml"))
+    premis_report = valiate_files(premis_files, premis_xsd)
+
+    return premis_report
+
+
+def validate_descriptive_basic(unzipped_path: Path) -> Report:
     basic_xsd = XMLSchema(basic_xsd_path)
     descriptive_files = list(unzipped_path.rglob("dc+schema.xml"))
 
@@ -64,31 +67,37 @@ def validate_basic(unzipped_path: Path) -> Report:
     return basic_report
 
 
-def validate_profile(unzipped_path: Path, profile: Profile) -> Report:
+def validate_descriptive(unzipped_path: Path, profile: Profile) -> Report:
     match profile:
         case Profile.BASIC:
-            return validate_basic(unzipped_path)
+            return validate_descriptive_basic(unzipped_path)
         case Profile.FILM:
-            return validate_basic(unzipped_path)
+            return validate_descriptive_basic(unzipped_path)
         case Profile.MATERIAL_ARTWORK:
-            return validate_basic(unzipped_path)
+            return validate_descriptive_basic(unzipped_path)
 
 
 def validate(unzipped_path: Path) -> Report:
     profile = get_profile(unzipped_path)
-
     if profile is None:
-        return Report(
-            results=[
-                Failure(
-                    code=Code.mets_other_content_information_type,
-                    message="The root mets must contain the csip:OTHERCONTENTINFORMATIONTYPE attribute indicating the profile ot the SIP.",
-                    severity=Severity.ERROR,
-                    source=str(unzipped_path.joinpath("METS.xml")),
-                ),
-            ]
-        )
-
+        return get_profile_failure_report(unzipped_path)
     profile = Profile(profile)
 
-    return validate_structural(unzipped_path) + validate_profile(unzipped_path, profile)
+    return (
+        validate_mets(unzipped_path)
+        + validate_preservation(unzipped_path)
+        + validate_descriptive(unzipped_path, profile)
+    )
+
+
+def get_profile_failure_report(unzipped_path: Path):
+    return Report(
+        results=[
+            Failure(
+                code=Code.mets_other_content_information_type,
+                message="The root mets must contain the csip:OTHERCONTENTINFORMATIONTYPE attribute indicating the profile ot the SIP.",
+                severity=Severity.ERROR,
+                source=str(unzipped_path.joinpath("METS.xml")),
+            ),
+        ]
+    )
