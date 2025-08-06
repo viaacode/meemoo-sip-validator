@@ -20,7 +20,7 @@ def get_profile(sip_path: Path) -> Profile | None:
     root_mets_path = sip_path / "METS.xml"
     try:
         mets_root = ET.parse(root_mets_path).getroot()
-    except:
+    except Exception:
         return None
 
     profile = mets_root.get(

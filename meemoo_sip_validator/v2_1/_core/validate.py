@@ -1,9 +1,7 @@
 from typing import Any, Callable
 from pathlib import Path
 
-from eark_models.utils import XMLParseable
 
-from .models import SIP, DCPlusSchema
 from .report import Report, Failure, Severity
 from . import xsd, codes, utils, commons_ip, structural
 from .premis.premis import validate_premis
@@ -16,18 +14,14 @@ def _validate(sip_path: Path) -> Report:
         return get_profile_failure_report(sip_path)
 
     validate_descriptive = get_descriptive_validation_fn(profile)
-    DescriptiveModel = get_descriptive_model(profile)
 
-    combined_report = (
+    return (
         structural.validate_structural(sip_path)
         + commons_ip.validate_commons_ip(sip_path)
         + xsd.validate_xsd(sip_path)
         + validate_premis(sip_path)
+        + validate_descriptive(sip_path)
     )
-
-    # TODO: this could fail
-    sip = SIP[DescriptiveModel].from_path(sip_path, DescriptiveModel)
-    return combined_report + validate_descriptive(sip)
 
 
 def validate_to_report(sip_path: Path) -> Report:
@@ -52,19 +46,9 @@ def get_profile_failure_report(sip_path: Path) -> Report:
     )
 
 
-def get_descriptive_model(profile: utils.Profile) -> type[XMLParseable]:
-    match profile:
-        case utils.Profile.BASIC:
-            return DCPlusSchema
-        case utils.Profile.FILM:
-            return DCPlusSchema
-        case utils.Profile.MATERIAL_ARTWORK:
-            return DCPlusSchema
-
-
 def get_descriptive_validation_fn(
     profile: utils.Profile,
-) -> Callable[[SIP[Any]], Report]:
+) -> Callable[[Path], Report]:
     match profile:
         case utils.Profile.BASIC:
             return validate_dc_schema

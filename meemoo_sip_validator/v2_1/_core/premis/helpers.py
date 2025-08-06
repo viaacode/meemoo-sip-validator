@@ -15,7 +15,7 @@ def get_all_premis_models(sip_path: Path) -> tuple[list[premis.Premis], Report]:
     for path in premis_paths:
         try:
             premis_models.append(premis.Premis.from_xml(path))
-        except premis.InvalidXMLError:
+        except Exception:
             failures.append(
                 Failure(
                     code=Code.xsd_valid,
