@@ -50,6 +50,10 @@ def collect_edtfs(obj: object) -> list[EDTF]:
 
 
 checks = [
+    # The following constraints are check when creating the DCPlusSchema model
+    # - Unique language tags
+    # - Presence of a "nl" value
+    # - Cardinalities
     check_edtf_values,
 ]
 
@@ -58,12 +62,12 @@ def validate_dc_schema(sip_path: Path) -> Report:
     descriptive_path = sip_path / "metadata" / "descriptive" / "dc+schema.xml"
     try:
         dc_schema = DCPlusSchema.from_xml(descriptive_path)
-    except Exception:
+    except Exception as e:
         return Report(
             results=[
                 Failure(
                     code=Code.xsd_valid,
-                    message="Could not parse dc+schema.xml correctly.",
+                    message=str(e),
                     severity=Severity.ERROR,
                     source=str(descriptive_path),
                 )
