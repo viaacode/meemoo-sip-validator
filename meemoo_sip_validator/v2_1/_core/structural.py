@@ -1,6 +1,5 @@
 from pathlib import Path
 from functools import reduce
-import re
 from dataclasses import dataclass
 
 from .report import Report, RuleResult
@@ -54,29 +53,8 @@ def check_representations_folder_exists(sip_path: Path) -> RuleResult[_Path]:
     return RuleResult(
         code=Code.structure_valid,
         failed_items=[_Path(str(p), p) for p in invalid_paths],
-        fail_msg=lambda _path: "The folder 'representations' must be present and a subfolder for each representation.",
+        fail_msg=lambda _path: "The folder 'representations' must be present and contain a subfolder for each representation.",
         success_msg="Representations folder exists.",
-    )
-
-
-def check_representation_folder_name(
-    sip_path: Path,
-) -> RuleResult[_Path] | None:
-    representations_dir = sip_path / "representations"
-    if not representations_dir.exists():
-        return None
-
-    invalid_paths = [
-        path
-        for path in representations_dir.iterdir()
-        if not re.match(r"representation_\d+", path.name)
-    ]
-
-    return RuleResult(
-        code=Code.structure_valid,
-        failed_items=[_Path(str(p), p) for p in invalid_paths],
-        fail_msg=lambda _path: f"Invalid representation folder name '{_path.path}'. Representation folder names must be named 'representation_x', with 'x' being a number.",
-        success_msg="Validated representation folder names.",
     )
 
 
@@ -119,7 +97,7 @@ def check_root_premis_exists(sip_path: Path) -> RuleResult[_Path]:
 
 
 def check_representation_premis_exists(sip_path: Path) -> RuleResult[_Path]:
-    representations = sip_path.joinpath("representations").glob("representation_*")
+    representations = sip_path.joinpath("representations").glob("*")
     premises = (
         repr / "metadata" / "preservation" / "premis.xml" for repr in representations
     )
@@ -133,7 +111,7 @@ def check_representation_premis_exists(sip_path: Path) -> RuleResult[_Path]:
 
 
 def check_representation_mets_exists(sip_path: Path) -> RuleResult[_Path]:
-    representations = sip_path.joinpath("representations").glob("representation_*")
+    representations = sip_path.joinpath("representations").glob("*")
     metses = (repr / "METS.xml" for repr in representations)
     invalid_paths = [mets for mets in metses if not mets.exists()]
     return RuleResult(
@@ -145,7 +123,7 @@ def check_representation_mets_exists(sip_path: Path) -> RuleResult[_Path]:
 
 
 def check_representation_data_exists(sip_path: Path) -> RuleResult[_Path]:
-    representations = sip_path.joinpath("representations").glob("representation_*")
+    representations = sip_path.joinpath("representations").glob("*")
     data_folders = (repr / "data" for repr in representations)
     invalid_paths = [folder for folder in data_folders if not folder.exists()]
     return RuleResult(
@@ -157,7 +135,7 @@ def check_representation_data_exists(sip_path: Path) -> RuleResult[_Path]:
 
 
 def check_representation_data_contains_file(sip_path: Path) -> RuleResult[_Path]:
-    representations = sip_path.joinpath("representations").glob("representation_*")
+    representations = sip_path.joinpath("representations").glob("*")
     data_folders = [
         repr / "data" for repr in representations if repr.joinpath("data").exists()
     ]
@@ -176,7 +154,6 @@ checks = [
     check_descriptive_folder_exists,
     check_descriptive_file_exists,
     check_representations_folder_exists,
-    check_representation_folder_name,
     check_at_least_one_repesentation_exists,
     check_root_preservation_folder_exists,
     check_root_premis_exists,
