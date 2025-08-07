@@ -13,6 +13,7 @@ class CodeEnum(Enum):
 
 # TODO: assign fixed codes
 class Code(str, CodeEnum):
+    structure_valid = auto()
     xsd_valid = auto()
     edtf_valid = auto()
     mets_other_content_information_type = auto()

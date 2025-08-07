@@ -1,11 +1,12 @@
 from functools import reduce
 from typing import Any, cast
 from collections.abc import Iterable
+from pathlib import Path
 
 from edtf_validate.valid_edtf import conformsLevel0, conformsLevel1  # pyright: ignore[reportMissingTypeStubs, reportUnknownVariableType]
 
-from ..report import RuleResult, Report
-from ..models import SIP, DCPlusSchema, EDTF
+from ..report import RuleResult, Report, Failure, Severity
+from ..models import DCPlusSchema, EDTF
 from ..codes import Code
 
 
@@ -19,8 +20,7 @@ def is_valid_mediahaven_edtf(edtf: EDTF) -> bool:
             return edtf.text == "XXXX-XX-XX"
 
 
-def check_edtf_values(sip: SIP[DCPlusSchema]) -> RuleResult[EDTF]:
-    dc_schema = sip.metadata.descriptive
+def check_edtf_values(dc_schema: DCPlusSchema) -> RuleResult[EDTF]:
     all_edtf = collect_edtfs(dc_schema)
     invalid_edtfs = [edtf for edtf in all_edtf if not is_valid_mediahaven_edtf(edtf)]
 
@@ -54,7 +54,22 @@ checks = [
 ]
 
 
-def validate_dc_schema(sip: SIP[DCPlusSchema]) -> Report:
-    rule_results = (check(sip) for check in checks)
+def validate_dc_schema(sip_path: Path) -> Report:
+    descriptive_path = sip_path / "metadata" / "descriptive" / "dc+schema.xml"
+    try:
+        dc_schema = DCPlusSchema.from_xml(descriptive_path)
+    except Exception:
+        return Report(
+            results=[
+                Failure(
+                    code=Code.xsd_valid,
+                    message="Could not parse dc+schema.xml correctly.",
+                    severity=Severity.ERROR,
+                    source=str(descriptive_path),
+                )
+            ]
+        )
+
+    rule_results = (check(dc_schema) for check in checks)
     reports = (rule.to_report() for rule in rule_results)
     return reduce(Report.__add__, reports)

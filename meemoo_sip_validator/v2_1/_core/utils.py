@@ -16,9 +16,13 @@ class Profile(Enum):
 profiles = [p.value for p in Profile]
 
 
-def get_profile(unzipped_path: Path) -> Profile | None:
-    root_mets_path = unzipped_path.joinpath("METS.xml")
-    mets_root = ET.parse(root_mets_path).getroot()
+def get_profile(sip_path: Path) -> Profile | None:
+    root_mets_path = sip_path / "METS.xml"
+    try:
+        mets_root = ET.parse(root_mets_path).getroot()
+    except Exception:
+        return None
+
     profile = mets_root.get(
         "{https://DILCIS.eu/XML/METS/CSIPExtensionMETS}OTHERCONTENTINFORMATIONTYPE"
     )
