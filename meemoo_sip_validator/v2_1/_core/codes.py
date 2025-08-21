@@ -21,6 +21,7 @@ class Code(str, CodeEnum):
     object_identifier_type_uuid_existance = auto()
     object_identifier_type_thesauri = auto()
     file_original_name_present = auto()
+    file_fixity_present = auto()
     file_is_mappable_to_data = auto()
     fixity_message_digest_algorithm_thesauri = auto()
     fixity_message_digest_matches_actual = auto()
