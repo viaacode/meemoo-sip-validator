@@ -22,7 +22,7 @@ class Failure:
 
     def to_dict(self) -> dict[str, Any]:
         return {
-            # "code": self.code,
+            # "code": self.code, # Include this once the constraints list is finilized
             "message": self.message,
             "severity": self.severity,
             "source": self.source,

@@ -28,6 +28,9 @@ dev = [
     "twine==6.1.0",
 ]
 
+[project.scripts]
+meemoo-sip-validator = "meemoo_sip_validator._cli.validator:validator_cli"
+
 [tool.setuptools.package-data]
 "meemoo_sip_validator" = ["assets/**/*.xml"]
 
