@@ -1,4 +1,3 @@
-from typing import Any
 from pathlib import Path
 from functools import reduce
 
@@ -7,7 +6,7 @@ from .. import thesauri
 from ..codes import Code
 from . import helpers
 from ..report import Report, RuleResult, TupleWithSource
-from ..models import SIP, premis
+from ..models import premis
 
 
 def check_object_identifier_type_vocabulary(
@@ -555,76 +554,101 @@ def check_fixity_message_digest_algorithm_vocabulary(
         if fixity.message_digest_algorithm.text not in thesauri.supported_hashes
     ]
 
-    def get_unsupported_algorithms(file: premis.File) -> str:
-        algorithms = [
-            fixity.message_digest_algorithm
-            for characteristics in file.characteristics
-            for fixity in characteristics.fixity
-        ]
-        return ",".join(
-            algorithm.text
-            for algorithm in algorithms
-            if algorithm.text not in thesauri.supported_hashes
-        )
-
     return RuleResult(
         code=Code.fixity_message_digest_algorithm_thesauri,
         failed_items=invalid_files,
-        fail_msg=lambda file: f"Usage of non-supported message digest algorithm(s) '{get_unsupported_algorithms(file)}'. PREMIS message digest algorithm must be one of ({','.join(thesauri.supported_hashes)}).",
+        fail_msg=lambda file: f"Usage of non-supported message digest algorithm(s) in PREMIS file '{helpers.get_object_id(file)}'. PREMIS message digest algorithm must be one of ({','.join(thesauri.supported_hashes)}).",
         success_msg="Validated supported PREMIS fixity message digest algorithm.",
     )
 
 
-def check_file_orignal_name_present(sip: SIP[Any]) -> RuleResult[premis.File]:
-    # TODO: this could be checked in xml
-    pairs = helpers.get_file_and_representation_pairs(sip)
-    invalid_files = [file for file, _ in pairs if file.original_name is None]
+def check_file_orignal_name_present(
+    premises: list[premis.Premis],
+) -> RuleResult[premis.File]:
+    files = [
+        file
+        for premis in premises
+        for file in premis.objects
+        if file.xsi_type == "{http://www.loc.gov/premis/v3}file"
+    ]
+    invalid_files = [file for file in files if file.original_name is None]
 
     return RuleResult(
         code=Code.file_original_name_present,
         failed_items=invalid_files,
-        fail_msg=lambda file: f"Usage of PREMIS file {helpers.get_object_id(file)} with missing original name. All files must have a orignal name element.",
+        fail_msg=lambda file: f"Usage of PREMIS file {helpers.get_object_id(file)} with missing original name. All files must have an orignal name element.",
         success_msg="Validated presense of orignal name on PREMIS file.",
     )
 
 
-def check_file_references_existing_data(sip: SIP[Any]) -> RuleResult[premis.File]:
-    pairs = helpers.get_file_and_representation_pairs(sip)
+def check_file_fixity_present(premises: list[premis.Premis]) -> RuleResult[premis.File]:
+    files = [
+        file
+        for premis in premises
+        for file in premis.objects
+        if file.xsi_type == "{http://www.loc.gov/premis/v3}file"
+    ]
+    invalid_files = [file for file in files if helpers.get_file_fixity(file) is None]
+
+    return RuleResult(
+        code=Code.file_fixity_present,
+        failed_items=invalid_files,
+        fail_msg=lambda file: f"Usage of PREMIS file {helpers.get_object_id(file)} with missing fixity. All files must have a fixity element.",
+        success_msg="Validated presense of orignal name on PREMIS file.",
+    )
+
+
+def check_file_references_existing_data(
+    premises: list[premis.Premis],
+) -> RuleResult[premis.File]:
+    files = [
+        file
+        for premis in premises
+        for file in premis.objects
+        if file.xsi_type == "{http://www.loc.gov/premis/v3}file"
+    ]
+    data_paths = [helpers.get_data_path_for_file(file) for file in files]
     invalid_files: list[premis.File] = []
-    for file, representation in pairs:
+    for file, data_path in zip(files, data_paths):
         if file.original_name is None:
-            continue  # already checked by other function
-        file_data_matches = [
-            path for path in representation.data if path.name == file.original_name.text
-        ]
-        if len(file_data_matches) != 1:
+            continue  # Checked by other rule
+
+        if data_path is None:
+            continue  # checked by other rule: data_path is None if the original name is None
+
+        if not data_path.exists():
             invalid_files.append(file)
 
     return RuleResult(
         code=Code.file_is_mappable_to_data,
         failed_items=invalid_files,
-        fail_msg=lambda file: f"Could not find data referenced by PREMIS file {helpers.get_object_id(file)} using original name '{file.original_name}'.",
+        fail_msg=lambda file: f"Could not find data '{helpers.get_data_path_for_file(file)}' referenced by PREMIS file {helpers.get_object_id(file)}.",
         success_msg="Validated reference from PREMIS files to data.",
     )
 
 
 def check_fixity_message_digest_matches_actual_hash(
-    sip: SIP[Any],
+    premises: list[premis.Premis],
 ) -> RuleResult[premis.File]:
-    pairs = helpers.get_file_and_data_pairs(sip)
+    files = [
+        file
+        for premis in premises
+        for file in premis.objects
+        if file.xsi_type == "{http://www.loc.gov/premis/v3}file"
+    ]
+    data_paths = [helpers.get_data_path_for_file(file) for file in files]
+
     invalid_files: list[premis.File] = []
-    for file, path in pairs:
-        calculated_digest = helpers.calculate_message_digest(path)
-        fixities = [
-            fixity
-            for characteristics in file.characteristics
-            for fixity in characteristics.fixity
-            if fixity.message_digest_algorithm.text in thesauri.supported_hashes
-        ]
-        if len(fixities) != 1:
-            continue  # TODO: check this in new rule
-        fixity = fixities[0]
-        if fixity.message_digest.text != calculated_digest:
+    for file, data_path in zip(files, data_paths):
+        if data_path is None:
+            continue  # checked by other rule
+        if not data_path.exists():
+            continue  # checked by other rule
+        calculated_digest = helpers.calculate_message_digest(data_path)
+        fixity = helpers.get_file_fixity(file)
+        if fixity is None:
+            continue  # checked by other rule
+        if fixity != calculated_digest:
             invalid_files.append(file)
 
     return RuleResult(
@@ -658,10 +682,10 @@ checks = [
     check_agent_identifier_type_uuid_existance,
     check_agent_type_vocabulary,
     check_fixity_message_digest_algorithm_vocabulary,
-    # TODO: fix these so they accept premis models as arguments
-    # check_fixity_message_digest_matches_actual_hash,
-    # check_file_orignal_name_present,
-    # check_file_references_existing_data,
+    check_fixity_message_digest_matches_actual_hash,
+    check_file_orignal_name_present,
+    check_file_fixity_present,
+    check_file_references_existing_data,
 ]
 
 

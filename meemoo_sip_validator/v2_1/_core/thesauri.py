@@ -141,3 +141,33 @@ agent_types = [
 supported_hashes = [
     "MD5",
 ]
+
+licenses = [
+    # licenties van developer.meemoo.be
+    "VIAA-ONDERWIJS",
+    "ONDERWIJS-FRAGMENT",
+    "VIAA-ONDERZOEK",
+    "VIAA-INTRA_CP-CONTENT",
+    "VIAA-INTRA_CP-METADATA-ALL",
+    "VIAA-PUBLIEK-CONTENT",
+    "VIAA-PUBLIEK-METADATA-LTD",
+    "VIAA-PUBLIEK-METADATA-ALL",
+    "BEZOEKERTOOL-CONTENT",
+    "BEZOEKERTOOL-METADATA-ALL",
+    "VIAA-INTRAMUROS",
+    "CC_BY-CONTENT",
+    "CC_BY-SA-CONTENT",
+    "CC0-CONTENT",
+    "CC_BY-NC-CONTENT",
+    "CC_BY-ND-CONTENT",
+    "CC_BY-NC-ND-CONTENT",
+    "CC_BY-METADATA",
+    "CC_BY-SA-METADATA",
+    "CC0-METADATA",
+    "CC_BY-NC-METADATA",
+    "CC_BY-ND-METADATA",
+    "CC_BY-NC-ND-METADATA",
+    "CC0-METADATA",
+    # licenties van datamodels
+    "VIAA-BIBLIOTHEKEN",
+]

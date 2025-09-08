@@ -5,9 +5,10 @@ from pathlib import Path
 
 from edtf_validate.valid_edtf import conformsLevel0, conformsLevel1  # pyright: ignore[reportMissingTypeStubs, reportUnknownVariableType]
 
-from ..report import RuleResult, Report, Failure, Severity
+from ..report import RuleResult, Report, Failure, Severity, TupleWithSource
 from ..models import DCPlusSchema, EDTF
 from ..codes import Code
+from .. import thesauri
 
 
 def is_valid_mediahaven_edtf(edtf: EDTF) -> bool:
@@ -49,12 +50,29 @@ def collect_edtfs(obj: object) -> list[EDTF]:
     return result
 
 
+def check_license_vocabulary(
+    dc_schema: DCPlusSchema,
+) -> RuleResult[TupleWithSource[str]]:
+    invalid_licenses = [
+        TupleWithSource(__source__=dc_schema.__source__, items=(license,))
+        for license in dc_schema.license
+        if license not in thesauri.licenses
+    ]
+    return RuleResult(
+        code=Code.license_thesauri,
+        failed_items=invalid_licenses,
+        fail_msg=lambda license: f"Unknown license '{license.items[0]}'.",
+        success_msg="Validated licenses.",
+    )
+
+
 checks = [
     # The following constraints are check when creating the DCPlusSchema model
     # - Unique language tags
     # - Presence of a "nl" value
     # - Cardinalities
     check_edtf_values,
+    check_license_vocabulary,
 ]
 
 
