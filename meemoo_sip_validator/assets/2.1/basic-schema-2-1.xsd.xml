@@ -206,7 +206,11 @@
 
   <xsd:complexType name="ArchiveComponent">
     <xsd:complexContent>
-      <xsd:extension base="isPartOfComplexType"/>
+      <xsd:extension base="isPartOfComplexType">
+          <xsd:sequence>
+            <xsd:element name="hasPart" type="isPartOfComplexType" minOccurs="0"/>
+          </xsd:sequence>
+      </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
 
@@ -214,14 +218,8 @@
     <xsd:complexContent>
       <xsd:extension base="isPartOfComplexType">
         <xsd:sequence>
-          <xsd:element name="position" type="xsd:nonNegativeInteger"/>
-          <xsd:element name="hasPart" minOccurs="0">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="name" type="langString" maxOccurs="unbounded"/>
-              </xsd:sequence>
-            </xsd:complexType>
-          </xsd:element>
+          <xsd:element name="position" type="xsd:nonNegativeInteger" minOccurs="0"/>
+          <xsd:element name="hasPart" type="isPartOfComplexType" minOccurs="0"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -237,7 +235,7 @@
     <xsd:complexContent>
       <xsd:extension base="isPartOfComplexType">
         <xsd:sequence>
-          <xsd:element name="seasonNumber" type="xsd:nonNegativeInteger"/>
+          <xsd:element name="seasonNumber" type="xsd:nonNegativeInteger" minOccurs="0"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
