@@ -16,6 +16,7 @@ class Code(str, CodeEnum):
     structure_valid = auto()
     xsd_valid = auto()
     edtf_valid = auto()
+    license_thesauri = auto()
     mets_other_content_information_type = auto()
     object_identifiers_uniqueness = auto()
     object_identifier_type_uuid_existance = auto()

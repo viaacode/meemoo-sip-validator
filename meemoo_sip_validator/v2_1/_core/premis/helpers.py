@@ -1,9 +1,8 @@
-from typing import Any
 from pathlib import Path
 from hashlib import md5
 
 from meemoo_sip_validator.v2_1._core import thesauri
-from ..models import SIP, premis, Representation
+from ..models import premis
 from ..report import Report, Failure, Success, Severity
 from ..codes import Code
 
