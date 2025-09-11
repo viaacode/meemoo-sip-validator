@@ -43,7 +43,7 @@ def validate_files_with_xsd(paths: list[Path], schema: XMLSchema) -> Report:
 
 def validate_mets(sip_path: Path) -> Report:
     xlink_location = [("http://www.w3.org/1999/xlink", xlink_xsd_path)]
-    mets_xsd = XMLSchema(mets_xsd_path, locations=xlink_location)
+    mets_xsd = XMLSchema(mets_xsd_path, locations=xlink_location, allow="local")
     mets_files = list(sip_path.rglob("METS.xml"))
     mets_report = validate_files_with_xsd(mets_files, mets_xsd)
 
