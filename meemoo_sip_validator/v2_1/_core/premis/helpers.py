@@ -97,9 +97,11 @@ def get_data_path_for_file(file: premis.File) -> Path | None:
 
 
 def calculate_message_digest(path: Path) -> str:
+    hash = md5()
     with open(path, "rb") as f:
-        contents = f.read()
-    return md5(contents).hexdigest()
+        while chunk := f.read(1024 * 2014):  # 1MB
+            hash.update(chunk)
+    return hash.hexdigest()
 
 
 def get_object_id(file: premis.File) -> str:
