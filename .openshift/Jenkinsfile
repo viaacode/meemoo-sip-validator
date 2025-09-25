@@ -59,8 +59,6 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'nexus_username', variable: 'NEXUS_USERNAME'), string(credentialsId: 'nexus_password', variable: 'NEXUS_PASSWORD')]) {
-                        // Since the version in pyproject is static, we tweak it here
-                        sh "sed -i 's/^version = .*/version = \"$PACKAGE_VERSION\"/' pyproject.toml"
                         sh "python -m build"
                     }
                 }
