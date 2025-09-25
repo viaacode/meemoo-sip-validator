@@ -11,9 +11,9 @@ from .descriptive.dc_schema import validate_dc_schema
 def _validate(sip_path: Path) -> Report:
     profile = utils.get_profile(sip_path)
     if profile is None:
-        return get_profile_failure_report(sip_path)
-
-    validate_descriptive = get_descriptive_validation_fn(profile)
+        validate_descriptive = get_profile_failure_report
+    else:
+        validate_descriptive = get_descriptive_validation_fn(profile)
 
     return (
         structural.validate_structural(sip_path)
@@ -25,7 +25,7 @@ def _validate(sip_path: Path) -> Report:
 
 
 def validate_to_report(sip_path: Path) -> Report:
-    return _validate(sip_path)
+    return _validate(sip_path.expanduser().resolve())
 
 
 def validate(sip_path: Path) -> tuple[bool, dict[str, Any]]:
