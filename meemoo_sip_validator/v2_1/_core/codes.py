@@ -1,4 +1,5 @@
-from typing import Any, override
+from typing import Any
+from typing_extensions import override
 from enum import Enum, auto
 
 
@@ -13,6 +14,7 @@ class CodeEnum(Enum):
 
 # TODO: assign fixed codes
 class Code(str, CodeEnum):
+    commons_ip_failure = auto()
     structure_valid = auto()
     xsd_valid = auto()
     edtf_valid = auto()

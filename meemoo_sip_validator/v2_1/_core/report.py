@@ -1,4 +1,13 @@
-from typing import Literal, Callable, Protocol, Any
+from typing import (
+    Literal,
+    Callable,
+    Protocol,
+    Any,
+    TypeVar,
+    TypeVarTuple,
+    Generic,
+    Unpack,
+)
 from collections.abc import Generator
 from enum import Enum
 from dataclasses import dataclass
@@ -79,8 +88,11 @@ class WithSource(Protocol):
     __source__: str
 
 
+T = TypeVar("T", bound=WithSource)
+
+
 @dataclass
-class RuleResult[T: WithSource]:
+class RuleResult(Generic[T]):
     code: Code
     failed_items: list[T]
     fail_msg: Callable[[T], str]
@@ -105,7 +117,10 @@ class RuleResult[T: WithSource]:
         return Report(results=report_results)
 
 
+Ts = TypeVarTuple("Ts")
+
+
 @dataclass(kw_only=True)
-class TupleWithSource[*T]:
+class TupleWithSource(Generic[Unpack[Ts]]):
     __source__: str
-    items: tuple[*T]
+    items: tuple[Unpack[Ts]]
