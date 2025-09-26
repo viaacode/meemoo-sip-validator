@@ -1,3 +1,4 @@
+from typing import TypeVar
 from pathlib import Path
 from hashlib import md5
 
@@ -37,7 +38,10 @@ def get_all_object_identifiers(
     ]
 
 
-def unique[T](items: list[T]) -> list[T]:
+T = TypeVar("T")
+
+
+def unique(items: list[T]) -> list[T]:
     result: list[T] = []
     for item in items:
         if item not in result:
