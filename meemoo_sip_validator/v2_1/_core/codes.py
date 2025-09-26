@@ -14,6 +14,7 @@ class CodeEnum(Enum):
 
 # TODO: assign fixed codes
 class Code(str, CodeEnum):
+    commons_ip_failure = auto()
     structure_valid = auto()
     xsd_valid = auto()
     edtf_valid = auto()

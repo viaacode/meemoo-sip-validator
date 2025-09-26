@@ -9,7 +9,7 @@ description = "A library to validate meemoo SIP's"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "py-commons-ip==0.3.1",
+    "py-commons-ip==0.3.2",
     "xmlschema==4.1.0",
     "edtf-validate==2.0.0",
     "sipin-eark-models==0.0.12",

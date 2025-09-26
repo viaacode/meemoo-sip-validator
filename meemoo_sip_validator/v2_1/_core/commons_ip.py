@@ -6,12 +6,26 @@ import py_commons_ip
 from .utils import ValidatorError
 
 from .report import Report, Failure, Severity, Success
+from .codes import Code
 
 
 def validate_commons_ip(sip_path: Path) -> Report:
     commons_ip_result = py_commons_ip.validate(sip_path, "2.2.0")
-    _, commons_ip_json_report = commons_ip_result
-    return commons_ip_report_to_meemoo_report(commons_ip_json_report)
+    _, commons_ip_output = commons_ip_result
+
+    try:
+        return commons_ip_report_to_meemoo_report(commons_ip_output)
+    except json.JSONDecodeError:
+        return Report(
+            results=[
+                Failure(
+                    Code.commons_ip_failure,
+                    message=commons_ip_output,
+                    severity=Severity.ERROR,
+                    source=sip_path.__str__(),
+                )
+            ]
+        )
 
 
 def commons_ip_report_to_meemoo_report(report: str) -> Report:
