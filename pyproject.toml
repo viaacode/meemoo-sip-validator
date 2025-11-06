@@ -12,7 +12,7 @@ dependencies = [
     "py-commons-ip==0.3.2",
     "xmlschema==4.1.0",
     "edtf-validate==2.0.0",
-    "sipin-eark-models==0.0.12",
+    "sipin-eark-models==0.0.14",
 ]
 classifiers = [
   "Programming Language :: Python :: 3.11",
