@@ -168,6 +168,11 @@ licenses = [
     "CC_BY-ND-METADATA",
     "CC_BY-NC-ND-METADATA",
     "CC0-METADATA",
+    #
     # licenties van datamodels
     "VIAA-BIBLIOTHEKEN",
+    #
+    # licenties van wie weet waar
+    "IIIF-PUBLIC",
+    "IIIF-RESTRICTED",
 ]
