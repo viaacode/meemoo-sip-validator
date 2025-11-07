@@ -17,10 +17,6 @@
   <xsd:element name="created" type="edtf:EDTF" substitutionGroup="anyDcterms"/>
   <xsd:element name="issued" type="edtf:EDTF" substitutionGroup="anyDcterms"/>
 
-  <xsd:element name="publisher" type="schema:roleComplexType" substitutionGroup="anyDcterms"/>
-  <xsd:element name="creator" type="schema:roleComplexType" substitutionGroup="anyDcterms"/>
-  <xsd:element name="contributor" type="schema:roleComplexType" substitutionGroup="anyDcterms"/>
-
   <xsd:element name="spatial" type="xsd:string" substitutionGroup="anyDcterms"/>
   <xsd:element name="temporal" type="langString" substitutionGroup="anyDcterms"/>
   <xsd:element name="subject" type="langString" substitutionGroup="anyDcterms"/>

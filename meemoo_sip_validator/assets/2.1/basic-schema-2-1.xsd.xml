@@ -9,6 +9,7 @@
   <xsd:element name="creator" type="creatorComplexType" substitutionGroup="anySchema"/>
   <xsd:element name="publisher" type="publisherComplexType" substitutionGroup="anySchema"/>
   <xsd:element name="contributor" type="contributorComplexType" substitutionGroup="anySchema"/>
+  <xsd:element name="actor" type="actorComplexType" substitutionGroup="anySchema"/>
 
   <xsd:element name="height" type="dimensionComplexType" substitutionGroup="anySchema"/>
   <xsd:element name="width" type="dimensionComplexType" substitutionGroup="anySchema"/>
@@ -59,6 +60,14 @@
     <xsd:complexContent>
       <xsd:extension base="roleComplexType">
         <xsd:attribute name="roleName" type="publisherRoleName" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="actorComplexType">
+    <xsd:complexContent>
+      <xsd:extension base="roleComplexType">
+        <xsd:attribute name="characterName" type="xsd:string" use="required"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
