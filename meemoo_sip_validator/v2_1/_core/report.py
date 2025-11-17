@@ -81,7 +81,14 @@ class Report:
         return (result for result in self.results if isinstance(result, Success))
 
     def to_dict(self) -> dict[str, Any]:
-        return {"results": [result.to_dict() for result in self.results]}
+        return {
+            "results": [result.to_dict() for result in self.results],
+            "errors": [
+                failure.to_dict()
+                for failure in self.failures
+                if failure.severity == Severity.ERROR
+            ],
+        }
 
 
 class WithSource(Protocol):
