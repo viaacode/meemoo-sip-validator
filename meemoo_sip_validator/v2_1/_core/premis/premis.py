@@ -54,6 +54,10 @@ def check_object_identifiers_uniqueness(
     premises: list[premis.Premis],
 ) -> RuleResult[premis.ObjectIdentifier]:
     all_object_identifiers = helpers.get_all_object_identifiers(premises)
+
+    # Excuse the slightly cryptic code here. My excuse for doing it this way
+    # is because the `premis.ObjectIdentifier` dataclass is not hashable (because it is not frozen).
+    # This gets the identifiers that appear more than once over all the premis files.
     duplicate_identifiers = [
         identifier
         for identifier in all_object_identifiers
