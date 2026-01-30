@@ -2,7 +2,7 @@
 
 > WARNING: This library is not yet finished.
 > The [SIP specification](https://developer.meemoo.be/docs/diginstroom/sip/) must always be seen as the source of truth.
-> Some messages produced by the validator may to be clear and user friendly.
+> Some messages produced by the validator may not be clear or user-friendly.
 
 Library to validate meemoo SIP's.
 
