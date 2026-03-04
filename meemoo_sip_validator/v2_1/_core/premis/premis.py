@@ -1,12 +1,11 @@
-from pathlib import Path
 from functools import reduce
-
+from pathlib import Path
 
 from .. import thesauri
 from ..codes import Code
-from . import helpers
-from ..report import Report, RuleResult, TupleWithSource
 from ..models import premis
+from ..report import Report, RuleResult, TupleWithSource
+from . import helpers
 
 
 def check_object_identifier_type_vocabulary(
@@ -652,7 +651,7 @@ def check_fixity_message_digest_matches_actual_hash(
         fixity = helpers.get_file_fixity(file)
         if fixity is None:
             continue  # checked by other rule
-        if fixity != calculated_digest:
+        if fixity.lower() != calculated_digest.lower():
             invalid_files.append(file)
 
     return RuleResult(
