@@ -1,14 +1,17 @@
-from functools import reduce
-from typing import Any, cast
 from collections.abc import Iterable
+from functools import reduce
 from pathlib import Path
+from typing import Any, cast
 
-from edtf_validate.valid_edtf import conformsLevel0, conformsLevel1  # pyright: ignore[reportMissingTypeStubs, reportUnknownVariableType]
+from edtf_validate.valid_edtf import (  # pyright: ignore[reportMissingTypeStubs]
+    conformsLevel0,  # pyright: ignore[reportUnknownVariableType]
+    conformsLevel1,  # pyright: ignore[reportUnknownVariableType]
+)
 
-from ..report import RuleResult, Report, Failure, Severity, TupleWithSource
-from ..models import DCPlusSchema, EDTF
-from ..codes import Code
 from .. import thesauri
+from ..codes import Code
+from ..models import EDTF, DCPlusSchema
+from ..report import Failure, Report, RuleResult, Severity, TupleWithSource
 
 
 def is_valid_mediahaven_edtf(edtf: EDTF) -> bool:
@@ -18,7 +21,7 @@ def is_valid_mediahaven_edtf(edtf: EDTF) -> bool:
         case "{http://id.loc.gov/datatypes/edtf/}EDTF-level1":
             return conformsLevel1(edtf.text)  # pyright: ignore[reportUnknownVariableType]
         case "{http://id.loc.gov/datatypes/edtf/}EDTF-level2":
-            return edtf.text == "XXXX-XX-XX"
+            return edtf.text == "XXXX-XX-XX" or conformsLevel1(edtf.text)  # pyright: ignore[reportUnknownVariableType]
 
 
 def check_edtf_values(dc_schema: DCPlusSchema) -> RuleResult[EDTF]:
