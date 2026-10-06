@@ -12,6 +12,7 @@ assets = resources.files("meemoo_sip_validator.assets")
 mets_xsd_path = str(assets.joinpath("mets-1-12.xsd.xml"))
 premis_xsd_path = str(assets.joinpath("premis-3-0.xsd.xml"))
 xlink_xsd_path = str(assets.joinpath("xlink-2.xsd.xml"))
+mods_xsd_path = str(assets.joinpath("mods-3-7.xsd.xml"))
 basic_xsd_path = str(assets.joinpath("2.1/basic-2-1.xsd.xml"))
 film_xsd_path = str(assets.joinpath("2.1/film-2-1.xsd.xml"))
 material_artwork_xsd_path = str(assets.joinpath("2.1/material-artwork-2-1.xsd.xml"))
@@ -59,19 +60,19 @@ def validate_preservation(sip_path: Path) -> Report:
 
 
 def validate_descriptive(sip_path: Path, profile: Profile) -> Report:
-    basic_xsd = XMLSchema(basic_xsd_path)
-    film_xsd = XMLSchema(film_xsd_path)
-    material_xsd = XMLSchema(material_artwork_xsd_path)
-
-    descriptive_files = list(sip_path.rglob("dc+schema.xml"))
-
     match profile:
         case Profile.BASIC:
-            return validate_files_with_xsd(descriptive_files, basic_xsd)
+            xsd_path, file_name = basic_xsd_path, "dc+schema.xml"
         case Profile.FILM:
-            return validate_files_with_xsd(descriptive_files, film_xsd)
+            xsd_path, file_name = film_xsd_path, "dc+schema.xml"
         case Profile.MATERIAL_ARTWORK:
-            return validate_files_with_xsd(descriptive_files, material_xsd)
+            xsd_path, file_name = material_artwork_xsd_path, "dc+schema.xml"
+        case Profile.BIBLIOGRAPHIC:
+            xsd_path, file_name = mods_xsd_path, "mods.xml"
+
+    descriptive_xsd = XMLSchema(xsd_path, allow="local")
+    descriptive_files = list(sip_path.rglob(file_name))
+    return validate_files_with_xsd(descriptive_files, descriptive_xsd)
 
 
 def validate_xsd(sip_path: Path) -> Report:

@@ -37,6 +37,8 @@ def check_descriptive_file_exists(sip_path: Path) -> RuleResult[_Path] | None:
             descriptive_file = descriptive_dir / "dc+schema.xml"
         case utils.Profile.MATERIAL_ARTWORK:
             descriptive_file = descriptive_dir / "dc+schema.xml"
+        case utils.Profile.BIBLIOGRAPHIC:
+            descriptive_file = descriptive_dir / "mods.xml"
 
     invalid_paths = [descriptive_file] if not descriptive_file.exists() else []
     return RuleResult(

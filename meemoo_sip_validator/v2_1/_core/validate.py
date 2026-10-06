@@ -56,3 +56,6 @@ def get_descriptive_validation_fn(
             return validate_dc_schema
         case utils.Profile.MATERIAL_ARTWORK:
             return validate_dc_schema
+        case utils.Profile.BIBLIOGRAPHIC:
+            # TODO: validate the MODS-specific constraints (BICP16-74)
+            return lambda _: Report(results=[])

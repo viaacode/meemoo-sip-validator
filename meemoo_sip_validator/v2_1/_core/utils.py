@@ -11,6 +11,7 @@ class Profile(Enum):
     BASIC = "https://data.hetarchief.be/id/sip/2.1/basic"
     FILM = "https://data.hetarchief.be/id/sip/2.1/film"
     MATERIAL_ARTWORK = "https://data.hetarchief.be/id/sip/2.1/material-artwork"
+    BIBLIOGRAPHIC = "https://data.hetarchief.be/id/sip/2.1/bibliographic"
 
 
 profiles = [p.value for p in Profile]
