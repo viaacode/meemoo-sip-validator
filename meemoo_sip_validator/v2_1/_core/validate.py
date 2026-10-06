@@ -6,6 +6,7 @@ from .report import Report, Failure, Severity
 from . import xsd, codes, utils, commons_ip, structural
 from .premis.premis import validate_premis
 from .descriptive.dc_schema import validate_dc_schema
+from .descriptive.mods import validate_mods
 
 
 def _validate(sip_path: Path) -> Report:
@@ -57,5 +58,5 @@ def get_descriptive_validation_fn(
         case utils.Profile.MATERIAL_ARTWORK:
             return validate_dc_schema
         case utils.Profile.BIBLIOGRAPHIC:
-            # TODO: validate the MODS-specific constraints (BICP16-74)
-            return lambda _: Report(results=[])
+            # TODO: validate the other MODS-specific constraints (BICP16-74)
+            return validate_mods

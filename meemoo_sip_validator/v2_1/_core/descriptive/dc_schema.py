@@ -1,7 +1,5 @@
-from collections.abc import Iterable
 from functools import reduce
 from pathlib import Path
-from typing import Any, cast
 
 from edtf_validate.valid_edtf import (  # pyright: ignore[reportMissingTypeStubs]
     conformsLevel0,  # pyright: ignore[reportUnknownVariableType]
@@ -12,6 +10,7 @@ from .. import thesauri
 from ..codes import Code
 from ..models import EDTF, DCPlusSchema
 from ..report import Failure, Report, RuleResult, Severity, TupleWithSource
+from .collect import collect_instances
 
 
 def is_valid_mediahaven_edtf(edtf: EDTF) -> bool:
@@ -25,7 +24,7 @@ def is_valid_mediahaven_edtf(edtf: EDTF) -> bool:
 
 
 def check_edtf_values(dc_schema: DCPlusSchema) -> RuleResult[EDTF]:
-    all_edtf = collect_edtfs(dc_schema)
+    all_edtf = collect_instances(dc_schema, EDTF)
     invalid_edtfs = [edtf for edtf in all_edtf if not is_valid_mediahaven_edtf(edtf)]
 
     return RuleResult(
@@ -34,23 +33,6 @@ def check_edtf_values(dc_schema: DCPlusSchema) -> RuleResult[EDTF]:
         fail_msg=lambda edtf: f"Invalid or unsupported EDTF level {edtf.xsi_type[-1]} with value '{edtf.text}'.",
         success_msg="Validated EDTF values in dc+schema.xml.",
     )
-
-
-def collect_edtfs(obj: object) -> list[EDTF]:
-    result: list[EDTF] = []
-    is_builtin = obj.__class__.__module__ == "builtins"
-
-    if isinstance(obj, EDTF):
-        result.append(obj)
-    elif isinstance(obj, (list, tuple, set)):
-        obj = cast(Iterable[Any], obj)
-        for subvalue in obj:
-            result += collect_edtfs(subvalue)
-    elif not is_builtin:
-        for value in obj.__dict__.values():
-            result += collect_edtfs(value)
-
-    return result
 
 
 def check_license_vocabulary(
