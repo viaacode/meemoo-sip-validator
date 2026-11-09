@@ -54,13 +54,14 @@ def test_validate_mods_valid(sip_path: Path):
 @pytest.mark.parametrize("sip_path", newspaper_sip_paths, ids=newspaper_sip_names)
 def test_validate_mods_invalid_edtf(sip_path: Path, tmp_path: Path):
     sip_path = copy_sip(sip_path, tmp_path)
+    # construct a nested date
     mods_path = edit_mods(
         sip_path,
-        '<mods:relatedItem type="series">',
-        '<mods:relatedItem type="series"><mods:originInfo>'
+        "</mods:mods>",
+        "<mods:relatedItem><mods:originInfo>"
         + '<mods:dateIssued encoding="edtf">02-08-2022</mods:dateIssued>'
         + "<mods:dateIssued>not EDTF, so not checked</mods:dateIssued>"
-        + "</mods:originInfo>",
+        + "</mods:originInfo></mods:relatedItem></mods:mods>",
     )
 
     report = validate_mods(sip_path)
