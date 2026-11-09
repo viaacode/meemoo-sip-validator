@@ -2,7 +2,7 @@
 from eark_models.sip.v2_2_0 import SIP as SIP, Representation
 import eark_models.premis.v3_0 as premis
 from eark_models.dc_schema.v2_1 import DCPlusSchema, EDTF
-from eark_models.mods.v3_7 import Mods, Date as ModsDate
+from eark_models.mods.v3_7 import Mods, Date as ModsDate, Topic as ModsTopic
 
 
 __all__ = [
@@ -12,4 +12,5 @@ __all__ = [
     "EDTF",
     "Mods",
     "ModsDate",
+    "ModsTopic",
 ]

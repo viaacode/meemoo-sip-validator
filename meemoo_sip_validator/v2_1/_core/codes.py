@@ -46,3 +46,5 @@ class Code(str, CodeEnum):
     agent_identifier_uniqueness = auto()
     agent_identifier_type_uuid_existance = auto()
     agent_type_thesauri = auto()
+    mods_genre_dutch = auto()
+    mods_topic_dutch = auto()

@@ -89,3 +89,59 @@ def test_validate_mods_with_name(sip_path: Path, tmp_path: Path):
     report = validate_mods(sip_path)
 
     assert report.outcome == "PASSED"
+
+
+def remove_lines(sip_path: Path, *fragments: str) -> None:
+    mods_path = sip_path / "metadata" / "descriptive" / "mods.xml"
+    lines = mods_path.read_text(encoding="utf-8").splitlines()
+    kept = [line for line in lines if not any(f in line for f in fragments)]
+    assert len(kept) < len(lines)
+    _ = mods_path.write_text("\n".join(kept), encoding="utf-8")
+
+
+def single_failure(sip_path: Path):
+    report = validate_mods(sip_path)
+    assert report.outcome == "FAILED"
+    failures = list(report.failures)
+    assert len(failures) == 1
+    return failures[0]
+
+
+@pytest.mark.parametrize("sip_path", newspaper_sip_paths, ids=newspaper_sip_names)
+def test_validate_mods_no_dutch_genre(sip_path: Path, tmp_path: Path):
+    sip_path = copy_sip(sip_path, tmp_path)
+    remove_lines(sip_path, '<mods:genre xml:lang="nl">')
+
+    failure = single_failure(sip_path)
+    assert failure.code == Code.mods_genre_dutch
+    assert "BICP33" in failure.message
+
+
+@pytest.mark.parametrize("sip_path", newspaper_sip_paths, ids=newspaper_sip_names)
+def test_validate_mods_no_genre(sip_path: Path, tmp_path: Path):
+    sip_path = copy_sip(sip_path, tmp_path)
+    remove_lines(sip_path, "<mods:genre")
+
+    assert validate_mods(sip_path).outcome == "PASSED"
+
+
+@pytest.mark.parametrize("sip_path", newspaper_sip_paths, ids=newspaper_sip_names)
+def test_validate_mods_no_dutch_topic(sip_path: Path, tmp_path: Path):
+    sip_path = copy_sip(sip_path, tmp_path)
+    _ = edit_mods(
+        sip_path,
+        '<mods:topic xml:lang="nl">katten</mods:topic>',
+        '<mods:topic xml:lang="de">Katzen</mods:topic>',
+    )
+
+    failure = single_failure(sip_path)
+    assert failure.code == Code.mods_topic_dutch
+    assert "BICP37" in failure.message
+
+
+@pytest.mark.parametrize("sip_path", newspaper_sip_paths, ids=newspaper_sip_names)
+def test_validate_mods_no_topic(sip_path: Path, tmp_path: Path):
+    sip_path = copy_sip(sip_path, tmp_path)
+    remove_lines(sip_path, "<mods:topic")
+
+    assert validate_mods(sip_path).outcome == "PASSED"

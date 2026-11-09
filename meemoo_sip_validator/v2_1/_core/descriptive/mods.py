@@ -6,7 +6,7 @@ from edtf_validate.valid_edtf import (  # pyright: ignore[reportMissingTypeStubs
 )
 
 from ..codes import Code
-from ..models import Mods, ModsDate
+from ..models import Mods, ModsDate, ModsTopic
 from ..report import Failure, Report, RuleResult, Severity, TupleWithSource
 from .collect import collect_instances
 
@@ -35,8 +35,47 @@ def check_edtf_values(
     )
 
 
+def missing_dutch(
+    values: list[str | None], element: str, mods_path: Path
+) -> list[TupleWithSource[str]]:
+    """
+    One failure when there are values (their xml:lang) but none is Dutch.
+    MediaHaven takes only the Dutch values, so at least one must be there.
+    """
+    if len(values) == 0 or "nl" in values:
+        return []
+    return [TupleWithSource(__source__=str(mods_path), items=(element,))]
+
+
+def check_dutch_genre(mods: Mods, mods_path: Path) -> RuleResult[TupleWithSource[str]]:
+    return RuleResult(
+        code=Code.mods_genre_dutch,
+        failed_items=missing_dutch(
+            [genre.xml_lang for genre in mods.genres], "mods:genre", mods_path
+        ),
+        fail_msg=lambda item: f'No {item.items[0]} has xml:lang="nl"; at least one must (BICP33).',
+        success_msg="Validated that a mods:genre is in Dutch.",
+    )
+
+
+def check_dutch_topic(mods: Mods, mods_path: Path) -> RuleResult[TupleWithSource[str]]:
+    topics = [
+        p for subject in mods.subjects for p in subject.properties if isinstance(p, ModsTopic)
+    ]
+    return RuleResult(
+        code=Code.mods_topic_dutch,
+        failed_items=missing_dutch(
+            [topic.xml_lang for topic in topics], "mods:subject/mods:topic", mods_path
+        ),
+        fail_msg=lambda item: f'No {item.items[0]} has xml:lang="nl"; at least one must (BICP37).',
+        success_msg="Validated that a mods:topic is in Dutch.",
+    )
+
+
 checks = [
     check_edtf_values,
+    check_dutch_genre,
+    check_dutch_topic,
 ]
 
 
