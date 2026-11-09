@@ -10,8 +10,6 @@ sip_paths = set(Path("tests/sip-examples/2.1").iterdir())
 
 exclude = [
     "tests/sip-examples/2.1/ftp_sidecar_904c6e86-d36a-4630-897b-bb560ce4b690",
-    # TIFF and ALTO files lack `is source of` towards the PDF (BICP84)
-    "tests/sip-examples/2.1/newspaper_tiff_alto_pdf_ebe47259-8f23-4a2d-bf49-55ae1d855393",
     # descriptive metadata is named dc_1.xml instead of dc+schema.xml
     "tests/sip-examples/2.1/subtitles_d3e1a978-3dd8-4b46-9314-d9189a1c94c6",
 ]
