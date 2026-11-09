@@ -380,6 +380,10 @@ def check_related_objects_inverse_relationship_valid(
             # could not determine related object
             continue
 
+        if helpers.get_inverse_relationship(sub_type) is None:
+            # unknown sub-type, reported by check_relationships_sub_type_vocabulary
+            continue
+
         relationships_pointing_to_self = [
             relationship
             for relationship in related_object.relationships
@@ -466,7 +470,7 @@ def check_relationships_sub_type_vocabulary_per_object_type(
         relationship
         for object, relationship in object_and_relationhip_pairs
         if relationship.sub_type.text
-        not in thesauri.relationship_sub_types_per_object_type[object.xsi_type]
+        not in thesauri.relationship_sub_types_per_object_type.get(object.xsi_type, [])
     ]
 
     return RuleResult(

@@ -83,8 +83,8 @@ def find_related_object(
     return objects[0]
 
 
-def get_inverse_relationship(sub_type: premis.RelationshipSubType) -> str:
-    return thesauri.inverse_relationship_sub_type_map[sub_type.text]
+def get_inverse_relationship(sub_type: premis.RelationshipSubType) -> str | None:
+    return thesauri.inverse_relationship_sub_type_map.get(sub_type.text)
 
 
 def get_data_path_for_file(file: premis.File) -> Path | None:

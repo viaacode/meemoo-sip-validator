@@ -45,6 +45,8 @@ event_object_roles = [
 
 relationship_types = [
     "structural",
+    "derivation",
+    "dependency",
 ]
 
 relationship_sub_types_per_object_type = {
@@ -55,6 +57,10 @@ relationship_sub_types_per_object_type = {
         "has access copy",
         "has transcription copy",
         "has carrier copy",
+        "generalizes",
+        "specializes",
+        "has part",
+        "is part of",
     ],
     "{http://www.loc.gov/premis/v3}representation": [
         "represents",
@@ -67,6 +73,10 @@ relationship_sub_types_per_object_type = {
     ],
     "{http://www.loc.gov/premis/v3}file": [
         "is included in",
+        "is source of",
+        "has source",
+        "requires",
+        "is required by",
     ],
     "{http://www.loc.gov/premis/v3}bitstream": [],
 }
@@ -86,6 +96,14 @@ inverse_relationship_sub_type_map = {
     "is carrier copy of": "has carrier copy",
     "includes": "is included in",
     "is included in": "includes",
+    "is source of": "has source",
+    "has source": "is source of",
+    "requires": "is required by",
+    "is required by": "requires",
+    "generalizes": "specializes",
+    "specializes": "generalizes",
+    "has part": "is part of",
+    "is part of": "has part",
 }
 
 

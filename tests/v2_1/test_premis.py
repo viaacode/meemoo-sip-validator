@@ -12,6 +12,12 @@ from eark_models.premis.v3_0 import (  # pyright: ignore[reportMissingTypeStubs]
     ObjectIdentifierType,
     ObjectIdentifierValue,
     Premis,
+    RelatedObjectIdentifier,
+    RelatedObjectIdentifierType,
+    RelatedObjectIdentifierValue,
+    Relationship,
+    RelationshipSubType,
+    RelationshipType,
 )
 
 from meemoo_sip_validator.v2_1._core.premis.premis import (
@@ -19,6 +25,10 @@ from meemoo_sip_validator.v2_1._core.premis.premis import (
     check_object_identifier_type_uuid_existance,
     check_object_identifier_type_vocabulary,
     check_object_identifiers_uniqueness,
+    check_related_objects_inverse_relationship_valid,
+    check_relationships_sub_type_vocabulary,
+    check_relationships_sub_type_vocabulary_per_object_type,
+    check_relationships_type_vocabulary,
 )
 
 
@@ -149,3 +159,116 @@ def test_multiple_uuid_object_identifiers_are_allowed():
 
     assert check_object_identifier_type_uuid_existance([premis]).failed_items == []
     assert check_object_identifiers_uniqueness([premis]).failed_items == []
+
+
+def relationship(type: str, sub_type: str, related_uuid: str) -> Relationship:
+    return Relationship(
+        __source__="xml",
+        type=RelationshipType(
+            __source__="xml",
+            text=type,
+            authority=None,
+            authority_uri=None,
+            value_uri=None,
+        ),
+        sub_type=RelationshipSubType(
+            __source__="xml",
+            text=sub_type,
+            authority=None,
+            authority_uri=None,
+            value_uri=None,
+        ),
+        related_object_identifiers=[
+            RelatedObjectIdentifier(
+                __source__="xml",
+                type=RelatedObjectIdentifierType(
+                    __source__="xml",
+                    text="UUID",
+                    authority=None,
+                    authority_uri=None,
+                    value_uri=None,
+                ),
+                value=RelatedObjectIdentifierValue(__source__="xml", text=related_uuid),
+                simple_link=None,
+            )
+        ],
+        related_event_identifiers=[],
+    )
+
+
+def premis_file(uuid: str, relationships: list[Relationship]) -> File:
+    return File(
+        __source__="xml",
+        xsi_type="{http://www.loc.gov/premis/v3}file",
+        identifiers=[object_identifier("UUID", uuid)],
+        significant_properties=[],
+        characteristics=[],
+        original_name=None,
+        storages=[],
+        relationships=relationships,
+    )
+
+
+def premis_with_files(files: list[File]) -> Premis:
+    return Premis(__source__="xml", version="3.0", objects=files, events=[], agents=[])
+
+
+PDF_UUID = "1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d"
+TIFF_UUID = "6e7f8a9b-0c1d-4e2f-3a4b-5c6d7e8f9a0b"
+
+
+def test_derivation_pair_on_files_is_valid():
+    premis = premis_with_files(
+        [
+            premis_file(
+                PDF_UUID, [relationship("derivation", "has source", TIFF_UUID)]
+            ),
+            premis_file(
+                TIFF_UUID, [relationship("derivation", "is source of", PDF_UUID)]
+            ),
+        ]
+    )
+
+    assert check_relationships_type_vocabulary([premis]).failed_items == []
+    assert check_relationships_sub_type_vocabulary([premis]).failed_items == []
+    assert (
+        check_relationships_sub_type_vocabulary_per_object_type([premis]).failed_items
+        == []
+    )
+    assert check_related_objects_inverse_relationship_valid([premis]).failed_items == []
+
+
+def test_has_source_without_is_source_of_is_rejected():
+    premis = premis_with_files(
+        [
+            premis_file(
+                PDF_UUID, [relationship("derivation", "has source", TIFF_UUID)]
+            ),
+            premis_file(TIFF_UUID, []),
+        ]
+    )
+
+    result = check_related_objects_inverse_relationship_valid([premis])
+
+    assert [pair.items[0].text for pair in result.failed_items] == ["has source"]
+
+
+def test_unknown_relationship_sub_type_is_reported_not_raised():
+    premis = premis_with_files(
+        [
+            premis_file(
+                PDF_UUID, [relationship("derivation", "is made of", TIFF_UUID)]
+            ),
+            premis_file(
+                TIFF_UUID, [relationship("derivation", "has source", PDF_UUID)]
+            ),
+        ]
+    )
+
+    sub_type_result = check_relationships_sub_type_vocabulary([premis])
+    inverse_result = check_related_objects_inverse_relationship_valid([premis])
+
+    assert [r.sub_type.text for r in sub_type_result.failed_items] == ["is made of"]
+    assert [pair.items[0].text for pair in inverse_result.failed_items] == [
+        "has source"
+    ]
