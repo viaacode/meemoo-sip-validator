@@ -12,9 +12,9 @@ from .collect import collect_instances
 
 
 def is_valid_edtf(text: str) -> bool:
-    # The spec defines EDTF as "up to level 1 plus the value `XXXX` to indicate
-    # an unknown date". MODS has no xsi:type to pick a level, unlike dc+schema.
-    return text == "XXXX" or conformsLevel1(text)  # pyright: ignore[reportUnknownVariableType]
+    # EDTF levels 0 and 1, plus the level 2 value `XXXX-XX-XX` for a fully
+    # unknown date. MODS has no xsi:type to pick a level, unlike dc+schema.
+    return text == "XXXX-XX-XX" or conformsLevel1(text)  # pyright: ignore[reportUnknownVariableType]
 
 
 def check_edtf_values(

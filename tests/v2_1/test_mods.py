@@ -30,13 +30,16 @@ def edit_mods(sip_path: Path, old: str, new: str) -> Path:
 
 
 @pytest.mark.parametrize(
-    "edtf_value", ["1895-01-28", "1895-01", "1895/1896", "19XX", "1984?", "XXXX"]
+    "edtf_value",
+    ["1895-01-28", "1895-01", "1895/1896", "19XX", "1984?", "XXXX-XX-XX"],
 )
 def test_is_valid_edtf(edtf_value: str):
     assert is_valid_edtf(edtf_value)
 
 
-@pytest.mark.parametrize("edtf_value", ["28-01-1895", "", "XXXX-XX-XX", "1895-01-28 "])
+@pytest.mark.parametrize(
+    "edtf_value", ["28-01-1895", "", "XXXX", "XXXX-XX", "1XXX", "1895-01-28 "]
+)
 def test_is_invalid_edtf(edtf_value: str):
     assert not is_valid_edtf(edtf_value)
 
