@@ -130,6 +130,7 @@ object_identifier_types = [
     "Api",
     "Ardome",
     "Basis",
+    "batch",
     "Bestandsnaam",
     "DataPID",
     "Historical_carrier",

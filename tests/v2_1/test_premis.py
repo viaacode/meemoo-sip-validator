@@ -130,6 +130,17 @@ def test_multiple_object_identifiers_of_same_type_with_different_values_are_allo
     assert check_object_identifiers_uniqueness([premis]).failed_items == []
 
 
+def test_batch_object_identifier_type_is_allowed():
+    premis = premis_with_ie(
+        [
+            object_identifier("UUID", UUID),
+            object_identifier("batch", "BMXMJPGB01"),
+        ]
+    )
+
+    assert check_object_identifier_type_vocabulary([premis]).failed_items == []
+
+
 def test_multiple_object_identifiers_of_same_type_with_same_value_are_rejected():
     premis = premis_with_ie(
         [
